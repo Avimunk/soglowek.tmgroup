@@ -88,6 +88,7 @@ namespace Portal.Entities
         {
             get
             {
+                // var item
                 //var item = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
                 //var item = HttpContext.Current.User.Identity.Name;
                 //var item = httpconte
