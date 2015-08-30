@@ -1,0 +1,25 @@
+﻿@model IList<Portal.Entities.Calendar>
+@{
+    ViewBag.Title = "אירועים";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+    אירועים
+</h2>
+<ul class="toolbar">
+    <li>
+        <a class="icon icon-add" href="@Url.Action("Create") ">הוספת אירוע חדש</a>
+    </li>
+</ul>
+@Html.Grid(Model).Columns(column => {
+    column.For(x => x.Date.ToShortDateString()).Named("תאריך");
+    column.For(x => x.Minutes + " : " + x.Hours).Named("משעה");
+    column.For(x => x.MinutesUntill + " : " + x.HoursUntill).Named("עד שעה");
+    column.For(x => x.Teacher).Named("מדריך");
+    column.For(x => x.Place).Named("מיקום");
+    column.For(x => x.Audience).Named("קהל יעד");
+    column.For(x => x.Title).Named("שם אירוע").Attributes(@class => "wrap");
+    column.For(x => Html.ActionLink("לעמוד", "Show", new { x.Id }, new { target = "_blank" }));
+    column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+    column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+})

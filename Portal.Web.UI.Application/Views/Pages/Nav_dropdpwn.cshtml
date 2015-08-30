@@ -1,0 +1,71 @@
+﻿@model IList<Portal.Entities.Page>
+@{
+    Layout = null;
+}
+<ul id="nav" class="menu-nav">
+    <li class="active">
+        @Html.ActionLink("דף הבית", "Index", "Home", new
+   {
+       @id = "nav-menu-0",
+       @href = "/"
+   })
+        <ul class="menu">
+            <li class="main-sub">
+
+                @Html.ActionLink("קרא וחתום", "List", "Docs")
+
+            </li>
+        </ul>
+    </li>
+
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <li>
+
+            @if (Model.Count > i)
+            {
+                <p class="menu_separator">|</p>
+            }
+           
+            @if (Model[i].Children.Any())
+            {
+                 <a>@Model[i].Name</a>
+                <ul class="menu">
+                    @foreach (var child in Model[i].Children.Where(x => x.IsActive == true).OrderBy(x => x.PageOrder).ToList())
+                    {
+                        <li class="main-sub">
+                            @Html.PageLink(child, "main-sub")
+                            @if (child.Children.Any())
+                            {
+                                <ul class="sub-menu">
+                                    @foreach (var sub_child in child.Children.Where(x => x.IsActive == true).OrderBy(x => x.PageOrder).ToList())
+                                    {
+                                        <li class="main-sub">
+                                            @Html.PageLink(sub_child, "sub-menu-sub")
+                                             @if (sub_child.Children.Any())
+                            {
+                                <ul class="subsub-menu">
+                                    @foreach (var subsub_child in sub_child.Children.Where(x => x.IsActive == true).OrderBy(x => x.PageOrder).ToList())
+                                    {
+                                        <li class="main-sub">
+                                            @Html.PageLink(subsub_child, "sub-menu-sub")
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                 @Html.PageLink(Model[i], "nav") 
+            }
+        </li>
+    }
+</ul>

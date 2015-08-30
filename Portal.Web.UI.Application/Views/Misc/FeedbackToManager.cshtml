@@ -1,0 +1,51 @@
+﻿@{
+	ViewBag.Title = "כתוב למנכ\"ל";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+	<h4 class="box-title">
+		כתוב למנכ"ל
+	</h4>
+	<div class="box-content">
+		@if (ViewBag.IsSent) {
+			<text>תודה שפנית אלינו</text>
+  }
+  else {
+			<text> שלום,<br />
+			התוכן הנשלח בתיבת הודעה זו נשלח באופן אנונימי למנכלית החברה.<br />
+			אנו מודים לכם על התייחסותכם.<br />
+			<br />
+			</text>
+	  
+	  
+	  using (Html.BeginForm()) {
+			<table class="form">
+				<tr>
+					<th>
+						הודעה:
+					</th>
+					<td>
+						<textarea rows="6" cols="80" name="feedback"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<input type="submit" value="שלח" class="btn" />
+					</td>
+				</tr>
+			</table>
+	  }
+  }
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		
+
+	    $("a.Home").parent().removeClass("active");
+		$("a.FeedbackToManager").parent().addClass("active");
+	});
+
+</script>

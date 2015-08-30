@@ -1,0 +1,46 @@
+.note-list {
+		}
+.note-list ol,
+.note-list li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+}
+.note-list li {
+	margin: 0;
+	padding: 10px;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.note-list li:hover {
+	background-color: #FFFF99;
+}
+
+.note-date {
+	display: block;
+	margin-top: 5px;
+	padding-left: 15px;
+	padding-bottom: 2px;
+	background: url(images/clock-small.png) left center no-repeat;
+}
+
+.note-list form {
+	padding: 10px;
+}
+
+.note-list textarea {
+	width: 60%;
+	height: 100px;
+	display: block;
+}
+
+.note-list .icon-delete {
+	float: right;
+}
+
+.note-list select,
+.note-list textarea,
+.note-list select{
+	border: 1px solid #CCCCCC;
+}

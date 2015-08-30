@@ -1,0 +1,61 @@
+﻿@model Portal.Entities.Calendar
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<fieldset>
+    <legend>אירוע</legend>
+
+    <div class="display-label">שם</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">תוכן</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Body)
+    </div>
+
+
+
+    <div class="display-label">תאריך</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">לינק</div>
+    <div class="display-field">
+        <a href="@Model.Url" target="_blank">לחץ כאן</a>
+    </div>
+
+    <div class="display-label">שעה</div>
+    <div class="display-field">
+       @Html.DisplayFor(model => model.Minutes) : @Html.DisplayFor(model => model.Hours) 
+    </div>
+
+
+
+
+
+    <div class="display-label">מיקום</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Place)
+    </div>
+
+    <div class="display-label">מנחה</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Teacher)
+    </div>
+
+    <div class="display-label">קהל יעד</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Audience)
+    </div>
+</fieldset>
+
+
+

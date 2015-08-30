@@ -1,0 +1,94 @@
+.employee-card {
+	line-height: 20px;
+	width: 100%;
+}
+
+.employee-card td, .employee-card th {
+	vertical-align: top;
+	padding-right: 10px;
+}
+
+.employee-card th {
+	width: 90px;
+}
+
+.employee-card label {
+	font-weight: bold;
+	width: 90px;
+	padding-left: 10px;
+	text-align: right;
+	float:right;
+	clear:both;
+}
+
+.employee-msgs {
+}
+
+.employee-photo
+{
+    /* border: 3px solid #c4c4c4; */
+    display: inline-block;
+    width: 70px;
+    height: 61px;
+    overflow: hidden;
+    /* background: #c4c4c4; */
+}
+
+.employee-photo img {
+	display: block;
+	width: auto;
+	height: 100%;
+	background: #ccc;
+	margin: 0 auto;
+	position: relative;
+}
+
+.employee-msgs li a {
+	font-weight: bold;
+}
+
+.employee-msgs li {
+	border-bottom: 1px dotted #cccccc;
+	padding: 5px 0;
+}
+
+.employee-msgs small {
+	float: left;
+}
+
+.employee-post {
+	width: 500px;
+}
+
+.employee-card span {
+	float: left;
+	direction: rtl;
+}
+
+.employeephoto-photo img {
+	padding: 2px;
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	display: block;
+}
+
+.emoloyeephotos-list li {
+	float: right;
+	margin: 4px;
+	height: 100px;
+}
+
+.emoloyeephotos-list .delete-message {
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	text-align: center;
+}
+
+.top-photo {
+    /* margin-top: 78px; */
+
+
+    /* margin-left: 10px; */
+    /* float: left!important; */
+}

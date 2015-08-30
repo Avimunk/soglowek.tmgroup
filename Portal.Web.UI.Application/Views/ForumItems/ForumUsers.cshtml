@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Portal.Entities.Employee>
+@{
+    ViewBag.Title = "getall";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-sm-8">
+    <div class="box">
+        <div class="box-content">
+            <h1 style="text-align: center; padding-bottom: 5px; padding-top: 5px;">
+                Forums users</h1>
+            <a class="icon icon-back" style="margin-top: -30px; display: block; float: right"
+                href="/ForumItems/">Back</a>
+        </div>
+    </div>
+</div>
+@{
+    var forumUsers = ViewBag.ForumUsers.ToString().Split(',');
+    var forumId = Request.QueryString["forumId"];
+    ForumItem currForum = new ForumItem();
+    currForum = (ForumItem)ViewBag.currForum;      
+}
+<select name="Admin" id="getadminId">
+    @if (currForum.Admin != null)
+    {     
+        <option value="currForum.Admin.Id">@currForum.Admin.FirstName : @currForum.Admin.LastName
+        </option>
+        foreach (var user in Model)
+        {
+        <option  value="@user.Id">@user.LastName : @user.FirstName : @user.Id </option>
+        }
+    }
+    else
+    {
+        <option value="">Choose Admin</option>
+
+        foreach (var user in Model)
+        {
+        <option  value="@user.Id">@user.LastName : @user.FirstName : @user.Id </option>
+        }
+
+    }
+</select>
+<div id="all">
+    @foreach (var user in Model)
+    {
+        var flag = "";
+        if (forumUsers != null)
+        {
+            foreach (var qwe in forumUsers)
+            {
+                if (qwe == user.Id.ToString())
+                {
+                    flag = "checked";
+                }
+                else
+                {
+
+                }
+
+            }
+        }
+        <input type="checkbox" value="@user.Id" @flag name="ForumUsers[]" />@user.LastName <text> </text> @user.FirstName   <br />
+    }
+</div>
+<div>
+    <p>
+        <a href="#" id="checkall">Check all</a></p>
+    <p>
+        <a href="#" id="uncheckall">Uncheck all</a></p>
+    <p>
+        <button type="button" id="saveForumUsers-@forumId">
+            Save new users</button></p>
+</div>
+<script type="text/javascript">
+
+
+                        $(document).ready(function () {
+                        
+                        
+                        
+                         $('#saveForumUsers-@forumId').click(function () {
+                         //var array;
+                         //var theId = $(this).attr('data-id');
+                         //$('#' + theId + ' input').each(function () {
+                         //    array[array.length] = $(this).attr('value');
+                         //});
+
+                         var users = [];
+                         $('#all input:checked').each(function () {
+                             users.push(this.value);
+                             //alert(this.value);
+                         });
+
+
+
+                         $.ajax({
+                                type: "POST",
+                                 url: "/ForumItems/UpdateUsers",
+                                contentType: 'application/json',
+                                data: JSON.stringify({users: users,id:@forumId})
+                            });
+
+
+
+
+                     });
+
+                    jQuery("#checkall").click(function(source) { 
+                           $(':checkbox').each(function() {
+                               this.checked = true;                        
+                             });
+                             return false;
+
+                    });
+                     jQuery("#uncheckall").click(function(source) { 
+                           $(':checkbox').each(function() {
+                               this.checked = false;                        
+                             });
+                             return false;
+
+                    });
+
+                    
+                                $("#getadminId").change(function () {          
+                                       $.ajax({
+                                            type: "POST",
+                                             url: "/ForumItems/UpdateAdmin",
+                                            contentType: 'application/json',
+                                            data: JSON.stringify({forumId: @forumId,adminId:$("#getadminId option:selected" ).val()})
+                                        });
+
+                                });
+                         
+                        
+                        
+                        
+                         });
+                    
+</script>

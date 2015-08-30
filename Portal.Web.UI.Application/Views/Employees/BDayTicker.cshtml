@@ -1,0 +1,34 @@
+﻿@model IList<Portal.Entities.Employee>
+@{
+	
+	Layout = null;
+}
+<div class="ticker" id="bday-ticker">
+	@if (Model.Any()) {
+		<ul>
+			@foreach (var item in Model) {
+				<li style="height: 184px;">
+					<div>
+                    <img src="/public/UserFiles/employees/@item.Picture" alt="@item.EnglishFirstName" style="width: 60px;" /><br/>
+                        <span class="bdayname">@item.FullName</span><br/>
+                         @item.JobTitleName<br/>
+                        @Html.ActionLink("תגיד מזל טוב", "Card", "Employees", new { item.Id }, null)</div>
+				</li>
+  
+   }
+		</ul>
+		<script type="text/javascript">
+		    $(function () {
+		        $("#bday-ticker").vTicker({
+		            speed: 3000,
+		            pause: 7000,
+		            showItems: 1,
+		            animation: 'fade',
+		            mousePause: true,
+		            direction: 'up',
+		            height: 192
+		        });
+		    });
+		</script>
+ }
+</div>

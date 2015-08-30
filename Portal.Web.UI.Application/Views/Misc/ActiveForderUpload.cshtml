@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "ActiveForderUpload";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    var set = ViewBag.ActiveForderUpload;
+}
+
+<fieldset>
+    <legend>האם להציד שדות העלעת קבצים </legend>
+    <dl>
+        <dt>להציד שדות העלעת קבצים?</dt>
+        <dd>
+            @if (set == false)
+            {
+                <input type="checkbox" class="pageUpload-active" />
+            }
+            else
+            {
+                <input type="checkbox" class="pageUpload-active" checked="checked" /> 
+            }
+        </dd>
+    </dl>
+
+</fieldset>
+
+
+<script>
+
+    $("input.pageUpload-active").click(function () {
+        var input = this;
+        $.post('@Url.Action("ActiveForderUploadActive")', {
+            isActive: input.checked
+        });
+    });
+
+</script>
+

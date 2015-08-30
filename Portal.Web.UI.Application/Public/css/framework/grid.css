@@ -1,0 +1,135 @@
+.grid {
+	font-size: 11px;
+}
+
+table.grid thead tr {
+	background: #fafafa url(images/grid-header.gif) center;
+}
+
+input.grid-order {
+	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: center;
+	width: 60px;
+}
+
+.grid .preview {
+	text-align: center;
+}
+
+.grid .preview img {
+	border: 1px solid #CCCCCC;
+	padding: 2px;
+	background: #ffffff;
+}
+
+table.grid caption {
+	text-align: left;
+	font-size: 140%;
+	color: #3399cc;
+}
+
+body.rtl table.grid caption {
+	text-align: right;
+}
+
+table.grid tbody tr:hover {
+	background-color: #FFFF99;
+}
+
+table.grid tbody small {
+	display: block;
+	color: #666666;
+	font-family: Verdana;
+}
+
+tr.odd {
+	background-color: #F0F0F0;
+}
+
+table.grid {
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+	table-layout: auto;
+	width: 100%;
+	border-bottom: 1px solid #cccccc;
+}
+
+table.grid a.icon{
+	display: block;
+}
+
+table.grid span.icon {
+	margin-right: 5px;
+}
+
+body.rtl table.grid span.icon {
+	margin-right: 0;
+	margin-left: 5px;
+}
+
+table.grid td, table.grid th {
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+table.grid tbody td, 
+table.grid thead th {
+	border: 1px solid #cccccc;
+	padding: 4px 6px;
+}
+table.grid tbody td{
+	border-bottom: 1px dotted #cccccc;
+}
+
+table.grid thead th {
+	text-align: left;
+	font-weight: normal;
+}
+
+body.rtl table.grid thead th {
+	text-align: right;
+}
+
+table.grid .wrap {
+	width: 100%;
+	white-space: normal;
+}
+
+table.grid tfoot td {
+	background: #ffffff;
+}
+
+.grid thead a{
+	background: no-repeat right;
+	padding-right: 10px;
+	text-decoration: none;
+	color: #000000;
+}
+
+body.rtl .grid thead a{
+	background: no-repeat left;
+	padding-left: 10px;
+	padding-right: 6px;
+}
+
+.grid thead a:hover {
+	background-image: url(images/asc-off.png);
+}
+
+th.sort_asc a {
+	background-image: url(images/asc.png);
+}
+
+.grid .sort_asc a:hover {
+	background-image: url(images/desc-off.png);
+}
+
+th.sort_desc a {
+	background-image: url(images/desc.png);
+}
+
+.grid .sort_desc a:hover {
+	background-image: url(images/asc-off.png);
+}

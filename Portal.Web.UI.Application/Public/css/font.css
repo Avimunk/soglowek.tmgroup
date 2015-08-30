@@ -1,0 +1,49 @@
+
+@font-face{ 
+	font-family: 'Open Sans';
+	src: url('../../Public/css/fonts/open-sanse/open-sans.regular.ttf') format('truetype');
+
+
+}
+/*
+
+@font-face{ 
+	font-family: 'Admiration';
+	src: url('../../Public/css/fonts/open-sanse/Admiration_Pains.ttf') format('truetype');
+
+
+}
+
+*/
+
+body, input, select, textarea, div {
+	font-size: 16px;
+	direction: rtl;
+	color: #3b3b3b;
+	line-height: normal;
+	font-family: 'Open Sans', sans-serif;
+}
+
+ul, li, ol, h1, h2, h3, h4, form, p, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+html a {
+	color: #0e83c1;
+}
+
+h4 {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.page-content p {
+}
+
+h2 {
+	font-size: 12px;
+}

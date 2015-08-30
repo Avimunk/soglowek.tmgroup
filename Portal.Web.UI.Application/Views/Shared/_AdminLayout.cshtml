@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+  
+
+
+   
+
+    <script src="../../Public/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+
+  
+
+
+    <script type="text/javascript">
+        var dateFormat = '@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower().Replace("yyyy", "yy")';
+
+        var $approot = '@Url.Content("~/")';
+        var $controller = '@ViewContext.RouteData.Values["controller"].ToString()';
+
+        $(function () {
+            $('a.nav-@ViewContext.RouteData.Values["controller"].ToString().ToLower()').addClass("s");
+        });
+    </script>
+    @Html.Script("jquery.min", "jquery.vticker.1.4", "jquery.innerfade", "jquery.colorbox-min", "user", "bootstrap.min", "jquery-ui.min","ckfinder/ckfinder", "ckeditor/ckeditor", "admin")
+    @Html.Css("framework/layout", "framework/fieldset", "framework/default", "framework/nav", "framework/grid", "framework/toolbar", "framework/icon", "framework/message", "admin")
+    @RenderSection("HeadContent", false)
+
+  
+</head>
+<body class="rtl controller-@ViewContext.RouteData.Values["controller"]">
+    <div id="container">
+        <div id="header">
+            <a class="logo" href="@Href("~/")">
+                <img alt="" width="120" src="@Url.Content("~/public/images/newlogo.png")" id="Img1" />
+            </a>
+            <br />
+            @Html.ActionLink("יציאה", "Logout", "Misc")
+            <p>
+           
+           </p>
+        </div>
+        <ul id="nav" class="ui-helper-clearfix">
+         <li>
+                <a class="nav-settings" href="@Url.Action("Edit", "Settings")"><span>דף ראשי</span> </a>
+            </li>
+            <li>
+                <a class="nav-pages" href="@Url.Action("Index", "Pages")"><span>תפריט</span> </a>
+            </li>
+        @*    <li>
+                <a class="nav-employees" href="@Url.Action("List","Employees")"><span>עובדים</span> </a>
+            </li>
+            <li>
+                <a class="nav-jobTitle" href="@Url.Action("Index", "JobTitle")"><span>תפקידים</span> </a>
+
+            </li>*@
+            @* <li>
+                    <a class="nav-messages" href="@Url.Action("List","Employees")"><span>סניפים</span> </a>
+                </li>*@
+            <li>
+                <a class="nav-messages" href="@Url.Action("Index", "Messages")"><span>הודעות</span> </a>
+            </li>
+             <li>
+                <a class="nav-messages" href="@Url.Action("Index", "Jobs")"><span>מכרזים פנימיים</span> </a>
+            </li>
+            <li>
+                <a class="nav-polls" href="@Url.Action("Index", "Polls")"><span>סקרים</span> </a>
+            </li>
+            <li>
+                <a class="nav-calendars" href="@Url.Action("Index", "Calendars")"><span>אירועים</span> </a>
+            </li>
+            <li>
+                <a class="nav-forums" href="/ForumItems"><span>רשת הארגונית</span> </a>
+            </li>
+            <li>
+                <a class="nav-galleries" href="@Url.Action("Index", "Galleries")"><span>תמונות</span> </a>
+            </li>
+           
+             @* <li>
+                <a class="nav-wiki" href="@Url.Action("Index", "Wiki")"><span>מילון מונחים</span> </a>
+            </li>*@
+               <li>
+                <a class="nav-docs" href="@Url.Action("Index", "Docs")"><span>קרא וחתום</span> </a>
+            </li>
+            <li>
+                <a class="nav-flashbanners" href="@Url.Action("Index", "FlashBanners")"><span>באנר ראשי</span> </a>
+            </li>
+              <li>
+                <a class="nav-flashbanners" href="@Url.Action("ActiveForderUpload", "Misc")"><span>הגדרות כללי</span> </a>
+            </li>
+     @*       <li>
+                <a class="nav-flashbanners" href="@Url.Action("Index", "StreamLink")"><span>Stream Link</span> </a>
+            </li>*@
+        </ul>
+        <div id="content" class="ui-helper-clearfix">
+            <div id="loading">
+                loading
+            </div>
+            @RenderBody()
+        </div>
+        <div id="footer">
+
+            <span style="float: right">ver.@Html.Version() | 
+            <a target="_blank" href="@Url.Content("~/elmah.axd")">errors log</a> |
+              @Html.ActionLink("update employees", "updateemployees", "misc", null, new { target = "_blank" })</span>| Powered by 
+            <a target="_blank" href="http://www.tmgroup.co.il">tag</a>
+        </div>
+    </div>
+</body>
+</html>

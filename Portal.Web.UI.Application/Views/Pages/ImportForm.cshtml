@@ -1,0 +1,108 @@
+﻿@model Portal.Models.Pages.PageImportModel
+@{
+	Layout = null;
+}
+<fieldset>
+	<legend>ייבוא</legend>
+	<dl>
+		<dt>ספריית מקור:</dt>
+		<dd>
+            @Html.TextBoxFor(x => x.FolderUrl, new { @id = "input-import-folderurl", @class = "ckfinder", @disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.FolderUrl)
+            <input type="button" id="button-import-folderurl" value="בחר" class="fileBrowse" data-target="input-import-folderurl">
+		</dd>
+        <dt>תבנית עמוד:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.TemplateUrl, new { @id = "input-import-templateurl", @class = "ckfinder", @disabled = "disabled", @Value="/Public/templates/CategoryPage.html" })
+            @Html.ValidationMessageFor(x => x.TemplateUrl)
+            <input type="button" id="button-import-templateurl" value="בחר" class="fileBrowse" data-target="input-import-templateurl">
+        </dd>
+        <dt>תבנית רשומה:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.TemplateItemUrl, new { @id = "input-import-template-item-url", @class = "ckfinder", @disabled = "disabled", @Value = "/Public/templates/CategoryPageItem.html" })
+            @Html.ValidationMessageFor(x => x.TemplateItemUrl)
+            <input type="button" id="button-import-template-item-url" value="בחר" class="fileBrowse" data-target="input-import-template-item-url">
+        </dd>
+	</dl>
+</fieldset>
+@Html.HiddenFor(x => x.Id)
+<div class="submit-btn">
+	<input id="submit-button" type="submit" value="ייבא" />
+</div>
+
+
+
+<script type="text/javascript">
+    var menuItem = {
+        label: 'Choose',
+        command: 'DisplayUrl'
+    };
+    var target;
+
+    CKFinder.addPlugin('folderselector', {
+
+        lang: ['en', 'pl'],
+
+        uiReady: function (api) {
+
+            api.addFolderContextMenuOption(menuItem, function (api, folder) {
+                $("#" + target).val(folder.getUrl());
+
+                api.closePopup();
+            });
+        }
+    });
+
+    $(function () {
+        $("#button-import-folderurl, #button-import-templateurl, #button-import-template-item-url").click(function () {
+            var ckFinder = new CKFinder();
+
+            target = $(this).attr('data-target');
+            ckFinder.extraPlugins = "folderselector";
+            ckFinder.popup();
+        });
+
+        $("#button-import-templateurl, #button-import-template-item-url").click(function () {
+            var ckFinder = new CKFinder();
+
+            target = $(this).attr('data-target');
+
+            ckFinder.selectActionFunction = function (fileUrl, data) {
+                document.getElementById(target).value = fileUrl;
+            }
+
+            ckFinder.popup();
+        });
+
+
+        $("#submit-button").click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $.ajax({
+                url: '/Pages/Import/' + $("#Id").val(),
+                type: 'POST',
+                data: JSON.stringify( {
+                    "FolderUrl": $('#input-import-folderurl').val(),
+                    "TemplateUrl": $('#input-import-templateurl').val(),
+                    "TemplateItemUrl": $('#input-import-template-item-url').val(),
+                }),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    console.log("Success:");
+                    console.log(data);
+
+                    alert(data);
+                    $("#import-form")[0].reset();
+                },
+                error: function (err) {
+                    console.log("Error:");
+                    console.log(err);
+                    alert(err.responseText);
+                }
+            });
+
+            return false;
+        });
+    });
+</script>

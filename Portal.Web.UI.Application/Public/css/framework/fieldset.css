@@ -1,0 +1,358 @@
+fieldset {
+	border: 1px solid #cccccc;
+	padding: 10px;
+	width: 850px;
+	margin: 10px 0;
+}
+
+fieldset .tooltip{
+	cursor: help;
+	background: #3399cc;
+	color: #ffffff;
+	font-size: 1em;
+	padding: 0 3px;
+	font-family: Consolas, 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace !important;
+	line-height: 14px;
+}
+
+ul.without-scroll{
+	height: auto!important;
+	overflow: visible;
+}
+
+.ui-dialog fieldset {
+	width: 850px;
+}
+
+.ui-dialog span.field-validation-error, div.login span.field-validation-error {
+	display: block;
+	margin: 0;
+}
+
+.watermark {
+	color: #999;
+}
+
+fieldset li, fieldset dd ul, fieldset dd ol, dd ul.list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+fieldset small {
+	display: block;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+fieldset legend {
+	background: none repeat scroll 0 0 #F0F0F0;
+	border: 1px solid #CCCCCC;
+	font-size: 14px;
+	padding: 2px 10px;
+}
+
+fieldset dt label {
+	font-size: 120%;
+}
+
+fieldset dd ul label {
+	float: none;
+}
+
+fieldset dd ul, dd ul.list {
+	border: 1px solid #CCCCCC;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 100px;
+}
+
+strong.mandatory{
+	color: #ff0000;
+}
+
+body.rtl fieldset ul, body.rtl fieldset ul.list {
+	
+}
+
+fieldset dd ul li, ul.list dd li {
+	padding: 5px 30px 5px 5px;
+	clear: left;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+body.rtl fieldset dd ul li, body.rtl dd ul.list li {
+	padding: 5px 5px 5px 30px;
+	white-space: nowrap;
+}
+
+fieldset dd ul li:hover, dd ul.list li:hover {
+	background-color: #FFFF99;
+}
+
+fieldset ol {
+	margin-top: 1em;
+}
+
+fieldset .inline{
+	overflow: hidden;
+}
+
+fieldset .inline li{
+	float: left;
+	margin: 4px;
+}
+
+body.rtl fieldset .inline li {
+	float: right;
+}
+
+
+fieldset dt {
+	/* width: 13em; */
+	float: left;
+	clear: both;
+	text-align: right;
+	padding: 7px;
+}
+
+body.rtl fieldset dt {
+	float: right;
+	text-align: left;
+}
+
+body.rtl .ui-dialog fieldset dt {
+	float: none;
+}
+
+fieldset dl {
+	margin-top: 1em;
+}
+
+fieldset dd {
+	margin-left: 11em;
+	padding: 5px;
+}
+
+body.rtl fieldset dd {
+	margin-left: 0;
+	margin-right: 11em;
+}
+
+fieldset input, fieldset textarea, .date-box {
+	border: 1px solid #CCCCCC;
+	font-size: 14px !important;	
+	background: url(images/input_bg.gif) #ffffff repeat-x top;
+}
+
+
+fieldset input, fieldset textarea, .date-box, fieldset select {
+	margin: 0;
+	padding: 3px;
+}
+
+fieldset dd div {
+	font-size: 14px !important;
+	padding-top: 2px;
+	font-weight: bold;
+}
+
+fieldset input {
+	width: 200px;
+}
+
+fieldset textarea {
+	height: 100px;
+	width: 400px;
+}
+
+input.check-box {
+	cursor: pointer;
+}
+
+fieldset input.check-box {
+	width: auto;
+	border: 0;
+}
+
+input.date-box {
+	cursor: pointer;
+	width: 8em;
+	padding-left: 20px;
+	background: url(images/calendar-blue.png) no-repeat left center;
+}
+
+body.rtl input.date-box {
+	direction: ltr;
+}
+
+input.amount-box {
+	width: 6em;
+	text-align: right;
+	direction: ltr;
+}
+
+input.image-box, input.url-box {
+	width: 300px;
+}
+
+div.login {
+	margin: 30px auto;
+	width: 350px;
+	
+}
+
+div.login fieldset {
+	width: auto;
+	min-height: 150px;
+	background: url(images/lock.gif) no-repeat bottom left;
+}
+
+body.rtl div.login fieldset {
+	background-position: bottom right;
+}
+
+div.login span {
+	display: block;
+}
+
+div.login input, div.login textarea {
+	width: auto;
+}
+
+.ui-dialog fieldset {
+	width: auto;
+	border: 0;
+	padding: 0;
+}
+
+.ui-dialog legend,
+.ui-dialog .collapsible {
+	display: none;
+}
+
+.ui-dialog dt {
+	float: none;
+	text-align: left;
+	padding: 0;
+}
+
+body.rtl .ui-dialog dt {
+	text-align: right;
+}
+
+
+.ui-dialog dd {
+	margin-left: 0;
+	padding: 0;
+	padding-bottom: 10px;
+}
+
+body.rtl .ui-dialog dd {
+	margin-right: 0;
+}
+
+.ui-dialog dl {
+	margin: 0;
+}
+
+/************************/
+
+
+.submit-btn {
+	margin: 10px 0;
+	line-height: 20px;
+}
+
+.submit-btn span {
+	padding-right: 7px;
+}
+
+body.rtl .submit-btn span {
+	padding-right: 0;
+	padding-left: 7px;
+}
+
+.submit-btn a, .submit-btn input {	
+	background-color: #f5f5f5;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	font-size: 100%;
+	text-decoration: none;
+	font-weight: bold;
+	color: #565656;
+	cursor: pointer;
+	
+}
+
+.submit-btn a{
+	padding: 5px 7px 6px 7px;
+}
+
+.submit-btn input {
+	width: auto;
+	overflow: visible;
+	margin: 0 7px 0 0;
+	vertical-align: middle;
+	padding: 3px 7px 4px 7px;
+}
+
+body.rtl .submit-btn input{
+	margin: 0 0 0 7px;
+}
+
+.submit-btn input[type] {
+	line-height: 17px; /* Safari */
+}
+
+*:first-child + html .submit-btn input[type] {
+}
+
+.submit-btn input:hover, .submit-btn a:hover {
+	background-color: #dff4ff;
+	border: 1px solid #c2e1ef;
+	color: #336699;
+}
+.submit-btn a:active {
+	background-color: #6299c5;
+	border: 1px solid #6299c5;
+	color: #fff;
+}
+.perm_title {
+    width: 100%;
+font-weight: bold;
+text-align: right !important;
+
+
+}
+
+.submit-btn input {
+	color: #529214;
+}
+
+.submit-btn input:hover {
+	background-color: #E6EFC2;
+	border: 1px solid #C6D880;
+	color: #529214;
+}
+.submit-btn input:active {
+	background-color: #529214;
+	border: 1px solid #529214;
+	color: #fff;
+}
+
+.submit-btn a {
+	color: #d12f19;
+}
+.submit-btn a:hover {
+	background: #fbe3e4;
+	border: 1px solid #fbc2c4;
+	color: #d12f19;
+}
+.submit-btn a:active {
+	background-color: #d12f19;
+	border: 1px solid #d12f19;
+	color: #fff;
+}
+

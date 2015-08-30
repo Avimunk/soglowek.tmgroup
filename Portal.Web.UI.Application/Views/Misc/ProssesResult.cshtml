@@ -1,0 +1,21 @@
+﻿@model Portal.Entities.Log
+
+@{
+    ViewBag.Title = "ProssesResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+      <div class="jumbotron">
+        <h1>תוצאות ריצה</h1>
+        <p> רשימות הוספו @Model.Added</p>
+       <p> רשימות הוסרו @Model.Deleted</p>
+         <p> רשימות עובדו @Model.UpdatedCount</p>
+           <p> התראות  @ViewBag.warningCount</p>
+              <p> שגיעות  @Model.ErrorLines</p>
+              <p> מייל נשלח לאדמין</p>
+          <a class="btn btn-lg btn-primary" href="/" role="button">חזרה לדף הבית</a>
+     
+      </div>
+
+  
+
+

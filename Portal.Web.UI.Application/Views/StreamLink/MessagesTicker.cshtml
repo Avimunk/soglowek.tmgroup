@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Portal.Entities.StreamLink>
+@{	 
+	Layout = null;
+}
+<div id="messages-ticker">
+	<marquee style="height: 165px" onmouseover="this.scrollAmount=0" onmouseout="this.scrollAmount=1" direction="up" scrollamount="1" scrolldelay="1">
+	<ul>
+		@foreach (var item in Model) {
+			<li>
+				<div>
+				@*	<strong>@Html.MessageUrl(item)</strong>*@
+					@item.Content.SetBr()
+                     
+                  
+				</div>
+			</li>
+  }</ul>
+  </marquee>
+</div>

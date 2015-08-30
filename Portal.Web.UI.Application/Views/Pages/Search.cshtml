@@ -1,0 +1,100 @@
+﻿@model IList<Portal.Entities.Page>
+@{
+    ViewBag.Title = "חיפוש: " + ViewBag.Query;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-12">
+    <div class="box">
+        <h4 class="box-title">חיפוש: @ViewBag.Query
+        </h4>
+        <div class="box-content page-content search-page">
+            <ol>
+             <h4>עמודים</h4>
+                @foreach (var item in Model)
+                {
+                    <li>@Html.PageLink(item)</li>
+                    <p>@item.Content</p>
+                }
+
+               
+                @if (((List<Wiki>)ViewBag.Wiki).Count > 0)
+                {
+                    foreach (var item in (List<Wiki>)ViewBag.Wiki)
+                    {
+                    <li>
+                        <a  href="/Wiki/Show?letter=@item.Letter">@item.Title</a>
+                    </li>
+                    }
+
+                }
+               <h4>מכרזים פנימיים</h4>
+                  @if (((List<Job>)ViewBag.jobs).Count > 0)
+                {
+                    foreach (var item in (List<Job>)ViewBag.jobs)
+                    {
+                    <li>
+                        @Html.ActionLink(item.Name, "Show", "Jobs", new { id = item.Id }, null)
+                    </li>
+                    }
+
+                }
+                  <h4>אירועים</h4>
+                  @if (((List<Calendar>)ViewBag.calendars).Count > 0)
+                {
+                    foreach (var item in (List<Calendar>)ViewBag.calendars)
+                    {
+                    <li>
+                         @Html.ActionLink(item.Title, "Show", "Calendars", new { id = item.Id }, null)
+                    </li>
+                    }
+
+                }
+                    <h4>פורום</h4>
+                  @if (((List<Forum>)ViewBag.forumsPosts).Count > 0)
+                {
+                    foreach (var item in (List<Forum>)ViewBag.forumsPosts)
+                    {
+                    <li>
+                    
+                       <a href="/forums/@item.CategoryId" target="_blank">@item.Subject</a>
+                    </li>
+                    }
+
+                }
+                  <h4>גלריות</h4>
+                  @if (((List<Gallery>)ViewBag.galleries).Count > 0)
+                {
+                    foreach (var item in (List<Gallery>)ViewBag.galleries)
+                    {
+                    <li>
+                        @Html.ActionLink(item.Title, "Show", "Galleries", new { id = item.Id }, null)
+                    </li>
+                    }
+
+                }
+                    <h4>מסמכים</h4>
+                  @if (((List<Doc>)ViewBag.docs).Count > 0)
+                {
+                    foreach (var item in (List<Doc>)ViewBag.docs)
+                    {
+                    <li>
+                        @Html.ActionLink(item.Name, "Show", "Docs", new { id = item.Id }, null)
+                    </li>
+                    }
+
+                }
+                       <h4>הודעות</h4>
+                  @if (((List<Message>)ViewBag.events).Count > 0)
+                {
+                    foreach (var item in (List<Message>)ViewBag.events)
+                    {
+                    <li>
+                          @Html.ActionLink(item.Name, "Show", "Messages", new { id = item.Id }, null)
+                    </li>
+                    }
+
+                }
+            </ol>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+body, input, select, textarea {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.rtl{
+	direction: rtl;
+}
+
+.ltr {
+	direction: ltr;
+}
+
+body, form {
+	margin: 0;
+	padding: 0;
+}
+
+img, table {
+	border: 0;
+}
+
+html a {
+	color: #3399cc;
+	text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	color: #3399cc;
+}
+
+h2 {
+	font-size: 22px;
+	color: #3399cc;
+	padding-bottom: 10px;
+	font-weight: normal;
+}
+
+h4{
+	font-weight: normal;
+	margin-top: 7px;
+	padding: 3px 0;
+	font-size: 16px;
+}
+
+h2 span {
+	font-size: 12px;
+	color: #000000;
+}
+
+

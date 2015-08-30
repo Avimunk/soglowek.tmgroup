@@ -1,0 +1,19 @@
+﻿@{
+
+    ViewBag.Title = "עמוד";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var set = (Setting)ViewBag.settings;
+}
+<h2>
+    עמוד
+</h2>
+@using (Html.BeginForm("Edit", "Pages", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Partial("PageForm")
+
+}
+@if (set.ActiveForderUpload == true)
+{
+    @Html.Partial("ImportForm", new Portal.Models.Pages.PageImportModel())
+}
+

@@ -1,0 +1,21 @@
+﻿@model Portal.Models.JobTitles.JobTitleFormModel
+@{
+	Layout = null;
+}
+<fieldset>
+	<legend>פרטים</legend>
+	<dl>
+		<dt>תפקיד</dt>
+		<dd>
+			@Html.EditorFor(model => model.Name)
+			
+		</dd>
+	
+		
+	</dl>
+</fieldset>
+<div class="submit-btn">
+	<input type="submit" value="שמור" />
+	<span>או</span>
+	@Html.ActionLink("אחורה", "Index")
+</div>

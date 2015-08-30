@@ -1,0 +1,54 @@
+﻿@model Portal.Web.UI.Tree
+
+
+@if (Model.Nodes.Count > 0)
+{
+    <div class="tree">
+        <ul id="org" class="tree" style="display:none">
+            <li>
+                @Html.Raw(Model.RootTitle)
+                <ul>
+                @foreach (Portal.Web.UI.TreeNode node in Model.Nodes)
+                {
+                    @Html.Partial("~/Views/Shared/Tree/TreeNode.cshtml", node)
+                }
+                </ul>
+            </li>
+        </ul>
+        <div id="chart" class="orgChart"></div>
+    </div>
+    <script>
+        jQuery(document).ready(function () {
+
+            /* Custom jQuery for the example */
+            $("#show-list").click(function (e) {
+                e.preventDefault();
+
+                $('#list-html').toggle('fast', function () {
+                    if ($(this).is(':visible')) {
+                        $('#show-list').text('Hide underlying list.');
+                        $(".topbar").fadeTo('fast', 0.9);
+                    } else {
+                        $('#show-list').text('Show underlying list.');
+                        $(".topbar").fadeTo('fast', 1);
+                    }
+                });
+            });
+
+            $('#list-html').text($('#org').html());
+
+            $("#org").bind("DOMSubtreeModified", function () {
+                $('#list-html').text('');
+
+                $('#list-html').text($('#org').html());
+
+                prettyPrint();
+            });
+
+            $("#org").jOrgChart({
+                chartElement: '#chart',
+                dragAndDrop: false
+            });
+        });
+    </script>
+}

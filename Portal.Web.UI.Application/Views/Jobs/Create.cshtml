@@ -1,0 +1,10 @@
+﻿@model Portal.Models.Jobs.JobFormModel
+@{
+    ViewBag.Title = "מכרזים פנימיים";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	משרה</h2>
+@using (Html.BeginForm()) {
+	@Html.Partial("JobForm")
+}

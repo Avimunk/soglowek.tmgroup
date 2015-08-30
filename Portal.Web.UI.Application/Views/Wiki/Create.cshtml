@@ -1,0 +1,11 @@
+﻿    @model Portal.Models.Wikis.WikiFormModel
+@{
+    ViewBag.Title = "מילון מונחים";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	מילון מונחים</h2>
+@using (Html.BeginForm()) {
+	@Html.Partial("WikiForm")
+}
+

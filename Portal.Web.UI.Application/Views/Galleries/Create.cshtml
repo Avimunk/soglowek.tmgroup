@@ -1,0 +1,10 @@
+﻿@model Portal.Models.Galleries.GalleryFormModel
+@{           
+    ViewBag.Title = "תמונות";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+    תמונות</h2>
+@using (Html.BeginForm("Create", "Galleries", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.Partial("GalleryForm");
+}

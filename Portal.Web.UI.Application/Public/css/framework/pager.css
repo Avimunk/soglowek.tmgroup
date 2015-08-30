@@ -1,0 +1,28 @@
+.pager, .pager li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+.pager {
+    background: url(images/toolbar-bg.gif);
+    border: 1px solid #CCCCCC;
+    border-bottom: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.pager li {
+    float: left;
+    padding: 1px;
+    position: relative;
+}
+
+.pager .seperator{
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #ffffff;
+	padding: 0;
+	height: 22px;
+	margin: 2px 4px;
+}

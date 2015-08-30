@@ -1,0 +1,80 @@
+﻿@model Portal.Models.Employees.SearchFormModel
+@{
+    ViewBag.Title = " חיפוש מתקדם";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-8">
+    <div class="box">
+        <h4 class="box-title">
+            חיפוש מתקדם
+        </h4>
+        <div class="box-content">
+            @foreach (var item in Model.Employees)
+            {
+                <table class="employee-card">
+                    <tr>
+                        <th>
+                            @Html.EmployeeImage(item)
+                            @Html.ActionLink("כרטיס אישי", "Card", new { item.Id })
+                        </th>
+                        <td>
+                            <label>
+                                שם פרטי:</label>
+                            <div class="card_div">
+                                @item.FirstName<span>@item.EnglishFirstName</span></div>
+                            <br />
+                            <label>
+                                שם משפחה:</label><div class="card_div">
+                            @item.LastName<span>@item.EnglishLastName</span></div><br />
+                            <label>
+                                אימייל:</label><div class="card_div">
+                                    @item.Email.ToEmail()</div>
+                            <br />
+                            @if (item.Phone != "")
+                            {
+                                <label>
+                                    טלפון:</label>
+                                <div class="card_div">
+                                    @item.Phone</div>
+                                <br />
+                            }
+                            @if (item.Range != "")
+                            {
+                                <label>
+                                    מספר שלוחה:
+                                </label>
+                                <div class="card_div">
+                                    @item.Range</div>
+                                <br />
+                            }
+                            @if (item.Mobile != "")
+                            {
+                                <label>
+                                    נייד:</label>   <div>
+                                        @item.Mobile</div>
+                                <br />
+                            }
+                            @if (item.JbTitle != null)
+                            { 
+                                <label>
+                                    תפקיד:</label>  <div class="card_div">
+                                        @item.JbTitle.Name</div>
+                                <br />
+                            }
+                            @if (item.Department != null)
+                            {
+                                <label>
+                                    מחלקה:
+                                </label>   <div class="card_div">
+                                    @item.Department.Name</div>
+                                <br />
+                            }
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+            }
+        </div>
+    </div>
+</div>
+

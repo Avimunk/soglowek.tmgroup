@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title :: Portal</title>
+
+
+    <script src="../../Public/external_js/jquery.min.js" type="text/javascript"></script>
+
+    <!--[if lt IE 9]>
+     @Html.Script("html5shiv")
+             @Html.Css("ie")
+    <![endif]-->
+    @Html.Css("galleries", "colorbox", "layout", "font", "form", "employee", "polls", "forum", "user", "bootstrap.rtl", "ui")
+
+
+    <script src="../../Public/external_js/jquery-ui.min.js" type="text/javascript"></script>
+
+    @Html.Script("jquery.vticker.1.4", "jquery.innerfade", "jquery.colorbox-min", "user", "bootstrap.min")
+    <script type="text/javascript">
+        var dateFormat = '<%=System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower().Replace("yyyy", "yy") %>';
+
+    </script>
+
+    @RenderSection("HeadContent", false)
+
+
+
+    <style>
+        .cal_box {
+            height: inherit !important;
+            overflow: hidden !important;
+        }
+    </style>
+
+</head>
+<body class='@ViewContext.RouteData.Values["controller"].ToString().ToLower()'>
+    <div class="header" style="display:none">
+        <div class="container head_div">
+
+            <div class="col-sm-4">
+                <div id="head_img">
+                    @Html.EmployeeImageRight(Html.Employee())
+                    <div class="a_exit">
+                        @Html.ActionLink("שלום " + @Html.Employee().FirstName, "Card", "Employees", new { Html.Employee().Id }, null)
+                        <span>|</span>
+                        @Html.ActionLink("יציאה", "Logout", "Misc", null, new { @class = "exiting" })
+                        @if (Html.Employee().EmployeeMessagesCount > 0)
+                        { <span>|</span>
+                            @Html.ActionLink(" " + Html.Employee().EmployeeMessagesCount + " הודעות חדשות ", "Card", "Employees", new { Html.Employee().Id }, new { @class = "messages" })
+                        }
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <a class="logo" href="@Href("~/")">
+                    <img alt="" src="@Url.Content("~/public/images/newlogo.png")" />
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    @if (ViewContext.RouteData.Values["controller"].ToString().ToLower() != "home")
+    {
+        <div class="container" style="width: 100%;padding: 0px;margin: 0px;">
+            <div class="col-md-2">
+                <div class="newbox">
+                    <span></span>
+                    <p class="cal_title">
+                        מזל טוב
+                    </p>
+                    <div class="newbox_content birthday">
+                        @Html.Action("BDayTicker", "Employees")
+                    </div>
+                </div>
+
+                <div class="box news_1">
+                    <div class="box_news">
+                        @* <img src="@Url.Content("~/public/images/board.png")"  class="board"/>*@
+                        <div class="box-content box-content-news">
+                            @Html.Action("MessagesTicker", "Messages")
+                        </div>
+                    </div>
+                </div>
+
+
+
+                @*         <div class="redseparator">
+                    </div>
+
+                    <div class="ynetnews">
+                    <iframe id="MivzakimTicker" marginWidth="10" marginHeight="0" frameBorder="no"
+                    width="100%" scrolling="no" height="132"
+                     src="http://www.ynet.co.il/Ext/Comp/Ticker/Dhtml_Ticker/0,10016,L-184,00.html" name="I1"></iframe>
+
+                    </div>*@
+
+
+                <div class="redseparator">
+                </div>
+                <span class="calTitle"> היום בזוגלובק @DateTime.Now.ToShortDateString()</span>
+                <div class="box cal_box">
+
+                    @Html.Action("CalendarsBox", "Calendars")
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+
+            <div class="col-md-10">
+
+                @RenderBody()
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+    }
+    else
+    {
+        <div class="container">
+
+
+            @RenderBody()
+
+
+
+
+            @Html.Action("LeftBoxesMaster", "Pages")
+
+        </div>
+
+
+
+    }
+
+
+    <div id="footer">
+        <div class="container">
+            <div class="col-sm-12">
+                @Html.Action("FooterMenu", "Pages")
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>

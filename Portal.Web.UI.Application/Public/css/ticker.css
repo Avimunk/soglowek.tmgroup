@@ -1,0 +1,58 @@
+#ynet-rss li {
+	width: 220px;
+	clear: right;
+}
+
+#ynet-rss img {
+	width: 80px;
+	height: 80px;
+	float: right;
+	margin-left: 5px;
+}
+
+#ynet-rss div {
+	padding-top: 5px;
+	font-size: 10px;
+}
+
+#ynet-rss a {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#ynet-rss a:hover {
+	text-decoration: underline;
+}
+
+#ynet-rss small {
+	display: block;
+}
+
+#bday-ticker {
+	height: 60px;
+	overflow: hidden;
+	padding-right: 10px;
+}
+
+#bday-ticker div {
+	padding: 10px 0 10px 20px;
+	background: left center url(../images/bday.jpg) no-repeat;
+}
+
+#messages-ticker strong {
+	display: block;
+	padding-bottom: 5px;
+}
+
+#messages-ticker a {
+	text-decoration: none;
+}
+
+#messages-ticker a:hover {
+	text-decoration: underline;
+}
+
+
+#messages-ticker div {
+	padding-bottom: 10px;
+}

@@ -1,0 +1,72 @@
+﻿.forum-list ul ul{
+	margin-right: 20px;
+}
+
+.forum-list td, .forum-list th{
+	vertical-align: top;
+}
+
+.forum-list td{
+	width: 100%;	
+	padding-top: 5px;
+}
+
+.forum-list li{
+	border-top: 1px dotted #cccccc;
+	padding-bottom: 5px;
+}
+
+.forum-list li li{
+	
+}
+
+.forum-list {
+	padding-top: 10px;
+	height: 550px;
+	overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.forum-subject{
+	display: block;
+}
+
+.forum-time{
+	float: left;
+}
+
+.forum-body{
+	padding: 5px 0;	
+}
+
+.forum-actions{
+	
+}
+
+.forums .forum-list
+{
+
+    min-height:938px;
+
+}
+
+#manager_box {
+
+
+}
+
+#manager_box img{
+    width: 120px;
+
+
+}
+
+    #manager_box .box-content {
+    margin: 0px 18px  !important;
+       
+    }
+
+.no-margin-row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

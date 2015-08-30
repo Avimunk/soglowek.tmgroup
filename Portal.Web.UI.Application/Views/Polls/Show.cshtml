@@ -1,0 +1,160 @@
+﻿@model Portal.Entities.Poll
+@{
+    ViewBag.Title = "סקר";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+    <h4 class="box-title">
+        סקר - @Model.Title
+    </h4>
+ 
+      @if (Model.ReadOnly)
+      {
+
+      }
+      else
+      {
+             <h2>הנחיות</h2>
+            <p>@Html.Raw(Model.Description)</p>
+      }
+  
+    <div class="box-content">
+        @if (Model.Enabled)
+        {
+            if (Model.ReadOnly)
+            {
+                <h2>לא ניתן לעדכן את תשובתך לסקר</h2>
+            }
+            else
+            {
+
+                using (Html.BeginForm())
+                {
+                    var i = 0;
+                    foreach (var item in Model.PollItems)
+                    {
+                        <table class="poll-table">
+                            <caption>@item.Title</caption>
+                            @*@if (!string.IsNullOrEmpty(item.Option1))
+                                {*@
+                            <tr>
+                                <th style="width: 20px;">
+                                    @Html.RadioButton("OptionResult[" + i + "]", "1")
+                                </th>
+                                <td>
+                                    @item.Option1
+                                </td>
+                            </tr>
+                            @*}*@
+                            @*@if (!string.IsNullOrEmpty(item.Option2))
+                                {*@
+                            <tr>
+                                <th>
+                                    @Html.RadioButton("OptionResult[" + i + "]", "2")
+                                </th>
+                                <td>
+                                    @item.Option2
+                                </td>
+                            </tr>
+                            @*}
+                                            @if (!string.IsNullOrEmpty(item.Option3))
+                                {*@
+                            <tr>
+                                <th>
+                                    @Html.RadioButton("OptionResult[" + i + "]", "3")
+                                </th>
+                                <td>
+                                    @item.Option3
+                                </td>
+                            </tr>
+                            @*}
+                                            @if (!string.IsNullOrEmpty(item.Option4))
+                                {*@
+                            <tr>
+                                <th>
+                                    @Html.RadioButton("OptionResult[" + i + "]", "4")
+                                </th>
+                                <td>
+                                    @item.Option4
+                                </td>
+                            </tr>
+                            @*}
+                                    @if (!string.IsNullOrEmpty(item.Option5))
+                                {*@
+                            <tr>
+                                <th>
+                                    @Html.RadioButton("OptionResult[" + i + "]", "5")
+                                </th>
+                                <td>
+                                    @item.Option5
+                                </td>
+                            </tr>
+                            @*}
+                                    @if (!string.IsNullOrEmpty(item.Option6))
+                                {*@
+                            <tr>
+                                <th>
+                                    @Html.RadioButton("OptionResult[" + i + "]", "6")
+                                </th>
+                                <td>
+                                    @item.Option6
+                                </td>
+                            </tr>
+                            @*}*@
+                            <tr>
+                                <td></td>
+                                <td align="left"></td>
+                            </tr>
+                        </table>
+                        <hr />
+                        i++;
+                    }
+                    <div class="res-title" id="@i">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="שלח" class="btn" onclick="return Validate()" />
+                                </td>
+                                <td>
+                                    <div id="ValidationError">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                }
+            }
+        }
+        else
+        {
+            <h1>@Html.Raw(Model.DisabledContent)</h1>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+    });
+
+    function Validate() {
+        var arr = $('table.poll-table').length;
+
+        var count = 0;
+        for (var i = 0; i < arr; i++) {
+            var radios = document.getElementsByName("OptionResult[" + i + "]")
+            for (var j = 0; j < radios.length; j++) {
+                if (radios[j].checked) {
+                    count++;
+                }
+            }
+        }
+        if (count != arr) {
+            // not checked, show error
+            document.getElementById('ValidationError').innerHTML = 'חובה לענות על כל השאלות';
+            return false;
+        }
+        return true; // checked
+    };
+</script>

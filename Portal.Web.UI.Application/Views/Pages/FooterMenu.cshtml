@@ -1,0 +1,21 @@
+﻿@model IList<Portal.Entities.Page>
+    @{
+        Layout = null;
+    }
+    <ul id="footer-nav" class="menu-footer">
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <li>
+
+               
+                @Html.PageLink(Model[i], "footer-nav")
+                @if (Model.Count-1 > i)
+                {
+                    <p class="footer_separator">|</p>
+                }
+
+            </li>
+        }
+
+    </ul>

@@ -1,0 +1,12 @@
+﻿@model Portal.Models.Polls.PollFormModel
+@{
+    ViewBag.Title = "סקר";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+    סקר
+</h2>
+@using (Html.BeginForm())
+{
+    @Html.Partial("PollCreateForm")
+}

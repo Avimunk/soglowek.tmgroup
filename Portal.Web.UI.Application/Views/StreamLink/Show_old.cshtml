@@ -1,0 +1,27 @@
+﻿@model Portal.Entities.StreamLink
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<fieldset>
+    <legend>הודעה</legend>
+
+    <div class="display-label">שם</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">לינק</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Url)
+    </div>
+
+    <div class="display-label">תוכן</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content)
+    </div>
+</fieldset>

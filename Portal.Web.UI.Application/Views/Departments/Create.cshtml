@@ -1,0 +1,10 @@
+﻿@model Portal.Models.Departments.DepartmentFormModel
+@{
+    ViewBag.Title = "מכרזים פנימיים";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	מחלקה</h2>
+@using (Html.BeginForm()) {
+	@Html.Partial("DepartmentForm")
+}

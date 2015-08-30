@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Portal.Entities.Job>
+@{	 
+	Layout = null;
+}
+<div id="messages-ticker">
+	<marquee style="height: 165px" onmouseover="this.scrollAmount=0" onmouseout="this.scrollAmount=1" direction="up" scrollamount="1" scrolldelay="1">
+	<ul>
+		@foreach (var item in Model) {
+			<li>
+				<div>
+					<strong>@Html.JobsUrl(item)</strong>
+					@item.Content.SetBr()
+                           
+                     @if (!string.IsNullOrEmpty(item.Url))
+                     {
+                           <div>
+                         <a href="@item.Url">לפרטים נוספים...</a>
+                       </div>
+                     }
+				</div>
+			</li>
+  }</ul>
+  </marquee>
+</div>

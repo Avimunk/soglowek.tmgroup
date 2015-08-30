@@ -1,0 +1,65 @@
+﻿@model Portal.Entities.Poll
+@{
+	ViewBag.Title = "סקר";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+	<h4 class="box-title">
+		סקר
+	</h4>
+	<div class="box-content">
+		@using (Html.BeginForm()) {
+			<table class="poll-table">
+				<caption>@Model.Title</caption>
+				@if (!string.IsNullOrEmpty(Model.Option1)) {
+					<tr>
+						<th style="width: 20px;">
+							<input name="OptionResult" value="1" type="radio" />
+						</th>
+						<td>
+							@Model.Option1
+						</td>
+					</tr>
+	}
+				@if (!string.IsNullOrEmpty(Model.Option2)) {
+					<tr>
+						<th>
+							<input name="OptionResult" value="2" type="radio" />
+						</th>
+						<td>
+							@Model.Option2
+						</td>
+					</tr>
+	}
+				@if (!string.IsNullOrEmpty(Model.Option3)) {
+					<tr>
+						<th>
+							<input name="OptionResult" value="3" type="radio" />
+						</th>
+						<td>
+							@Model.Option3
+						</td>
+					</tr>
+	}
+				@if (!string.IsNullOrEmpty(Model.Option4)) {
+					<tr>
+						<th>
+							<input name="OptionResult" value="4" type="radio" />
+						</th>
+						<td>
+							@Model.Option4
+						</td>
+					</tr>
+	}
+				<tr>
+					<td>
+					</td>
+					<td align="left">
+						<input type="submit" value="שלח" class="btn" />
+					</td>
+				</tr>
+			</table>
+			@Html.HiddenFor(x => x.Id)
+  }
+	</div>
+</div>

@@ -1,0 +1,48 @@
+﻿#container {
+	width: 980px;
+	margin: 0 auto;
+}
+
+.permissions-list li {
+	float: right;
+	width: 130px;
+}
+.permissions-list li:hover {
+	background-color: #FFFF99;
+}
+
+.permissions-list {
+	width: auto;
+}
+
+.emp_image
+{
+ height:60px;
+ width:60px;
+   
+}
+    .btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  font-family: Arial;
+  color: #ffffff;
+  padding: 5px;
+  text-decoration: none;
+  width: 119px;
+  font-size: 11px;
+  display:block;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}

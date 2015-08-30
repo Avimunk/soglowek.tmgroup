@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Portal.Entities.StreamLink>
+
+@{
+    ViewBag.Title = "StreamLinkTicker";
+    Layout = "~/Views/Shared/_StreamLayout.cshtml";
+}
+
+
+@section HeadContent {
+@*  <link rel="stylesheet" href="http://flexslider.woothemes.com/css/flexslider.css" type="text/css" media="screen" />
+  <script defer src="http://flexslider.woothemes.com/js/jquery.flexslider.js"></script>*@
+
+
+    <link href="../../Public/css/flexslider.css" rel="stylesheet" type="text/css" />
+    <script src="../../Public/js/jquery.flexslider.js" type="text/javascript"></script>
+  <script>
+      // Can also be used with $(document).ready()
+      $(window).load(function () {
+          $('.flexslider').flexslider({
+              animation: "slide"
+          });
+      });
+  
+  </script>
+}
+
+
+
+
+
+<!-- Place somewhere in the <body> of your page -->
+<div class="flexslider">
+  <ul class="slides">
+    <li>
+     <img src="../../Public/images/newlogo.png" />
+    </li>
+    <li>
+        <img src="../../Public/images/newlogo.png" />
+   
+    </li>
+    <li>
+   <img src="../../Public/images/newlogo.png" />
+    </li>
+    <li>
+      <img src="../../Public/images/newlogo.png" />
+    </li>
+  </ul>
+</div>
+
+
+<h2>StreamLinkTicker</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Url
+        </th>
+        <th>
+            Content
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,10 @@
+﻿@{
+	Layout = null;
+}
+<div style="font-size: 12px; font-family: Arial">
+	שלום, @ViewBag.Employee.FullName חוגג היום יום הולדת הינך מוזמן לאחל מזל טוב בפורטל
+	הארגוני, לכניסה לפורטל
+	<a href="@Url.AbsoluteAction("Card", "Employees", new { ViewBag.Employee.Id })">
+		לחץ כאן</a>
+	.
+</div>

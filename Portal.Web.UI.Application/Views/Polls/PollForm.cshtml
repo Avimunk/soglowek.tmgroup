@@ -1,0 +1,38 @@
+﻿@model Portal.Models.Polls.PollFormModel
+<fieldset>
+    <legend>פרטים</legend>
+    <dl>
+        <dt>שם:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </dd>
+        <dt>הנחיות:</dt>
+        <dd>
+            @Html.TextAreaFor(model => model.Description, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </dd>
+        <dt>סיכום:</dt>
+        <dd>
+            @Html.TextAreaFor(model => model.Summary, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(model => model.Summary)
+        </dd>
+        <dt>אנונימי:</dt>
+        <dd>
+            @Html.CheckBoxFor(model => model.Anonymous)
+        </dd>
+        <dt>זמין:</dt>
+        <dd>
+            @Html.CheckBoxFor(model => model.Enabled, new { @checked = "checked" })
+        </dd>
+        <dt>תוכן כאשר לא זמין:</dt>
+        <dd>
+            @Html.TextAreaFor(model => model.DisabledContent, new { @class = "ckeditor" })
+        </dd>
+        <dt>עריכה ע"י משתמש":</dt>
+        <dd>
+            @Html.CheckBoxFor(model => model.UserEditable, new { @checked = "checked" })
+        </dd>
+    </dl>
+</fieldset>
+

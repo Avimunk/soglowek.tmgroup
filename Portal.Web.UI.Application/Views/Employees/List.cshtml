@@ -1,0 +1,26 @@
+﻿@model IList<Portal.Entities.Employee>
+@{
+    ViewBag.Title = "ניהול עובדים";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>
+	ניהול עובדים
+</h2>
+<ul class="toolbar">
+	<li>
+		<a class="icon icon-add" href="@Url.Action("Create")">
+			הוספת עובד חדש</a>
+	</li>
+	
+</ul>
+@Html.Grid(Model).Columns(column => {
+        column.For(x => string.Format("<div class='emp_image' style='background:url({0})'></div>", Url.Content("~/public/userfiles/employees/" + x.Picture))).Encode(false);
+    column.For(x => x.FullName).Named("שם מלא").Attributes(@class => "wrap");
+    column.For(x => x.JbTitle).Named("תפקיד");
+    column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+    column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+})
+    
+	
+

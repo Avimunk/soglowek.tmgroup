@@ -1,0 +1,224 @@
+﻿@model Portal.Entities.Employee
+@{
+    ViewBag.Title = Model.FullName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-8">
+<div class="box">
+    <h4 class="box-title">
+        <span>@(Model.EnglishFirstName + " " + Model.EnglishLastName)</span>
+        @Model.FullName
+    </h4>
+    <div class="box-content">
+        <table class="employee-card">
+            <tr>
+                <th>
+                    @Html.EmployeeImage(Model)
+                </th>
+                <td>
+                    <label>
+                        שם פרטי:
+                    </label>
+                    @Model.FirstName<span>@Model.EnglishFirstName</span><br />
+                    <label>
+                        שם משפחה:
+                    </label>
+                    @Model.LastName<span>@Model.EnglishLastName</span><br />
+                    <label>
+                        אימייל:
+                    </label>
+                    @Model.Email.ToEmail()<br />
+                    @if (Model.Phone != "")
+                    {
+                        <div>
+                            <label>
+                                טלפון:
+                            </label>
+
+                            @Model.Phone
+                        </div>
+                    }
+                    @if (Model.Range != "")
+                    {
+                        <div>
+                            <label>
+                                מספר שלוחה:
+                            </label>
+
+                            @Model.Range
+                        </div>
+                    }
+                    @if (Model.Mobile != "")
+                    {
+                        <div>
+                            <label>
+                                נייד:
+                            </label>
+                            @Model.Mobile
+                        </div>
+                    }
+
+                    <label>
+                        יום הולדת:
+                    </label>
+                    @Model.BDay.ToString("M")<br />
+
+                    
+                    @if (Model.JbTitle!=null){
+                    <label>
+                        תפקיד:
+                    </label>
+                    @Model.JbTitle.Name<br />
+                    }
+                  
+                    @if(Model.Department!=null){
+                        <label>
+                            מחלקה:
+                        </label>
+                        @Model.Department.Name<br />
+                    }
+
+
+                    @if (Model.Manager != null)
+                    {
+                        <br />
+                        <label>
+                            מנהל:
+                        </label>
+                        @Html.ActionLink(Model.ManagerName, "Card", "Employees", new { Model.Manager.Id }, null)
+
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="box">
+    <h4 class="box-title">
+        תמונות של @Model.FirstName
+    </h4>
+    <div class="box-content">
+        <ul id="" class="emoloyeephotos-list">
+            @foreach (var item in Model.EmployeePhotos)
+            {
+                <li>
+                    @*@Html.EmplloyeePhoto(item)*@
+                    <a data-toggle="modal" data-target="#myModal" class="employeephoto-photo"
+                        id="/public/UserFiles/employeephotos/big/@item.FileName">
+
+                        <img src="/public/UserFiles/employeephotos/small/@item.FileName">
+                    </a>
+
+
+
+                    @if (ViewContext.IsOwner(Model))
+                    {
+                        <a class="delete-message" href='@Url.Action("DeletePhoto", new { item.Id })'>x מחק תמונה </a>
+                    }
+                </li>
+            }
+        </ul>
+        <!--               --->
+       
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      
+                    </div>
+                    <div class="modal-body">
+                        <img class="big_modal" src="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () { 
+                $('.employeephoto-photo').click(function () {
+                    var src = $(this).attr('id');
+                    $('.big_modal').attr('src', src);
+                });
+            });
+        </script>
+
+<!--               --->
+
+        @if (ViewContext.IsOwner(Model))
+        {
+            <hr />
+            using (Html.BeginForm("UploadPhotos", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input name="photos" type="file" /><br />
+                <input name="photos" type="file" /><br />
+                <input name="photos" type="file" /><br />
+                <br />
+                <input type="submit" value="שמור" class="btn" />
+
+            }
+        }
+    </div>
+</div>
+@if (!string.IsNullOrEmpty(Model.PostContent) || ViewContext.IsOwner(Model))
+{
+    <div class="box">
+        <h4 class="box-title">
+            פרסם
+        </h4>
+        <div class="box-content ">
+            @if (ViewContext.IsOwner(Model))
+            {
+                using (Html.BeginForm("UpdatePostContent", "Employees"))
+                {
+                    @Html.TextAreaFor(x => x.PostContent, new { @class = "employee-post", rows = "6" })
+
+                    <input type="submit" value="לחדש" class="btn" />
+                }
+            }
+            else
+            {
+                @Model.PostContent.SetBr()
+            }
+        </div>
+    </div>
+}
+<div class="box">
+    <h4 class="box-title">
+        הודעות
+    </h4>
+    <div class="box-content">
+        <ol class="employee-msgs">
+            @foreach (var item in Model.EmployeeMessages.OrderBy(x => x.CreatedDate))
+            {
+                <li id="remove-id-@item.Id">
+                    <strong>@item.CreatedBy.FullName:<small>@item.CreatedDate</small> </strong>
+                    @item.Message.SetBr()
+                    @if (ViewContext.IsOwner(Model) || item.CreatedBy.Username == Employee.GetUsername)
+                    {
+                        <br />
+                        <br />
+                        @Html.ActionLink("מחק", "DeleteMessage", new { item.Id }, new { @class = "delete-message", removeid = "remove-id-" + item.Id })
+                    }
+                </li>
+            }
+        </ol>
+        <hr />
+        <h4>
+            כתוב ל<span>@Model.FirstName</span>:
+        </h4>
+        @using (Html.BeginForm("CreateMessage", "Employees"))
+        {
+            <textarea name="Message" class="employee-post" rows="6"></textarea>
+            <input type="submit" value="שלח" class="btn" />
+            @Html.Hidden("To.Id", Model.Id)
+        }
+    </div>
+</div>
+    </div>

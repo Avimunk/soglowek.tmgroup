@@ -1,0 +1,62 @@
+﻿@model Portal.Models.Galleries.GalleryFormModel
+@{
+    Layout = null;
+    var path = Server.MapPath("~/public/userfiles/galleries/small/" + Model.Id) + "/";
+}
+<fieldset>
+    <legend>פרטים</legend>
+    <dl>
+        <dt>שם:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Title)
+        </dd>
+        <dt>תאריך:</dt>
+        <dd>
+            @Html.TextBox("Date", Model.Date.ToShortDateString(), new { @class = "datepicker" })
+        </dd>
+        @if (System.IO.Directory.Exists(path)) { 
+            <dt>תמונות:</dt>
+            <dd>
+                <ol id="photo-list">
+                    @foreach (var item in System.IO.Directory.GetFiles(path)) {
+                        string fileName = System.IO.Path.GetFileName(item);
+               
+                        <li style="float: left">
+                            <img src="/public/userfiles/galleries/small/@Model.Id/@fileName " />
+                            <input type="hidden" name="DeleteFile.Index" value="@fileName " /><br />
+                            <input class="check-box" type="checkbox" name="DeleteFile[@fileName ]" value="@fileName " />
+                            Delete
+                            <br />
+                            <input @(fileName == Model.DefaultPhoto ? "checked" : "")  class="check-box default-photo"
+                        type="checkbox" name="DefaultPhoto" value="@fileName " />
+                            Default
+                        </li>
+                    }
+                </ol>
+            </dd>
+            <br style="clear: both" />
+            <br style="clear: both" />
+        }
+        <dt>העלה:</dt>
+        <dd>
+            @for (var i = 0; i < 10; i++) { 
+                <input type="file" name="UploadedFiles[@i]" /><br />
+            }
+        </dd>
+    </dl>
+</fieldset>
+<div class="submit-btn">
+    <input type="submit" value="שמור" />
+    <span>או</span>
+    @Html.ActionLink("בטל", "Index")
+</div>
+@Html.HiddenFor(x => x.Id)
+<script type="text/javascript">
+    $(function () {
+
+        $("input.default-photo").click(function () {
+            $("input.default-photo").attr("checked", false);
+            this.checked = true;
+        });
+    });
+</script>

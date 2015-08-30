@@ -1,0 +1,120 @@
+﻿@model Portal.Models.Forums.ForumFormModel
+@{
+    ViewBag.Title = "הודעה חדשה";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-sm-3">
+    @{
+        IList<ForumItem> forums = ViewBag.list;
+        
+        }
+        <ul class="forum_list">
+        @foreach (ForumItem item in forums)
+        {
+
+            if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Forums/" + item.Id))
+           {
+             <li>
+            <a href="/Forums/@item.Id"> <strong>@item.Title</strong></a><br />
+                <h5>
+                    מנהל הפורום  - @item.Admin.FirstName @item.Admin.LastName 
+                </h5>
+           </li>
+            <hr />
+               
+           }
+           else
+           {
+                     <li>
+            <a href="/Forums/@item.Id"> @item.Title</a><br />
+                <h5>
+                    מנהל הפורום  - @item.Admin.FirstName @item.Admin.LastName 
+                </h5>
+           </li>
+            <hr />
+
+           }
+
+        }
+        </ul>
+     
+</div>
+
+
+
+
+<div class="col-sm-9">
+    <div class="box">
+        <h4 class="box-title">
+            @if (Model.ParentId == null)
+            {
+                <text>הודעה חדשה</text>
+            }
+            else
+            {
+                <text>תגובה ל </text>@Model.ParentSubject
+    
+            }
+        </h4>
+        <div class="box-content">
+            @using (Html.BeginForm())
+            {
+                <table class="form">
+                    <tr>
+                        <th>נושא:
+                        </th>
+                        <td class="subj">
+                            @if (string.IsNullOrEmpty(Model.ParentSubject))
+                            {
+                                @Html.TextBoxFor(x => x.Subject)
+                            }
+                            else
+                            {
+                                @Model.ParentSubject
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>הודעה:
+                        </th>
+                        <td>
+                            @Html.TextAreaFor(x => x.Body, new { rows = "6", cols = "80" })
+                            @Html.ValidationMessageFor(x => x.Body, "שדה חובה")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="left">
+                            <input type="button" value="שליחת הודעה" class="btn subm" />
+                            <input type="button" onclick="window.location.href='@Url.Action("Index")    '" value="ביטול" class="btn" />
+                        </td>
+                    </tr>
+                </table>
+                @Html.HiddenFor(x => x.ParentId)
+                @Html.HiddenFor(x => x.ParentSubject)
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $('.subm').click(function(){
+            if ($("#Subject").length > 0){
+                if($('#Subject').val()=="")
+                {
+                    alert("שדה נושא לא יכול להיות ריק.");
+                }
+                else{
+                    $('form').submit();
+                }
+            }
+            else{
+                $('form').submit();
+            }
+        });
+    });
+
+</script>

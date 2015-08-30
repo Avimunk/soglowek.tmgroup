@@ -1,0 +1,204 @@
+#container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#header {
+    height: 94px;
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+    #header a.logo {
+        padding-top: 20px;
+    }
+
+body {
+    margin: 0;
+}
+
+#wrapper {
+    min-height: 300px;
+    padding-top: 10px;
+}
+
+#footer {
+    background: #405163;
+    height: 40px;
+    padding-top: 17px;
+}
+
+.hp-content {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+    .hp-content td {
+        vertical-align: top;
+        padding: 0;
+    }
+
+hr {
+    margin: 5px 0;
+    padding: 0;
+    border-top: 1px solid #2f2f65;
+    color: #2f2f65;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+#left-side {
+    width: 248px;
+}
+
+#right-side {
+    width: 180px;
+}
+
+.search_btn {
+    border: none;
+    background: #de1d31;
+    width: 90%;
+    margin: 15px auto 20px auto;
+    display: block;
+    font-size: 17px;
+}
+
+.search_fld {
+    margin: 5px auto 0 auto;
+    overflow: hidden;
+    position: relative;
+    padding: 3px 5px;
+    color: #777;
+    font-size: 15px;
+    width: 90%;
+    display: block;
+}
+
+#wide_header {
+    height: 94px;
+    width: 100%;
+    background: url(../images/bg_grey_5x5.png);
+}
+
+#right_search {
+    position: relative;
+}
+
+#header_search {
+    padding-right: 247px;
+    width: 420px;
+    height: 40px;
+    padding-top: 50px;
+}
+
+    #header_search a {
+        margin-top: 6px;
+        margin-left: 58px;
+        float: left;
+    }
+
+#header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+    #header a:hover {
+        text-shadow: 0px 0px 5px white;
+    }
+
+#header_private {
+    margin-top: 28px;
+    width: 100px;
+    height: 100px;
+    margin-right: 390px;
+}
+
+    #header_private table {
+        float: left;
+    }
+
+.btn_like {
+    float: left;
+    width: 40px;
+    height: 17px;
+    border: none;
+    background: url(../images/lev_adom.png);
+    background-repeat: no-repeat;
+    background-position: left 3px;
+    cursor: pointer;
+}
+
+.btn_Unlike {
+    float: left;
+    width: 40px;
+    height: 17px;
+    border: none;
+    background: url(../images/lev.png);
+    background-repeat: no-repeat;
+    background-position: left 3px;
+    cursor: pointer;
+}
+
+#logout {
+    width: 50px;
+    height: 30px;
+    margin-top: 70px;
+}
+
+#head_img {
+    padding-right: 10px;
+}
+
+.phone_book {
+    margin-bottom: 25px !important;
+}
+
+.menu-footer {
+}
+
+    .menu-footer li {
+        float: right;
+    }
+
+        .menu-footer li a {
+            display: block;
+            color: #FFFFFF;
+            padding: 0px 10px;
+            text-decoration: none;
+            font-size: 17px;
+            padding-top: 14px;
+            padding-bottom: 11px;
+            float: right;
+        }
+
+.footer_separator {
+    height: 14px;
+    color: #fff;
+    width: 2px;
+    margin: 16px 0px 0px 0px;
+    display: block;
+    float: right;
+    background: #fff;
+}

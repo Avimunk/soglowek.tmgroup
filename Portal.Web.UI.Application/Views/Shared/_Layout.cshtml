@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title :: Portal</title>
+
+    <script src="../../Public/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+
+    @Html.Script("jquery.min", "jquery.vticker.1.4", "jquery.innerfade", "jquery.colorbox-min", "user", "bootstrap.min", "jquery-ui.min")
+    <!--[if lt IE 9]>
+     @Html.Script("html5shiv")
+             @Html.Css("ie")
+    <![endif]-->
+
+    @Html.Css("galleries", "colorbox", "layout", "font", "form", "employee", "polls", "forum", "user", "bootstrap.rtl", "ui", "font-awesome.min")
+
+
+
+
+    
+    <script type="text/javascript">
+        var dateFormat = '<%=System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower().Replace("yyyy", "yy") %>';
+
+    </script>
+
+    @RenderSection("HeadContent", false)
+
+
+
+<!--
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-62282978-1', 'auto');
+        ga('send', 'pageview');
+
+</script>
+
+-->
+</head>
+<body class='@ViewContext.RouteData.Values["controller"].ToString().ToLower()'>
+    <div class="header">
+        <div class="container head_div">
+        <div class="row">
+            <div class="col-sm-3">
+                <div id="head_img">
+                    @Html.EmployeeImageRight(Html.Employee())
+                    <div class="a_exit">
+                        @Html.ActionLink("שלום " + @Html.Employee().FirstName, "Card", "Employees", new { Html.Employee().Id }, null)
+						<br/>
+                        @if (bool.Parse(Portal.MvcApplication.Config("sso.enabled")))
+                        {
+
+                        }
+                        else
+                        {
+                               <span>|</span>
+                             @Html.ActionLink("יציאה", "Logout", "Misc", null, new { @class = "exiting" })
+                        }
+                        <div class="edit_links">
+                     
+                    @if (Html.Employee().IsAdmin == true)
+                    {
+                        if (HttpContext.Current.Request.Url.AbsolutePath.ToLower().Contains("show"))
+                        {
+
+                            var redirect = HttpContext.Current.Request.Url.AbsolutePath.ToLower().Replace("show", "edit");
+                            //redirect = redirect.Replace("show", "sdsds");
+                            <a href="@redirect" target="_blank">עריכה </a>   <span>|</span>
+
+
+                        }
+                         else
+                         {
+                            <a href="/settings/edit" target="_blank">עריכה </a>  <span>|</span>
+                         }
+                         <a href="/admin" target="_blank">מערכת </a>
+                    }
+                    
+                       
+                      
+                        
+                        </div>
+
+
+                        @if (Html.Employee().EmployeeMessagesCount > 0)
+                        { <span>|</span>
+                            @Html.ActionLink(" " + Html.Employee().EmployeeMessagesCount + " הודעות חדשות ", "Card", "Employees", new { Html.Employee().Id }, new { @class = "messages" })
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6" style="text-align: center;">
+              <img alt="" src="@Url.Content("~/public/images/portaltxt.jpg")" style="width:51%;" />
+            </div>
+
+            <div class="col-sm-2">
+                <a class="logo" href="@Href("~/")">
+                    <img alt="" src="@Url.Content("~/public/images/newlogo.png")" />
+                </a>
+            </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    @if (ViewContext.RouteData.Values["controller"].ToString().ToLower() != "home")
+    {
+        <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="img_home_holder">
+                    @Html.Action("FlashBanner", "FlashBanners")
+                </div>
+
+                <div id="sticker">
+
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="phoneform first_line">
+                                <form action="@Url.Action("Search", "Pages")" class="search-form">
+                                    <input name="query" id="query" type="text" onfocus="if(this.value=='חפש באתר')this.value='';"
+                                           onblur="if(this.value=='')this.value='חפש באתר';" value="חפש באתר" style="width: 83%;" />
+                                    <button class="search-btn"></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+
+
+
+                            <div class="navdiv">
+                                @Html.Action("Nav", "Pages")
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="phoneform first_line">
+                                <form action="@Url.Action("SearchUsers", "Employees")" class="search-form">
+                                    <input name="phoneq" id="phoneq" type="text" onfocus="if(this.value=='חפש אנשים')this.value='';"
+                                           onblur="if(this.value=='')this.value='חפש אנשים';" value="חפש אנשים" style="  width: 82%;" />
+                                    <button class="search-btn"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+      
+        
+        <div class="container">
+
+
+            @RenderBody()
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+    }
+    else
+    {
+            <div class="container">
+        <div class="row-fluid">
+            <div class="col-sm-12">
+                <div class="img_home_holder">
+                    @Html.Action("FlashBanner", "FlashBanners")
+                </div>
+            </div>
+        </div>
+
+
+           
+    </div>
+        
+  <div class="container">
+
+
+            @RenderBody()
+
+
+
+
+            @*    @Html.Action("LeftBoxesMaster", "Pages")*@
+
+        </div>
+
+
+
+    }
+
+
+@*    <div id="footer">
+        <div class="container background_none">
+            <div class="col-sm-12">
+                @Html.Action("FooterMenu", "Pages")
+            </div>
+        </div>
+    </div>*@
+
+    @* <div id="indbar" class="clsFloatingIndexBar">
+            <iframe name="oIndexBarFrm" src="http://www.talniri.co.il/finance/Export/IndexBar.aspx" scrolling="no" frameborder="0"></iframe>
+        </div>*@
+
+
+@*<script type="text/javascript" src="http://arrow.scrolltotop.com/arrow52.js"></script>*@
+
+
+</body>
+
+</html>

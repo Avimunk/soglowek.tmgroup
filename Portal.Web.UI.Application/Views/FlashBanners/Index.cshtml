@@ -1,0 +1,44 @@
+﻿@model IList<Portal.Entities.FlashBanner>
+@{
+    ViewBag.Title = "באנרים";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>באנרים</h2>
+<ul class="toolbar">
+    <li>
+        <a class="icon icon-add" href="@Url.Action("Create")">הוסף חדש</a>
+    </li>
+</ul>
+@Html.Grid(Model).Columns(column =>
+{
+    column.For(x => Html.CheckBoxFor(c => x.IsActive, new { id = "page-active-" + x.Id, @class = "page-active" })).Named("פעיל");
+    column.For(x => x.Name).Named("שם").Attributes(@class => "wrap");
+    column.For(x => Html.TextBoxFor(p => x.BannerOrder, new { @class = "grid-order", id = "banner-order-" + x.Id })).Named("סדר");
+    column.For(x => Html.ActionLink("הצג", "show", new { x.Id }));
+    column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+    column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+})
+
+<script type="text/javascript">
+    $(function () {
+
+        $("input.grid-order").change(function () {
+            $.post('@Url.Action("BannerOrder")', {
+                id: this.id.split("-")[2],
+                bannerOrder: this.value
+            });
+        });
+
+        $("input.page-active").click(function () {
+            var input = this;
+            $.post('@Url.Action("FlashBannerActive")', {
+                isActive: input.checked,
+                id: input.id.split("-")[2]
+            });
+        });
+    });
+</script>
+
+
+
+

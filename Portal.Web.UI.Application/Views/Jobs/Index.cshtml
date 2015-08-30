@@ -1,0 +1,18 @@
+﻿@model IList<Portal.Entities.Job>
+@{
+    ViewBag.Title = "מכרזים פנימיים";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	משרה</h2>
+<ul class="toolbar">
+	<li>
+		<a class="icon icon-add" href="@Url.Action("Create")">
+			הוסף משרה חדשה</a>
+	</li>
+</ul>
+@Html.Grid(Model).Columns(column => {
+	column.For(x => x.Name).Named("שם").Attributes(@class=>"wrap");
+	column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+	column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+})

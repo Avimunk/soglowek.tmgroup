@@ -1,0 +1,65 @@
+﻿@model Portal.Models.Employees.EmployeeFormModel
+@{
+    Layout = null;
+}
+
+<fieldset>
+    <legend>פרטים אישיים</legend>
+    <dl >
+   <dt><div style="position:absolute"><img width="60" src="@Href("~/public/userfiles/employees/"+Model.Picture)"/></div></dt>
+    <dt>תמונה:</dt>
+		<dd>
+			<input type="file" name="UploadPicture" />
+			<small>(130x200)</small>
+		</dd>
+        <dt>שם פרטי:</dt>
+        <dd>
+            @Html.EditorFor(model => model.FirstName)
+        </dd>
+        <dt>שם משפחה:</dt>
+        <dd>
+            @Html.EditorFor(model => model.LastName)
+        </dd>
+         <dt>אימייל:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Email)
+        </dd>
+        <dt>פלאפון:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Mobile)
+        </dd>
+       <dt>יום הולדת:</dt>
+        <dd>
+         
+            @Html.TextBox("BDay", Model.BDay.ToShortDateString(), new { @class = "datepicker" })
+        </dd>
+        <dt>פעיל:</dt>
+        <dd>
+            @Html.CheckBoxFor(x => x.IsActive)
+        </dd>
+        <dt>שנת התחלה:</dt>
+        <dd>
+            @Html.DropDownListFor(x => x.StartYear, Model.Years)
+        </dd>
+        <dt>תפקיד:</dt>
+        <dd>
+          @* @Html.TextBoxFor(x => x.JobTitle)*@  @Html.DropDownListFor(x=>x.JobTitle, Model.JobTitles) 
+        </dd>
+
+         <dt>username:</dt>
+        <dd>
+           @Html.TextBoxFor(x => x.Username)
+        
+        </dd>
+         <dt>password:</dt>
+        <dd>
+           @Html.TextBoxFor(x => x.Password)
+        </dd>
+    </dl>
+</fieldset>
+<div class="submit-btn">
+    <input type="submit" value="שמור" />
+    <span>או</span>
+    @Html.ActionLink("אחורה", "Index")
+</div>
+@Html.HiddenFor(x => x.Picture)

@@ -1,0 +1,143 @@
+.icon {
+	background: no-repeat;
+}
+
+span.icon, img.icon {
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+}
+
+span.icon {
+	float: left;
+	text-indent: -5000px;
+}
+
+a.icon {
+	padding: 2px 20px;
+}
+
+a span.icon {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+/**************************************************/
+
+.icon-add {
+	background-image: url(images/plus-circle.png);
+}
+
+.icon-reset {
+	background-image: url(images/counter-reset.png);
+}
+
+.icon-remove {
+	background-image: url(images/minus-octagon.png);
+}
+
+.icon-move{
+	background-image: url(images/arrow-move.png);
+
+}
+
+.icon-copy {
+	background-image: url(images/document-copy.png);
+}
+
+.icon-import {
+	background-image: url(images/table-import.png);
+}
+
+.icon-send {
+	background-image: url(images/send.png);
+}
+
+.icon-arrow-left,
+.icon-back {
+	background-image: url(images/arrow_left.png);
+}
+
+body.rtl .icon-arrow-left {
+	background-image: url(images/arrow_right.png);
+}
+
+.icon-arrow-up {
+	background-image: url(images/arrow_up.png);
+}
+
+.icon-setting {
+	background-image: url(images/settings.png);
+}
+
+.icon-profile {
+	background-image: url(images/profile.png);
+}
+
+.icon-form {
+	background-image: url(images/form.png);
+}
+
+.icon-up {
+	background-image: url(images/up.gif);
+}
+
+.icon-down {
+	background-image: url(images/down.gif);
+}
+
+.icon-export {
+	background-image: url(images/document-excel-csv.png);
+}
+
+.icon-preview {
+	background-image: url(images/monitor.png);
+}
+
+.icon-edit {
+	background-image: url(images/document--pencil.png);
+}
+
+.icon-print {
+	background-image: url(images/print.gif);
+}
+
+.icon-delete {
+	background-image: url(images/cross-script.png);
+}
+
+.icon-up {
+	background-image: url(images/arrow-090.png);
+}
+
+.icon-down {
+	background-image: url(images/arrow-270.png);
+}
+
+.icon-first {
+	background-image: url(images/first.gif);
+}
+
+.icon-next {
+	background-image: url(images/next.gif);
+}
+
+.icon-tick {
+	background-image: url(images/tick.png);
+}
+
+.icon-last {
+	background-image: url(images/last.gif);
+}
+
+.icon-prev {
+	background-image: url(images/prev.gif);
+}
+
+.icon-refresh {
+	background-image: url(images/refresh.png);
+}
+
+.icon-view {
+	background-image: url(images/cards-bind-address.png);
+}

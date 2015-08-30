@@ -1,0 +1,17 @@
+﻿@model QDFeedParser.IFeed
+@{
+	Layout = null;
+}
+<div class="ticker" id="ynet-rss">
+	<marquee style="height: 160px" direction="up" onmouseover="this.scrollAmount=0" onmouseout="this.scrollAmount=1" scrollamount="1" scrolldelay="1">
+	<ul>
+		@foreach (var item in Model.Items) {
+			<li>
+				<a target="_blank" href="@item.Link">@item.Title</a>
+				<small>@item.DatePublished.ToShortTimeString()</small>
+				@Html.Raw(item.Content)
+			</li>
+  }
+	</ul>
+	</marquee>
+</div>

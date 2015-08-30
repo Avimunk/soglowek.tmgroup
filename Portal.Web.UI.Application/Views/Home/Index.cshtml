@@ -1,0 +1,524 @@
+﻿@model Setting
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<div class="row-fluid">
+    <div class="col-sm-12">
+        <div class="img_home_holder">
+            @Html.Action("FlashBanner", "FlashBanners")
+        </div>
+    </div>
+</div>*@
+<div class="row-fluid">
+    <div class="col-md-3">
+        <div class="phoneform first_line">
+            <form action="@Url.Action("Search", "Pages")" class="search-form">
+            <input name="query" id="query" type="text" onfocus="if(this.value=='חפש באתר')this.value='';"
+                onblur="if(this.value=='')this.value='חפש באתר';" value="חפש באתר" />
+            <button class="search-btn">
+            </button>
+            </form>
+        </div>
+        @*        <div class="box bdate">
+            <p class="box-title">
+                מזל טוב
+            </p>
+            <div class="box-content">
+                @if (File.Exists(Server.MapPath("~/public/userfiles/home/bdate.jpg")))
+                {
+                    <div class="img_bdate_holder">
+                        <img class="img_bdate" src="@Href("~/public/userfiles/home/bdate.jpg")" />
+                    </div>
+                }
+                @Html.Action("BDayTicker", "Employees")
+            </div>
+        </div>*@
+                <div class="redseparator"></div>
+                 <span class="box-header"> היום יום הולדת</span>
+        <div class="newbox small_border" style="height: 187px;">
+   
+      
+            <div class="newbox_content birthday">
+                @Html.Action("BDayTicker", "Employees")
+            </div>
+        </div>
+       
+      
+        <div class="redseparator"></div>
+        <span class="box-header">היום בזוגלובק @DateTime.Now.ToShortDateString()</span>
+        <div class="box cal_box newbox small_border">
+            @Html.Action("CalendarsBox", "Calendars")
+        </div>
+        <div class="redseparator"></div>
+            <span class="box-header">מערכות פנים ארגוניות</span>
+        <div class="newbox small_border">
+        
+            <div class="newbox_content">
+                @Html.Raw(Model.innerSysyemsTxt)
+            </div>
+        </div>
+              <span class="box-header"><br /></span>
+        <div class="newbox small_border keilabox">
+            <div class="newbox_content forumlink1 ">
+                <div class="box_bottomtxt">
+                    <a href="@Model.Forumlink">עובדים ממליצים</a>
+                </div>
+            </div>
+        </div>
+        @*        <div class="box">
+            @using (Html.BeginForm("Search", "Employees", FormMethod.Get, new { id = "address-book" }))
+            {
+
+                <p class="box-title phone_book">
+                    ספר טלפונים
+                </p>
+                <input class="search_fld" name="FirstName" type="text" onfocus="if (this.value == 'שם פרטי') this.value = '';" onblur="    if (this.value == '') this.value = 'שם פרטי';" value="שם פרטי" />
+                <input class="search_fld" name="LastName" type="text" onfocus="if (this.value == 'שם משפחה') this.value = '';" onblur="    if (this.value == '') this.value = 'שם משפחה';" value="שם משפחה" />
+                <button type="submit" class="search_btn">חפש</button>
+            }
+        </div>*@ @*         <div class="box meida_box" style="height: 214px;overflow-x: hidden;overflow-y: auto;">
+            <p class="box-title">
+                מערכות מידע
+            </p>
+            @if (!string.IsNullOrEmpty(Model.BoxRight))
+            {
+                <div class="box-content">
+                    @Html.Raw(Model.BoxRight)
+                </div>
+            }
+
+        </div>*@
+        <!--<a href="@Model.ManagerLink">
+            <div id="manager_box" class="box">
+                <p class="box-title">
+                    דבר המנכ"ל
+                </p>
+                @if (!string.IsNullOrEmpty(Model.Manager))
+                {
+                    <div class="box-content">
+                        @Html.Raw(Model.Manager)
+                    </div>
+                }
+            </div>
+        </a>-->
+        @*        <div id="box1_img" class="img_bg" style="margin-top: 23px;">
+            @if (File.Exists(Server.MapPath("~/public/userfiles/home/box1.jpg")))
+            {
+                <img class="box_bg" src="@Href("~/public/userfiles/home/box1.jpg")" />
+            }
+            @if (!string.IsNullOrEmpty(Model.Box1) && !string.IsNullOrEmpty(Model.Box1Link))
+            {
+                <a class="tab_link" href="@Model.Box1Link">
+                    <div class="tab_move">
+                        <p class="tab_txt">@Model.Box1</p>
+                    </div>
+                </a>
+            }
+        </div>*@
+    </div>
+    <div class="col-md-6">
+        <div class="navdiv first_line">
+            @Html.Action("Nav", "Pages")
+        </div>
+        <div class="col-md-7 no_padding_r ">
+            <div class="firstbox newbox" >
+                @if (File.Exists(Server.MapPath("~/public/userfiles/home/box1.jpg")))
+                {
+                    <img class="box_bg" style="width: 87%;" src="@Href("~/public/userfiles/home/box1.jpg")" />
+                }
+            </div>
+        </div>
+        <div class="col-md-5 no_padding_l">
+            <div class="firstbox newbox" >
+                @Html.Raw(Model.mainUpperTxt)
+            </div>
+        </div>
+
+
+     
+        
+        <div class="row-fluid" >
+
+            <div class="col-md-6 no_padding_r">
+                <div class="grayseparator">
+                </div>
+                <span class="box-header">משאבי אנוש </span>
+                <div class="newbox">
+                    <div class="newbox_content">
+                        @Html.Raw(Model.hrtxt)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 no_padding_l">
+                <div class="grayseparator">
+                </div>
+                    <span class="box-header">רווחה </span>
+                <div class="newbox">
+                
+                    <div class="newbox_content">
+                        @Html.Raw(Model.revahatxt)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-6 no_padding_r">
+                <div class="grayseparator margin-top">
+                </div>
+                <span class="box-header">שיווק</span>
+                <div class="newbox">
+                    <div class="newbox_content">
+                        @Html.Raw(Model.salestxt)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 no_padding_l">
+                <div class="grayseparator margin-top">
+                </div>
+                <span class="box-header">ועד</span>
+                <div class="newbox">
+                    <div class="newbox_content">
+                        @Html.Raw(Model.moretxt)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-12 no_padding_r no_padding_l">
+             <div class="redseparator"></div>
+                <div class="box-header">
+                    זוגלונטים</div>
+                <div class="youtube_wrapper">
+                    <div class="youtube_txt">
+                        @Html.Raw(Model.youtubetxt)
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.youtubelink))
+                    {
+                        <div class="">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/@Model.youtubelink"frameborder="0" allowfullscreen="">
+                            </iframe>
+                        </div>
+                       
+                    }
+                    else
+                    {
+                          @Html.Raw(Model.youtubeContent)
+                     
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="phoneform first_line">
+            <form action="@Url.Action("SearchUsers", "Employees")" class="search-form">
+            <input name="phoneq" id="phoneq" type="text" onfocus="if(this.value=='חפש אנשים')this.value='';"
+                onblur="if(this.value=='')this.value='חפש אנשים';" value="חפש אנשים" />
+            <button class="search-btn">
+            </button>
+            </form>
+        </div>
+        <div class="box news_1 newbox" style="border:none;">
+            <div class="box_news">
+                @* <img src="@Url.Content("~/public/images/board.png")"  class="board"/>*@
+                <div class="box-content box-content-news">
+                    @Html.Action("MessagesTicker", "Messages")
+                </div>
+            </div>
+        </div>
+         <div class="redseparator"></div>
+        <span class="box-header">משולחן ההנהלה </span>
+        <div class="newbox small_border">
+            <div class="newbox_content">
+                @Html.Raw(Model.managerTableTxt)
+            </div>
+        </div>
+        @*      <div class="box">
+            משרות
+            <div class="box_news">
+                <div class="box-content box-content-news">
+                    @Html.Action("MessagesTicker", "Messages")
+                </div>
+            </div>
+        </div>*@  
+         <div class="redseparator"></div>
+         <span class="box-header">מכרזים פנימיים </span>
+        <div class="newbox small_border">
+            <div class="newbox_content">
+                <div class="box_news">
+                    @* <img src="@Url.Content("~/public/images/board.png")"  class="board"/>*@
+                    <div class="box-content box-content-news" style="margin: 0px !important;">
+                        @Html.Action("JobTicker", "Jobs")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="redseparator"></div>
+        <span class="box-header">קישורים שימושים</span>
+        <div class="newbox small_border">
+            <div class="newbox_content">
+                @Html.Raw(Model.usefullLinksTxt)
+            </div>
+        </div>
+          <span class="box-header"> <br /> </span>
+        <div class="newbox small_border keilabox">
+       @*     <span>@Model.KeilaTxt </span>*@
+           
+          
+            <div class="newbox_content keila">
+                <div class="box_bottomtxt">
+                    <a href="@Model.KeilaLink">@Model.KeilaTxt</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*            <div class="top_menu">
+            <div class="container">
+
+                <div class="col-sm-8">
+                    @Html.Action("Nav", "Pages")
+                </div>
+                <div class="col-sm-4">
+                    <form action="@Url.Action("Search", "Pages")" class="search-form">
+                        <input name="query" id="query" type="text" onfocus="if(this.value=='חיפוש')this.value='';" onblur="if(this.value=='')this.value='חיפוש';" value="חיפוש" />
+                        <button class="search-btn"></button>
+                    </form>
+                </div>
+            </div>
+        </div>*@
+<div class="row-fluid">
+
+
+
+
+
+
+
+
+
+
+
+
+@*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+*@
+
+
+
+
+
+
+
+
+
+
+
+
+    @*    <div class="col-sm-12">
+        <div class="img_home_holder">
+            @Html.Action("FlashBanner", "FlashBanners")
+        </div>
+    </div>*@ @*  <div class="col-sm-9">
+        <div class="box forum-box">
+            @Html.Action("ForumsBox", "Forums")
+
+            <div align="left" style="margin-left: 20px;">@Html.ActionLink("לרשת ארגונית", "Index", "Forums/1")</div>
+
+            <div class="row no-margin-row" style="margin-top: 20px;">
+                <div class="col-sm-6">
+                    <div id="box2_img" class="img_bg" style="margin-bottom: 0px;">
+                        @if (File.Exists(Server.MapPath("~/public/userfiles/home/box2.jpg")))
+                        {
+                            <img class="box_bg" src="@Href("~/public/userfiles/home/box2.jpg")" style="margin-bottom: 0px;" />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Box2) && !string.IsNullOrEmpty(Model.Box2Link))
+                        {
+                            <a class="tab_link" href="@Model.Box2Link">
+                                <div class="tab_move">
+                                    <p class="tab_txt">@Model.Box2</p>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="box3_img" class="img_bg" style="margin-bottom: 0px;">
+                        @if (File.Exists(Server.MapPath("~/public/userfiles/home/box3.jpg")))
+                        {
+                            <img class="box_bg" src="@Href("~/public/userfiles/home/box3.jpg")" />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Box3) && !string.IsNullOrEmpty(Model.Box3Link))
+                        {
+                            <a class="tab_link" href="@Model.Box3Link">
+                                <div class="tab_move">
+                                    <p class="tab_txt">@Model.Box3</p>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>
+@*<div class="row">
+    <div class="col-sm-3">
+        <div id="box1_img" class="img_bg">
+            @if (File.Exists(Server.MapPath("~/public/userfiles/home/box1.jpg")))
+            {
+                <img class="box_bg" src="@Href("~/public/userfiles/home/box1.jpg")" />
+            }
+            @if (!string.IsNullOrEmpty(Model.Box1) && !string.IsNullOrEmpty(Model.Box1Link))
+            {
+                <a class="tab_link" href="@Model.Box1Link">
+                    <div class="tab_move">
+                        <p class="tab_txt">@Model.Box1</p>
+                    </div>
+                </a>
+            }
+        </div>
+
+    </div>
+
+    <div class="col-sm-4 footer_box">
+        <div id="box2_img" class="img_bg">
+            @if (File.Exists(Server.MapPath("~/public/userfiles/home/box2.jpg")))
+            {
+                <img class="box_bg" src="@Href("~/public/userfiles/home/box2.jpg")" />
+            }
+            @if (!string.IsNullOrEmpty(Model.Box2) && !string.IsNullOrEmpty(Model.Box2Link))
+            {
+                <a class="tab_link" href="@Model.Box2Link">
+                    <div class="tab_move">
+                        <p class="tab_txt">@Model.Box2</p>
+                    </div>
+                </a>
+            }
+        </div>
+
+    </div>
+
+    <div class="col-sm-4 footer_box">
+        <div id="box3_img" class="img_bg">
+            @if (File.Exists(Server.MapPath("~/public/userfiles/home/box3.jpg")))
+            {
+                <img class="box_bg" src="@Href("~/public/userfiles/home/box3.jpg")" />
+            }
+            @if (!string.IsNullOrEmpty(Model.Box3) && !string.IsNullOrEmpty(Model.Box3Link))
+            {
+                <a class="tab_link" href="@Model.Box3Link">
+                    <div class="tab_move">
+                        <p class="tab_txt">@Model.Box3</p>
+                    </div>
+                </a>
+            }
+        </div>
+
+    </div>
+
+</div>*@
+<script type="text/javascript">
+    $(function () {
+        $("#gallery").innerfade({
+            timeout: 12000,
+            type: 'random',
+            containerheight: '300px'
+        });
+
+
+
+    });
+</script>
+@if ((int)ViewBag.DocCounter > 0)
+{
+    
+    <script type="text/javascript">
+        $(function () {
+
+            if ($.cookie('doc') == null) {
+                $('#myModal').modal('show');
+                //create cookie first
+                $.cookie('doc', '1', { expires: 1 });
+            }
+            else {
+                if (parseInt($.cookie('doc')) < 2) {
+                    //show modal
+                    $('#myModal').modal('show');
+                    var count = parseInt($.cookie('doc')) + 1;
+                    $.cookie('doc', count, { expires: 1 });
+                }
+            }
+        });
+    </script>
+}
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;</button>
+                <p class="to_download">
+                    קרא וחתום
+                    <br />
+                    <span>חלון זה מכיל מסמכים שעליכם לקרוא ולחתום ולאשר בסיום את הקריאה </span>
+                </p>
+            </div>
+            <div class="modal-body" style="padding: 0px">
+                @Html.Raw(ViewBag.Links)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    סגור</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(function () {
+@*        $(".doc_action").click(function () {
+            var action = $(this).attr('name');
+            var userID = $(this).attr('title');
+            var docID = $(this).attr('alt');
+            $.post('@Url.Action("DocAction", "Docs")', {
+                docAction: action,
+                user: userID,
+                doc: docID
+            });
+        });*@
+
+        $(".checked").click(function () {
+            var userID = $(this).attr('id');
+            var docID = $(this).attr('name');
+            $.post('@Url.Action("DocAction", "Docs")', {
+                user: userID,
+                doc: docID
+            });
+        });
+    });
+</script>

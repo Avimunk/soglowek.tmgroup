@@ -1,0 +1,11 @@
+﻿@model Portal.Models.FlashBanners.FlashBannerFormModel
+@{
+    ViewBag.Title = "באנר";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	באנר</h2>
+@using (Html.BeginForm("Edit", "FlashBanners", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.Partial("BannerForm")
+}

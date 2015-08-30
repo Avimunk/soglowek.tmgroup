@@ -1,0 +1,265 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-sm-8">
+    <div class="box">
+        <div class="box-content">
+            <h1 style="text-align: center; padding-bottom: 5px; padding-top: 5px;">
+                Forums list</h1>
+            <a class="icon icon-add" style="margin-top: -30px; display: block; float: right"
+                href="/ForumItems/Create">Add Forum </a>
+        </div>
+    </div>
+</div>
+<style>
+      th
+        {
+            text-align:right;
+        }
+    table
+    {
+        width: 100%;
+    }
+    .tableresults
+    {
+        padding: 0;
+    }
+    .tableresults td
+    {
+       
+      
+    }
+    .tableresults td input, select
+    {
+        border: 0px;
+        background: inherit;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.tableresults tr:odd').css('background', '#F0F0F0')
+        $('.tableresults tr:odd select').css('background', '#F0F0F0')
+    });
+</script>
+<div class="toolbar">
+    <table>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Admin
+            </th>
+            <th>
+                Active
+            </th>
+             <th>
+                Available to all
+            </th>
+            <th>
+                Actions
+            </th>
+             <th>
+                Users
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+{
+            
+            
+    //var theUsersArray = item.ForumUsers.ToString();
+    string[] names = new string[] { "one", "two", "three" };
+    if (item.ForumUsers.ToString() != null)
+    {
+
+        //names = item.ForumUsers.ToString().Split(',');
+    }
+    else
+    {
+        names = null;
+
+    }
+    var theChecked = " ";
+    
+    
+    
+    
+    
+    
+    <form id="@item.Id">
+
+        <tr>
+            <td>
+                <input name="Id"   value="@item.Id" style="width: 27px;" />
+            </td>
+            <td>
+                <input name="Title" id="tittle-@item.Id"  style="width: 100%;" value="@item.Title" />
+            </td>
+            <td>
+               <span>@item.Admin.LastName @item.Admin.FirstName</span>
+            </td>
+            <td>
+                @if (item.Active)
+                {
+                    <div>
+                        <input type="checkbox" name="Active" class="ForumActiveUpdate-@item.Id" checked="checked"></div>
+                }
+                else
+                {
+                    <div>
+                        <input type="checkbox" name="Active" class="ForumActiveUpdate-@item.Id"></div>
+                }
+            </td>
+
+
+             <td>
+                @if (item.isAvailableTooAll)
+                {
+                    <div>
+                        <input type="checkbox" name="Active" class="ForumAllowAllUpdate-@item.Id" checked="checked"/></div>
+                }
+                else
+                {
+                    <div>
+                        <input type="checkbox" name="Active" class="ForumAllowAllUpdate-@item.Id"/></div>
+                }
+            </td>
+
+
+            <td>
+                <a href="/ForumItems/delete/@item.Id">Delete</a> | <a href="/Forums/List/@item.Id">Posts</a>
+                | <a href="/Forums/@item.Id">View</a>
+            </td>
+            <td>
+             @Html.ActionLink("View forum users", "ForumUsers", new { forumId = item.Id })
+             
+             <script>   
+
+
+
+
+                 $(document).ready(function () {
+
+
+                 	$("input.ForumActiveUpdate-@item.Id").click(function () {
+				            var input = this;
+				            $.post('@Url.Action("ForumActiveUpdate")', {
+					            isActive: input.checked,
+					            id: @item.Id
+				            });
+			        });
+
+                    $("input.ForumAllowAllUpdate-@item.Id").click(function () {
+				            var input = this;
+				            $.post('@Url.Action("ForumAllowAllUpdate")', {
+					            isAvailableTooAll: input.checked,
+					            id: @item.Id
+				            });
+			        });
+
+
+
+                            $("#tittle-@item.Id").blur(function(){
+                                 $.ajax({
+                                        type: "POST",
+                                        url: "/ForumItems/UpdateTitle",
+                                        contentType: 'application/json',
+                                        data: JSON.stringify({newTitle: $("#tittle-@item.Id").val(),id:@item.Id})
+                                    });
+                            });
+
+
+                         $('form').each(function () {
+                                $(this).change(function () {          
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/ForumItems/Update",
+                                        data: $(this).serialize()
+                                    });
+
+                                });
+                           });
+
+
+
+
+                     //                     $('.userSelect div input').click(function () {
+                     //                         var data;
+                     //                         var arr = [];
+
+
+                     //                         $('.userSelect div input').each(function () {
+                     //                             arr[arr.length] = $(this).attr('value');
+                     //                         });
+
+                     //                         $.ajax({
+                     //                             type: "GET",
+                     //                             url: "/",
+                     //                             data: { ForumUsers: arr.join(',') }
+                     //                         });
+
+                     //                     });
+
+
+                     $('#saveForumUsers-@item.Id').click(function () {
+                         //                         var array;
+                         //                         var theId = $(this).attr('data-id');
+                         //                         $('#' + theId + ' input').each(function () {
+                         //                             array[array.length] = $(this).attr('value');
+                         //                         });
+
+                         var users = [];
+                         $('#forum-@item.Id input:checked').each(function () {
+                             users.push(this.value);
+                             //alert(this.value);
+                         });
+
+
+
+                         $.ajax({
+                                type: "POST",
+                                 url: "/ForumItems/UpdateUsers",
+                                contentType: 'application/json',
+                                data: JSON.stringify({users: users,id:@item.Id})
+                            });
+
+
+//                         var aArray = [];
+//                         window.$("#forum-@item.Id").find("input[type=checkbox][checked]").each(function () {
+//                             aArray.push(this.value);
+//                         });
+//                         alert(aArray.val());
+
+                     });
+
+
+
+
+
+                 });
+                
+
+             </script>
+
+             <style>
+                a.userSelect:hover div
+                {
+                    display:block!important;
+                }
+             </style>
+
+            </td>
+        </tr>
+   
+    </form>
+}
+
+
+    </table>
+</div>
+
+

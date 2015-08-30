@@ -1,0 +1,36 @@
+﻿@model Portal.Models.Wikis.WikiFormModel
+@{
+    ViewBag.Title = "מילון מונחים";
+    Layout = null;
+}
+<fieldset>
+    <legend>פרטים</legend>
+    <dl>
+        <dt>כותרת</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Title)
+        </dd>
+
+
+        <dt>תאריך :</dt>
+        <dd>
+            <span class="loud-1">
+                @Html.TextBox("Date", Model.Date.ToShortDateString(), new { @class = "datepicker" })
+            </span>
+
+        </dd>
+       
+        <dt>תוכן :</dt>
+        <dd>
+            @Html.TextAreaFor(x => x.Content, new { @class = "ckeditor" })
+        </dd>
+    </dl>
+</fieldset>
+<div class="submit-btn">
+    <input type="submit" value="שמור" />
+    <span>או</span>
+
+    <a  href="@Url.Action("Index", "Wiki")?letter=all">אחורה </a>
+</div>
+@Html.HiddenFor(x => x.Letter)
+

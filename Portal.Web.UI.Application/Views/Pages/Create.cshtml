@@ -1,0 +1,10 @@
+﻿@{
+	
+    ViewBag.Title = "עמוד";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	עמוד</h2>
+@using(Html.BeginForm("Create", "Pages", FormMethod.Post, new { enctype = "multipart/form-data" })){
+@Html.Partial("PageForm")
+} 

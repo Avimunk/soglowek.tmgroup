@@ -1,0 +1,168 @@
+﻿@model Portal.Entities.Setting
+@{
+               
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+    Settings
+</h2>
+@using (Html.BeginForm("Edit", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+      <input type="button" class="btn toggleNext"  value="Hide/show Left" />
+   <fieldset>
+        <legend>Left</legend>
+        <dl>
+          <dt>משולחן ההנהלה</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.managerTableTxt, new { @class = "ckeditor" })
+            </dd>
+              <dt>קישורים שימושיים</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.usefullLinksTxt, new { @class = "ckeditor" })
+            </dd>
+
+                <dt>טקסט למען הקהילה</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.KeilaTxt)
+            </dd>
+                <dt>למען הקהילה לינק</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.KeilaLink)
+            </dd>
+        </dl>
+    </fieldset>
+    
+    <input type="button" class="btn toggleNext"  value="Hide/show Right" />
+    <fieldset >
+        <legend>Right</legend>
+        <dl>
+         <dt>תמונת יום הולדת</dt>
+            <dd>
+                <input name="bdate" type="file" />
+            </dd>
+                  <dt>מערכות פנים ארגוניות</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.innerSysyemsTxt, new { @class = "ckeditor" })
+            </dd>
+
+                     <dt>לינק לפורום</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Forumlink)
+            </dd>
+        </dl>
+    </fieldset>
+    
+      <input type="button" class="btn toggleNext" value="Hide/show Center" />
+    <fieldset >
+ 
+        <legend>Center</legend>
+        <dl>
+            <dt>טקסט ראשי </dt>
+            <dd>
+                @Html.TextAreaFor(x => x.mainUpperTxt, new { @class = "ckeditor" })
+            </dd>
+                <dt>תמונה ראשית פנימית</dt>
+            <dd>
+                <input name="box1" type="file" />
+            </dd>
+            <dt>משאבי אנוש</dt>
+
+            <dd>
+                @Html.TextAreaFor(x => x.hrtxt, new { @class = "ckeditor" })
+            </dd>
+            <dt>רווחה</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.revahatxt, new { @class = "ckeditor" })
+            </dd>
+            <dt>שיווק</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.salestxt, new { @class = "ckeditor" })
+            </dd>
+            <dt>עוד</dt>
+      
+            <dd>
+                @Html.TextAreaFor(x => x.moretxt, new { @class = "ckeditor" })
+            </dd>
+
+
+               <dt>יוטוב טקסט</dt>
+          
+            <dd>
+                @Html.TextAreaFor(x => x.youtubetxt, new { @class = "ckeditor" })
+            </dd>
+                 <dt>יוטוב לינק</dt>
+
+                     <dt>יוטוב תוכן</dt>
+          
+            <dd>
+                @Html.TextAreaFor(x => x.youtubeContent, new { @class = "ckeditor" })
+            </dd>
+                 <dt>יוטוב לינק</dt>
+         
+            <dd>
+                @Html.TextBoxFor(x => x.youtubelink)
+            </dd>
+        </dl>
+    </fieldset>
+
+
+
+
+
+
+    <fieldset>
+        <legend>כללי</legend>
+        <dl>
+            <dt>תוכן מכתב יום הולדת</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.BDayContent, new { @class = "ckeditor" })
+            </dd>
+
+            <dt>רשימת מיילים על ימי הולדת</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.BDayEmails, new { @class = "ckeditor" })
+            </dd>
+
+            <dt>שליחת מיילים על ימי הולדת</dt>
+            <dd>
+                @Html.CheckBoxFor(x => x.BDayEmailsAllow, new { @id = "bdaymailsIsAllow" })
+            </dd>
+    
+        </dl>
+    </fieldset>
+
+        <div class="submit-btn">
+        <input type="submit" value="Save" />
+    </div>
+
+    @Html.HiddenFor(x => x.Id)
+
+    
+    
+    <script type="text/javascript">
+        $(function () {
+            $(".toggleNext").next().hide();
+
+            $(".toggleNext").click(function () {
+                $(this).next().slideToggle(500);
+
+            });
+
+
+
+
+
+            $("#bdaymailsIsAllow").click(function () {
+                var input = this;
+                $.post('@Url.Action("bdaymailsIsAllow")', {
+                    isActive: input.checked
+                });
+            });
+
+        });
+</script>
+
+    
+    
+    
+}

@@ -1,0 +1,28 @@
+﻿@model Forum
+<li id="remove-id-@Model.Id">
+
+	<table>
+		<tr>
+			<th>
+				@Html.EmployeeImage(Model.CreatedBy)
+				@Html.ActionLink(Model.CreatedBy.FullName, "Card", "Employees", new{Model.CreatedBy.Id}, null)
+			</th>
+			<td>
+				<small class="forum-time">@Model.CreatedDate<br />
+             </small> 
+                <strong class="forum-subject">@Model.Subject</strong>
+				<div class="forum-body">@Model.Body.SetBr()</div>
+				<div class="forum-actions">
+					@Html.ActionLink("תגובה", "Create", "Forums", new { parentId = Model.Id , categoryId = (int)ViewData["catId"] }, null)
+					@if (ViewContext.IsOwner(Model.CreatedBy) || Html.Employee().IsAdmin) {
+						<text>|</text>
+						@Html.ActionLink("מחיקה", "Destory", new { Model.Id }, new { @class = "delete-message", removeid = "remove-id-" + Model.Id })
+	 }
+				</div>
+			</td>
+		</tr>
+	</table>
+	@if (Model.SubForums.Any()) {
+		@Html.Partial("ForumList", Model.SubForums)
+ }
+</li>

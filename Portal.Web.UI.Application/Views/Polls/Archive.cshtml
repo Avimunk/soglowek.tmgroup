@@ -1,0 +1,24 @@
+﻿@model IList<Portal.Entities.Poll>
+@{
+	ViewBag.Title = "סקרים נוספים";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+	<h4 class="box-title">
+		סקרים נוספים
+	</h4>
+	<div class="box-content">
+		<table>
+			@foreach (var item in Model) {
+				<tr>
+					<td style="width: 100%">
+						@Html.ActionLink(item.Title, "PollResult", new { item.Id })
+					</td>
+					<td>
+						@item.CreatedDate.ToShortDateString()
+					</td>
+				</tr>
+   }
+		</table>
+	</div>
+</div>

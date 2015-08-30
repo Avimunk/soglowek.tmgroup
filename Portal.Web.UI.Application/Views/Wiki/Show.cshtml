@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Portal.Entities.Wiki>
+@{
+    ViewBag.Title = "מילון מונחים";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string alphabet = ViewData["alphabet"].ToString();
+    //string alphabetEn = ViewData["alphabetEn"].ToString();
+}
+
+<div class="box">
+    <h4 class="box-title">מילון מונחים
+    </h4>
+
+
+    <div class="box-content page-content">
+        <div id="list_letters">
+            <ul id="alph_he">
+                @for (int i = 0; i < alphabet.Length; i++)
+                {
+                    <li><a id="letter_@alphabet[i].ToString()" class="letter" href="@Url.Action("Show")?letter=@alphabet[i].ToString()">
+                        @alphabet[i].ToString()</a> </li>
+                    
+                }
+                <li id="all_letters_li"><a id="all_letters" class="letter" href="@Url.Action("Show")?letter=all">רשימה
+                        מלאה</a></li>
+            </ul>
+           @* <ul id="alph_en">
+                @for (int i = 0; i < alphabetEn.Length; i++)
+                {
+                    <li><a id="letter_@alphabetEn[i].ToString()" class="letter" href="@Url.Action("Show")?letter=@alphabetEn[i].ToString()">
+                        @alphabetEn[i].ToString()</a></li>
+                }
+            </ul>*@
+
+        </div>
+        <div id="results">
+            <ul>
+                @foreach (var wikiItem in Model)
+                { 
+                   
+                    <li>
+                                    <div class="title">
+                                        @wikiItem.Title
+                                    </div>
+                             
+                                    <div class="content">
+                                        @Html.Raw(wikiItem.Content)
+                                    </div>
+                               
+                                    <div class="addedBy">
+
+                                        @wikiItem.Date.ToShortDateString()
+                                    </div>
+                              
+                        <div class="dotted_boxes">
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+

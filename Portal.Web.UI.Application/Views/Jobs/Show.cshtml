@@ -1,0 +1,22 @@
+﻿@model Portal.Entities.Job
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<fieldset>
+    <legend>משרה -  @Model.Name</legend>
+
+    <div class="display-label">תפקיד</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">תוכן</div>
+    <div class="display-field">
+        @Html.Raw(Model.Content)
+    </div>
+</fieldset>

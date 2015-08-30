@@ -1,0 +1,73 @@
+﻿@model IList<Portal.Entities.Calendar>
+@{
+    ViewBag.Title = "אירועים";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+    <h4 class="box-title">אירועים @(((DateTime)ViewBag.SelectedDate).ToShortDateString())
+    </h4>
+    <div class="box-content calendar-list">
+        <table  class="table table-hover table-responsive">
+            @foreach (var item in Model.OrderBy(x=>x.Hours))
+            {
+                <tr>
+                    <th></th>
+                    <td>
+                        <table class="table-responsive">
+                            <tr>
+                                <td class="td_name">אירוע</td>
+                                <td>
+                                    <h4>
+                                        @item.Title
+                                    </h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_name">תאריך</td>
+                                <td>@item.Date.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td class="td_name">משעה</td>
+                                <td>@item.Hours:@item.Minutes</td>
+                            </tr>
+                            <tr>
+                                <td class="td_name">עד שעה</td>
+                                <td>@item.HoursUntill:@item.MinutesUntill</td>
+                            </tr>
+                            <tr>
+                                <td class="td_name">מיקום</td>
+                                <td>@item.Place</td>
+                            </tr>
+                            <tr>
+                                <td class="td_name">מדריך</td>
+                                <td>@item.Teacher</td>
+                            </tr>
+                            <tr>
+                                <td class="td_name">קהל יעד</td>
+                                <td>@item.Audience</td>
+                            </tr>
+                            <tr>
+                                <td class="td_name">פרטים</td>
+                                <td>
+                                    <p>
+                                        @item.Abstract
+                                    </p>
+                                </td>
+                            </tr>
+                            @if (!string.IsNullOrEmpty(item.Url))
+                            {
+                                <tr>
+                                    <td class="td_name">עוד</td>
+                                    <td>
+                                        <a href="@item.Url">עוד >></a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

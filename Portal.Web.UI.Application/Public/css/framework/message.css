@@ -1,0 +1,102 @@
+.info-message, .error-message, .success-message {
+	padding: 10px;
+	margin-bottom: 10px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	color: #000000;
+}
+
+div.top-message {
+	left: 50%;
+	padding: 10px;
+	position: fixed;
+	top: 0;
+	width: 300px;
+	z-index: 101;
+	margin-left: -150px;
+	border-top: 0;
+}
+
+body.rtl div.top-message {
+	margin-right: -150px;
+	margin-left: 0;
+	right: 50%;
+}
+
+.validation-summary-errors {
+	border: 1px solid #FF0000;
+	background: #FFeeee;
+}
+
+.validation-summary-errors ul {
+	list-style: decimal;
+}
+
+.validation-summary-errors li {
+	padding: 0;
+	margin: 0;
+}
+
+.info-message ol, .error-message ol, .success-message ol {
+	padding-left: 30px;
+	margin: 10px 0 0 0;
+}
+
+#flash {
+}
+
+.success-message {
+	border: 1px solid #66cc33;
+	background: #ccffcc;
+}
+
+.info-message {
+	border: 1px solid #ffcc00;
+	background: #ffffcc;
+}
+
+.error-message {
+	border: 1px solid #FF0000;
+	background: #FFeeee;
+}
+
+.field-validation-valid {
+	display: none;
+}
+
+input.email, input.captcha {
+	direction: ltr !important;
+}
+
+input.captcha {
+	width: 60px;
+}
+
+input.creditcard {
+	width: 160px;
+}
+
+input.number, input.digits {
+	width: 80px;
+}
+
+input.input-validation-error {
+	border: 1px solid #FF0000;
+	background: #FFeeee;
+}
+
+span.field-validation-error,
+span.input-validation-error  {
+	color: #FF0000;
+	text-transform: lowercase;
+	font-style: italic;
+	margin: 0 5px;
+	display: inline;
+}
+
+.required {
+	padding-left: 0;
+	text-align: left;
+}

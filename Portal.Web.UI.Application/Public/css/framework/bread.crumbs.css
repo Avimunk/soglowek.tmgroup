@@ -1,0 +1,23 @@
+.bread-crumbs li {
+	float: left;
+}
+
+.bread-crumbs {
+	overflow: hidden;
+	font-family: Verdana;
+	font-size: 11px;
+	margin-bottom: 10px;
+}
+
+.bread-crumbs a, .bread-crumbs span {
+	padding: 4px 8px 4px 5px;
+	display: block;
+}
+
+.bread-crumbs a.first {
+	padding-left: 0;
+}
+
+.bread-crumbs a {
+	background: url(images/path.gif) right 10px no-repeat;
+}

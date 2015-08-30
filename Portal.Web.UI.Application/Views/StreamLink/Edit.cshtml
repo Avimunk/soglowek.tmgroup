@@ -1,0 +1,10 @@
+﻿@model Portal.Models.StreamLink.StreamLinkFormModel
+@{
+    ViewBag.Title = "הודעות";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	הודעות</h2>
+@using (Html.BeginForm()) {
+	@Html.Partial("StreamLinkForm")
+}

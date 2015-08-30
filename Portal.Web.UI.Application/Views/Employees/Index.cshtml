@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = " חיפוש מתקדם";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+	<h4 class="box-title">
+		 חיפוש מתקדם
+	</h4>
+	<div class="box-content">
+		@using (Html.BeginForm("Search", "Employees", FormMethod.Get)) {
+			<table class="form">
+				<tr>
+					<th style="width: 60px;">
+						שם פרטי:
+					</th>
+					<td>
+						<input name="FirstName" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						שם משפחה:
+					</th>
+					<td style="vertical-align: middle;">
+						<input name="LastName" type="text" />
+					</td>
+				</tr>
+				
+				<tr>
+					<th>
+						תפקיד:
+					</th>
+					<td style="vertical-align: middle;">
+						@Html.DropDownList("JobTitleId", (IEnumerable<SelectListItem>)ViewBag.JobTitles, "הכל")
+					</td>
+				</tr>
+				<tr>
+					<th>
+						מחלקה:
+					</th>
+					<td style="vertical-align: middle;">
+						@Html.DropDownList("DepartmentId", (IEnumerable<SelectListItem>)ViewBag.Departments, "All")
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+					</td>
+					<td align="left">
+						<input type="submit" value="חיפוש" class="btn" />
+					</td>
+				</tr>
+			</table>									
+  }
+	</div>
+</div>

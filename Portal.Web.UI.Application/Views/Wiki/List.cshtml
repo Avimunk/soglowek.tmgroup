@@ -1,0 +1,13 @@
+﻿@model IList<Portal.Entities.Wiki>
+@{
+    ViewBag.Title = "מילון מונחים";
+    Layout =null;
+}
+<ul>
+	@foreach (var item in Model) {
+	<li>
+		
+        @item.Title 
+	</li>
+	}
+</ul>

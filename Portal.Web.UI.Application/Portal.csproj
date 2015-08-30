@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{620AB6A1-5E9F-4E58-A817-F29E64A2FF42}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Portal</RootNamespace>
+    <AssemblyName>Portal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'" />
+    <RestorePackages>true</RestorePackages>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ActionMailer.Net">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.1.0\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CKFinder, Version=2.0.1.1132, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BARVAZ\Thai_New_Site\bin\CKFinder.dll</HintPath>
+    </Reference>
+    <Reference Include="CKFinder_FileEditor, Version=1.0.0.1132, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BARVAZ\Thai_New_Site\bin\CKFinder_FileEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="CKFinder_ImageResize, Version=1.0.0.1132, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BARVAZ\Thai_New_Site\bin\CKFinder_ImageResize.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.3.4.6.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC3.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0774796e73ebf640, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Users\Sasha Revzin\Desktop\NHibernate.Profiler-Build-919\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel">
+      <HintPath>..\packages\LinqToExcel.1.8.0\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\LinqToExcel.1.8.0\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\packages\MvcContrib.2.0.95.0\lib\MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="QDFeedParser">
+      <HintPath>..\packages\qdfeed.1.0.2\lib\net35\QDFeedParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion">
+      <HintPath>..\packages\LinqToExcel.1.8.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\packages\LinqToExcel.1.8.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces">
+      <HintPath>..\packages\LinqToExcel.1.8.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages" />
+    <Reference Include="System.Web.Helpers" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Attributes\AdminAttribute.cs" />
+    <Compile Include="Attributes\EmployeeAttribute.cs" />
+    <Compile Include="Attributes\Transaction.cs" />
+    <Compile Include="Binders\TrimModelBinder.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\CalendarsController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\PollItemsController.cs" />
+    <Compile Include="Controllers\StreamLinkController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\DocsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\FlashBannersController.cs" />
+    <Compile Include="Controllers\ForumItemsController.cs" />
+    <Compile Include="Controllers\ForumsController.cs" />
+    <Compile Include="Controllers\GalleriesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\MiscController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PollsController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\WikiController.cs" />
+    <Compile Include="Entities\Calendar.cs" />
+    <Compile Include="Entities\EmployeePollItem.cs" />
+    <Compile Include="Entities\Log.cs" />
+    <Compile Include="Entities\PollItem.cs" />
+    <Compile Include="Entities\StreamLink.cs" />
+    <Compile Include="Entities\ForumUsers.cs" />
+    <Compile Include="Entities\Job.cs" />
+    <Compile Include="Entities\Doc.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\EmployeePhoto.cs" />
+    <Compile Include="Entities\EmployeeMessage.cs" />
+    <Compile Include="Entities\FlashBanner.cs" />
+    <Compile Include="Entities\Forum.cs" />
+    <Compile Include="Entities\ForumItem.cs" />
+    <Compile Include="Entities\Gallery.cs" />
+    <Compile Include="Entities\JobTitle.cs" />
+    <Compile Include="Entities\Like.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Page.cs" />
+    <Compile Include="Entities\Poll.cs" />
+    <Compile Include="Entities\Setting.cs" />
+    <Compile Include="Entities\Wiki.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ApplicationHelper.cs" />
+    <Compile Include="Helpers\JobsHelper.cs" />
+    <Compile Include="Helpers\DocHelper.cs" />
+    <Compile Include="Helpers\EmployeePhotosHelper.cs" />
+    <Compile Include="Helpers\EmployeesHelper.cs" />
+    <Compile Include="Helpers\FlashBannersHelper.cs" />
+    <Compile Include="Helpers\GalleriesHelper.cs" />
+    <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
+    <Compile Include="Helpers\MessagesHelper.cs" />
+    <Compile Include="Helpers\PagesHelper.cs" />
+    <Compile Include="Helpers\PollsHelper.cs" />
+    <Compile Include="Mappings\CalendarMap.cs" />
+    <Compile Include="Mappings\EmployeePollItemMap.cs" />
+    <Compile Include="Mappings\LogMap.cs" />
+    <Compile Include="Mappings\PollItemMap.cs" />
+    <Compile Include="Mappings\StreamLinkMap.cs" />
+    <Compile Include="Mappings\ForumUsersMap.cs" />
+    <Compile Include="Mappings\JobMap.cs" />
+    <Compile Include="Mappings\ForumItemMap.cs" />
+    <Compile Include="Mappings\DocMap.cs" />
+    <Compile Include="Mappings\DepartmentMap.cs" />
+    <Compile Include="Mappings\EmployeeMessageMap.cs" />
+    <Compile Include="Mappings\EmployeePhotoMap.cs" />
+    <Compile Include="Mappings\FlashBannerMap.cs" />
+    <Compile Include="Mappings\ForumMap.cs" />
+    <Compile Include="Mappings\GalleryMap.cs" />
+    <Compile Include="Mappings\LikeMap.cs" />
+    <Compile Include="Mappings\MessageMap.cs" />
+    <Compile Include="Mappings\EmployeeMap.cs" />
+    <Compile Include="Mappings\JobTitleMap.cs" />
+    <Compile Include="Mappings\PageMap.cs" />
+    <Compile Include="Mappings\PollMap.cs" />
+    <Compile Include="Mappings\SettingMapping.cs" />
+    <Compile Include="Mappings\WikiMap.cs" />
+    <Compile Include="Models\Calendars\CalendarFormModel.cs" />
+    <Compile Include="Models\Logs\LogsFormModel.cs" />
+    <Compile Include="Models\Pages\PageImportModel.cs" />
+    <Compile Include="Models\Polls\PollItemFormModel.cs" />
+    <Compile Include="Models\StreamLinks\StreamLinkFormModel.cs" />
+    <Compile Include="Models\Forums\ForumUsers.cs" />
+    <Compile Include="Models\Jobs\JobFormModel.cs" />
+    <Compile Include="Models\Docs\DocFormModel.cs" />
+    <Compile Include="Models\Employees\EmployeeFormModel.cs" />
+    <Compile Include="Models\Employees\SearchFormModel.cs" />
+    <Compile Include="Models\FlashBanners\FlashBannerFormModel.cs" />
+    <Compile Include="Models\Forums\ForumFormModel.cs" />
+    <Compile Include="Models\Forums\Forumltem.cs" />
+    <Compile Include="Models\Galleries\GalleryFormModel.cs" />
+    <Compile Include="Models\Departments\DepartmentFormModel.cs" />
+    <Compile Include="Models\JobTitles\JobTitleFormModel.cs" />
+    <Compile Include="Models\Messages\MessageFormModel.cs" />
+    <Compile Include="Models\Misc\LoginFormModel.cs" />
+    <Compile Include="Models\Pages\PageFormModel.cs" />
+    <Compile Include="Models\Pages\PageIndexModel.cs" />
+    <Compile Include="Models\Pages\PermissionsFormModel.cs" />
+    <Compile Include="Models\Polls\PollFormModel.cs" />
+    <Compile Include="Models\Wikis\WikiFormModel.cs" />
+    <Compile Include="NHibernateHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="404.aspx" />
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Public\css\font-awesome.min.css" />
+    <Content Include="Public\images\forum2.png" />
+    <Content Include="Public\external_js\jquery-ui.css" />
+    <Content Include="Public\external_js\jquery-ui.js" />
+    <Content Include="Public\js\jquery-1.11.3.min.js" />
+    <Content Include="Public\js\jquery-ui.min.js" />
+    <Content Include="Public\js\jquery.min.js" />
+    <Content Include="Public\images\bg.png" />
+    <Content Include="Public\images\portaltxt.jpg" />
+    <Content Include="Public\js\jorgchart\jquery.jOrgChart.js" />
+    <Content Include="Public\js\jorgchart\prettify.js" />
+    <Content Include="Public\css\admin.css" />
+    <Content Include="Public\css\bootstrap.css" />
+    <Content Include="Public\css\bootstrap.rtl.css" />
+    <Content Include="Public\css\box.css" />
+    <Content Include="Public\css\colorbox.css" />
+    <Content Include="Public\css\flexslider.css" />
+    <Content Include="Public\css\framework\images\border.png" />
+    <Content Include="Public\css\framework\images\controls.png" />
+    <Content Include="Public\css\framework\images\loading.gif" />
+    <Content Include="Public\css\framework\images\loading_background.png" />
+    <Content Include="Public\css\framework\images\overlay.png" />
+    <Content Include="Public\css\Oldcolorbox.css" />
+    <Content Include="Public\css\employee.css" />
+    <Content Include="Public\css\font.css" />
+    <Content Include="Public\css\form.css" />
+    <Content Include="Public\css\forum.css" />
+    <Content Include="Public\css\framework\bread.crumbs.css" />
+    <Content Include="Public\css\framework\collapsible.css" />
+    <Content Include="Public\css\framework\colorPicker.css" />
+    <Content Include="Public\css\framework\dashboard.css" />
+    <Content Include="Public\css\framework\default.css" />
+    <Content Include="Public\css\framework\fieldset.css" />
+    <Content Include="Public\css\framework\fullcalendar.css" />
+    <Content Include="Public\css\framework\grid.css" />
+    <Content Include="Public\css\framework\icon.css" />
+    <Content Include="Public\css\framework\images\ajax-loader.gif" />
+    <Content Include="Public\css\framework\images\arrow-090.png" />
+    <Content Include="Public\css\framework\images\arrow-270.png" />
+    <Content Include="Public\css\framework\images\arrow-move.png" />
+    <Content Include="Public\css\framework\images\arrow_left.png" />
+    <Content Include="Public\css\framework\images\arrow_right.png" />
+    <Content Include="Public\css\framework\images\arrow_up.png" />
+    <Content Include="Public\css\framework\images\asc-off.png" />
+    <Content Include="Public\css\framework\images\asc.png" />
+    <Content Include="Public\css\framework\images\bg.gif" />
+    <Content Include="Public\css\framework\images\calendar-blue.png" />
+    <Content Include="Public\css\framework\images\cards-bind-address.png" />
+    <Content Include="Public\css\framework\images\clock-small.png" />
+    <Content Include="Public\css\framework\images\control-180.png" />
+    <Content Include="Public\css\framework\images\control-270.png" />
+    <Content Include="Public\css\framework\images\control.png" />
+    <Content Include="Public\css\framework\images\counter-reset.png" />
+    <Content Include="Public\css\framework\images\cross-script.png" />
+    <Content Include="Public\css\framework\images\desc-off.png" />
+    <Content Include="Public\css\framework\images\desc.png" />
+    <Content Include="Public\css\framework\images\document--pencil.png" />
+    <Content Include="Public\css\framework\images\document-copy.png" />
+    <Content Include="Public\css\framework\images\document-excel-csv.png" />
+    <Content Include="Public\css\framework\images\first.gif" />
+    <Content Include="Public\css\framework\images\grid-header.gif" />
+    <Content Include="Public\css\framework\images\input_bg.gif" />
+    <Content Include="Public\css\framework\images\last.gif" />
+    <Content Include="Public\css\framework\images\lock.gif" />
+    <Content Include="Public\css\framework\images\minus-octagon.png" />
+    <Content Include="Public\css\framework\images\monitor.png" />
+    <Content Include="Public\css\framework\images\next.gif" />
+    <Content Include="Public\css\framework\images\pager-bg.gif" />
+    <Content Include="Public\css\framework\images\path.gif" />
+    <Content Include="Public\css\framework\images\plus-circle.png" />
+    <Content Include="Public\css\framework\images\prev.gif" />
+    <Content Include="Public\css\framework\images\refresh.png" />
+    <Content Include="Public\css\framework\images\send.png" />
+    <Content Include="Public\css\framework\images\settings.png" />
+    <Content Include="Public\css\framework\images\shd.gif" />
+    <Content Include="Public\css\framework\images\table-import.png" />
+    <Content Include="Public\css\framework\images\tabs.gif" />
+    <Content Include="Public\css\framework\images\tick.png" />
+    <Content Include="Public\css\framework\images\tipsy.gif" />
+    <Content Include="Public\css\framework\images\toolbar-bg.gif" />
+    <Content Include="Public\css\framework\images\wbg.gif" />
+    <Content Include="Public\css\framework\jquery.pnotify.default.css" />
+    <Content Include="Public\css\framework\jquery.tipsy.css" />
+    <Content Include="Public\css\framework\layout.css" />
+    <Content Include="Public\css\framework\login.css" />
+    <Content Include="Public\css\framework\message.css" />
+    <Content Include="Public\css\framework\nav.css" />
+    <Content Include="Public\css\framework\notes.css" />
+    <Content Include="Public\css\framework\pager.css" />
+    <Content Include="Public\css\framework\paging.css" />
+    <Content Include="Public\css\framework\reset.css" />
+    <Content Include="Public\css\framework\scripts\application.js" />
+    <Content Include="Public\css\framework\scripts\collapsible.js" />
+    <Content Include="Public\css\framework\scripts\fullcalendar.min.js" />
+    <Content Include="Public\css\framework\scripts\jpopup.js" />
+    <Content Include="Public\css\framework\scripts\jquery.cookie.js" />
+    <Content Include="Public\css\framework\scripts\jquery.maskedinput-1.2.2.min.js" />
+    <Content Include="Public\css\framework\scripts\jquery.pnotify.min.js" />
+    <Content Include="Public\css\framework\scripts\jquery.tipsy.js" />
+    <Content Include="Public\css\framework\scripts\jquery.ui.grid.js" />
+    <Content Include="Public\css\framework\scripts\jquery.uploadify.v2.1.0.min.js" />
+    <Content Include="Public\css\framework\scripts\jquery.watermark.min.js" />
+    <Content Include="Public\css\framework\scripts\notes.js" />
+    <Content Include="Public\css\framework\scripts\toggle.js" />
+    <Content Include="Public\css\framework\setting.css" />
+    <Content Include="Public\css\framework\toggle.css" />
+    <Content Include="Public\css\framework\toolbar.css" />
+    <Content Include="Public\css\framework\uploadify.css" />
+    <Content Include="Public\css\galleries.css" />
+    <Content Include="Public\css\ie.css" />
+    <Content Include="Public\css\jquery-ui-1.8.20.custom.css" />
+    <Content Include="Public\css\layout.css" />
+    <Content Include="Public\css\polls.css" />
+    <Content Include="Public\css\ticker.css" />
+    <Content Include="Public\css\ui.css" />
+    <Content Include="Public\css\user.css" />
+    <Content Include="Public\images\akir_sheli.png" />
+    <Content Include="Public\images\baloons.png" />
+    <Content Include="Public\images\bday.jpg" />
+    <Content Include="Public\images\bg.jpg" />
+    <Content Include="Public\images\bg_grey_5x5.png" />
+    <Content Include="Public\images\board.png" />
+    <Content Include="Public\images\bool-open.gif" />
+    <Content Include="Public\images\bool.gif" />
+    <Content Include="Public\images\border.png" />
+    <Content Include="Public\images\border1.png" />
+    <Content Include="Public\images\border2.png" />
+    <Content Include="Public\images\box_title.gif" />
+    <Content Include="Public\images\btn_111.jpg" />
+    <Content Include="Public\images\btn_bg.gif" />
+    <Content Include="Public\images\controls.png" />
+    <Content Include="Public\images\fb.gif" />
+    <Content Include="Public\images\footer.jpg" />
+    <Content Include="Public\images\heands.png" />
+    <Content Include="Public\images\ie6\borderBottomCenter.png" />
+    <Content Include="Public\images\ie6\borderBottomLeft.png" />
+    <Content Include="Public\images\ie6\borderBottomRight.png" />
+    <Content Include="Public\images\ie6\borderMiddleLeft.png" />
+    <Content Include="Public\images\ie6\borderMiddleRight.png" />
+    <Content Include="Public\images\ie6\borderTopCenter.png" />
+    <Content Include="Public\images\ie6\borderTopLeft.png" />
+    <Content Include="Public\images\ie6\borderTopRight.png" />
+    <Content Include="Public\images\LF_arrow.png" />
+    <Content Include="Public\images\linkedin.gif" />
+    <Content Include="Public\images\loading.gif" />
+    <Content Include="Public\images\loading_background.png" />
+    <Content Include="Public\images\logo.gif" />
+    <Content Include="Public\images\magnifying_glass_search.png" />
+    <Content Include="Public\images\message.jpg" />
+    <Content Include="Public\images\newlogo.png" />
+    <Content Include="Public\images\odaot.jpg" />
+    <Content Include="Public\images\overlay.png" />
+    <Content Include="Public\images\pix.gif" />
+    <Content Include="Public\images\Rounded_shift_up_arrow.png" />
+    <Content Include="Public\images\rss.gif" />
+    <Content Include="Public\images\RT_arrow.png" />
+    <Content Include="Public\images\search_btn.gif" />
+    <Content Include="Public\images\sogtxt.png" />
+    <Content Include="Public\images\twitter.gif" />
+    <Content Include="Public\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Public\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Public\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Public\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Public\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Public\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Public\images\ui-bg_highlight-soft_75_42b8f8_1x100.png" />
+    <Content Include="Public\images\ui-bg_inset-soft_95_fef1ec_1x100.png" />
+    <Content Include="Public\images\ui-icons_222222_256x240.png" />
+    <Content Include="Public\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Public\images\ui-icons_454545_256x240.png" />
+    <Content Include="Public\images\ui-icons_888888_256x240.png" />
+    <Content Include="Public\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Public\images\ui-icons_fff_256x240.png" />
+    <Content Include="Public\images\winwin.png" />
+    <Content Include="Public\js\bootstrap.min.js" />
+    <Content Include="Public\js\cookie.js" />
+    <Content Include="Public\js\html5shiv.js" />
+    <Content Include="Public\js\jquery.colorbox-min.js" />
+    <Content Include="Public\js\jquery.flexslider.js" />
+    <Content Include="Public\js\jquery.innerfade.js" />
+    <Content Include="Public\js\jquery.watermark.min.js" />
+    <Content Include="Public\js\admin.js" />
+    <Content Include="Public\js\jquery.vticker.1.4.js" />
+    <Content Include="Public\js\user.js" />
+    <Content Include="Public\templates\CategoryPage.html" />
+    <Content Include="Public\templates\CategoryPageItem.html" />
+    <Content Include="robots.txt" />
+    <None Include="Properties\PublishProfiles\sogloweq.pubxml" />
+    <None Include="Public\css\fonts\open-sanse\Admiration_Pains.ttf" />
+    <None Include="Public\css\fonts\open-sanse\open-sans.regular.ttf" />
+    <None Include="Views\Calendars\CalendarForm.cshtml" />
+    <None Include="Views\Calendars\CalendarsBox.cshtml" />
+    <None Include="Views\Calendars\Create.cshtml" />
+    <None Include="Views\Calendars\Edit.cshtml" />
+    <None Include="Views\Calendars\Index.cshtml" />
+    <None Include="Views\Calendars\List.cshtml" />
+    <Content Include="Views\Employees\List.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\EmployeeForm.cshtml" />
+    <Content Include="Views\Forums\List.cshtml" />
+    <Content Include="Views\Docs\Create.cshtml" />
+    <Content Include="Views\Docs\Index.cshtml" />
+    <Content Include="Views\Docs\DocForm.cshtml" />
+    <Content Include="Views\Docs\List.cshtml" />
+    <Content Include="Views\FlashBanners\BannerForm.cshtml" />
+    <Content Include="Views\FlashBanners\Create.cshtml" />
+    <Content Include="Views\FlashBanners\Edit.cshtml" />
+    <Content Include="Views\FlashBanners\FlashBanner.cshtml" />
+    <Content Include="Views\FlashBanners\Index.cshtml" />
+    <Content Include="Views\Forums\not_active.cshtml" />
+    <Content Include="Views\ForumItems\Create.cshtml" />
+    <Content Include="Views\ForumItems\delete.cshtml" />
+    <Content Include="Views\ForumItems\ForumList.cshtml" />
+    <Content Include="Views\ForumItems\ForumRow.cshtml" />
+    <Content Include="Views\ForumItems\ForumsBox.cshtml" />
+    <Content Include="Views\ForumItems\Index.cshtml" />
+    <Content Include="Views\ForumItems\List.cshtml" />
+    <Content Include="Views\Employees\Copy of Card.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
+    <Content Include="Views\Jobs\JobForm.cshtml" />
+    <Content Include="Views\Jobs\JobTicker.cshtml" />
+    <Content Include="Views\Employees\SearchUsers.cshtml" />
+    <Content Include="Views\ForumItems\ForumUsers.cshtml" />
+    <Content Include="Views\Employees\ErrorForum.cshtml" />
+    <Content Include="Views\Galleries\Copy of Show.cshtml" />
+    <Content Include="Views\Docs\Edit.cshtml" />
+    <Content Include="Views\Docs\Edit_.cshtml" />
+    <Content Include="Views\Calendars\Show.cshtml" />
+    <Content Include="Views\Docs\Show.cshtml" />
+    <Content Include="Views\Docs\Denied.cshtml" />
+    <Content Include="Views\StreamLink\Create.cshtml" />
+    <Content Include="Views\StreamLink\Edit.cshtml" />
+    <Content Include="Views\StreamLink\Index.cshtml" />
+    <Content Include="Views\StreamLink\StreamLinkForm.cshtml" />
+    <Content Include="Views\StreamLink\MessagesTicker.cshtml" />
+    <Content Include="Views\StreamLink\Show_old.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\DepartmentForm.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Departments\Show.cshtml" />
+    <None Include="Views\Galleries\Create.cshtml" />
+    <None Include="Views\Galleries\Edit.cshtml" />
+    <None Include="Views\Galleries\GalleriesBox.cshtml" />
+    <None Include="Views\Galleries\GalleryForm.cshtml" />
+    <None Include="Views\Galleries\Index.cshtml" />
+    <None Include="Views\Galleries\List.cshtml" />
+    <None Include="Views\Galleries\Show.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Misc\Login.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Polls\Index.cshtml" />
+    <Content Include="Views\JobTitle\Create.cshtml" />
+    <Content Include="Views\JobTitle\Edit.cshtml" />
+    <Content Include="Views\JobTitle\Index.cshtml" />
+    <Content Include="Views\JobTitle\JobForm.cshtml" />
+    <Content Include="Views\Polls\PollsCustom.cshtml" />
+    <Content Include="Views\Pages\NavNews.cshtml" />
+    <Content Include="Views\Pages\LeftBoxesMaster.cshtml" />
+    <Content Include="Views\Pages\FooterMenu.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Misc\FeedbackToManager.cshtml" />
+    <Content Include="Views\Pages\Error_auth.cshtml" />
+    <Content Include="Views\Pages\Nav_dropdpwn.cshtml" />
+    <Content Include="Views\Jobs\Show.cshtml" />
+    <Content Include="Views\Messages\Show.cshtml" />
+    <Content Include="Views\Polls\PollCreateForm.cshtml" />
+    <Content Include="Views\Polls\PollEditForm.cshtml" />
+    <Content Include="Views\Pages\ImportForm.cshtml" />
+    <Content Include="Views\PollItems\Create.cshtml" />
+    <Content Include="Views\PollItems\Edit.cshtml" />
+    <Content Include="Views\PollItems\PollItemForm.cshtml" />
+    <Content Include="Views\Home\Chart.cshtml" />
+    <Content Include="Views\Misc\ActiveForderUpload.cshtml" />
+    <Content Include="Views\Misc\ProssesResult.cshtml" />
+    <Content Include="Views\Misc\Error500.cshtml" />
+    <None Include="Views\Settings\Edit.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_StreamLayout.cshtml" />
+    <Content Include="Views\StreamLink\Show.cshtml" />
+    <Content Include="Views\StreamLink\StreamLinkTicker.cshtml" />
+    <Content Include="Views\Shared\Tree\Tree.cshtml" />
+    <Content Include="Views\Shared\Tree\TreeNode.cshtml" />
+    <Content Include="Views\Shared\_MP4StreamLayout.cshtml" />
+    <None Include="Views\Wiki\Create.cshtml" />
+    <None Include="Views\Wiki\Edit.cshtml" />
+    <None Include="Views\Wiki\Index.cshtml" />
+    <None Include="Views\Wiki\List.cshtml" />
+    <None Include="Views\Wiki\Show.cshtml" />
+    <None Include="Views\Wiki\WikiForm.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Pages\Create.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Pages\Edit.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Pages\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Pages\PageForm.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Pages\Nav.cshtml" />
+    <Content Include="Views\Pages\Show.cshtml" />
+    <Content Include="Views\Pages\RightMenu.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Search.cshtml" />
+    <Content Include="Views\Employees\Card.cshtml" />
+    <Content Include="Views\Misc\GetRss.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\MessageForm.cshtml" />
+    <Content Include="Views\Messages\Edit.cshtml" />
+    <Content Include="Views\Messages\MessagesTicker.cshtml" />
+    <Content Include="Views\Polls\Create.cshtml" />
+    <Content Include="Views\Polls\Edit.cshtml" />
+    <Content Include="Views\Polls\PollForm.cshtml" />
+    <Content Include="Views\Polls\Show.cshtml" />
+    <Content Include="Views\Polls\PollResult.cshtml" />
+    <Content Include="Views\Polls\Archive.cshtml" />
+    <Content Include="Views\Employees\BDayTicker.cshtml" />
+    <Content Include="Views\Pages\Permissions.cshtml" />
+    <Content Include="Views\Pages\Search.cshtml" />
+    <Content Include="Views\Pages\NoAccess.cshtml" />
+    <Content Include="Views\Forums\Index.cshtml" />
+    <Content Include="Views\Forums\ForumList.cshtml" />
+    <Content Include="Views\Forums\ForumRow.cshtml" />
+    <Content Include="Views\Forums\Create.cshtml" />
+    <Content Include="Views\Forums\ForumsBox.cshtml" />
+    <Content Include="Views\Employees\ChangeInfo.cshtml" />
+    <Content Include="Views\Notifications\Bday.html.cshtml" />
+    <Content Include="Views\Notifications\Forum.html.cshtml" />
+    <Content Include="Views\Notifications\Message.html.cshtml" />
+    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Portal.Clients\Portal.Clients.csproj">
+      <Project>{2d580395-c07c-4058-8cc2-3db46fc440bf}</Project>
+      <Name>Portal.Clients</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Portal.Web.UI\Portal.Web.UI.csproj">
+      <Project>{da95a169-2e57-46cb-bcdd-e67228de80ae}</Project>
+      <Name>Portal.Web.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="nuget.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Public\css\framework\images\Thumbs.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Public\uploads\ckfinder\" />
+    <Folder Include="Public\userfiles\ckfinder\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51571</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:9797</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+</Project>

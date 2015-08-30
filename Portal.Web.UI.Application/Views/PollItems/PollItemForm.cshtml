@@ -1,0 +1,49 @@
+﻿@model Portal.Models.Polls.PollItemFormModel
+
+<fieldset>
+	<legend>פרטים</legend>
+	<dl>
+        <dt>שם:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </dd>
+		<dt>אופציה 1:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Option1)
+			@Html.ValidationMessageFor(model => model.Option1)
+		</dd>
+		<dt>אופציה 2:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Option2)
+			@Html.ValidationMessageFor(model => model.Option2)
+		</dd>
+		<dt>אופציה 3:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Option3)
+			@Html.ValidationMessageFor(model => model.Option3)
+		</dd>
+		<dt>אופציה 4:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Option4)
+			@Html.ValidationMessageFor(model => model.Option4)
+		</dd>
+        	<dt>אופציה 5:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Option5)
+			@Html.ValidationMessageFor(model => model.Option5)
+		</dd>
+        	<dt>אופציה 6:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Option6)
+			@Html.ValidationMessageFor(model => model.Option6)
+		</dd>
+	</dl>
+</fieldset>
+@Html.HiddenFor(x => x.Poll_Id)
+<div class="submit-btn">
+	<input type="submit" value="שמור" />
+	<span>או</span>
+	@Html.ActionLink("אחורה", "Edit", "Polls", new { id = Model.Poll_Id }, null)
+</div>
+

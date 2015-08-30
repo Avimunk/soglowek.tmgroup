@@ -1,0 +1,59 @@
+﻿@model IPagination<Forum>
+@using MvcContrib.UI.Pager
+@{
+    ViewBag.Title = "הרשת הארגונית";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>הרשת הארגונית
+</h2>
+<ul class="toolbar">
+     <li>
+        <a class="icon icon-add" href="@Url.Action("AutoCreate")">הוסף חדש</a>
+    </li>
+     <li class="seperator" style="width:460px"></li>
+    <li>
+        <label>לינק</label>
+        <a style="display:initial !important;text-decoration:underline" target="_blank" href="/Forums/@ViewData["categoryId"]">/Forums/@ViewData["categoryId"]/</a>
+    </li>
+    <li class="seperator"></li>
+    <li>
+        <label>שם פורום</label>
+        @Html.TextBox("categoryTitle", ViewData["categoryTitle"].ToString(), "style='float:right'")
+    </li>
+    <li class="seperator"></li>
+    <li>
+        <label>מספר פורום</label>
+        @Html.DropDownList("categoryId", (IEnumerable<SelectListItem>)ViewData["categories"])
+    </li>
+   
+   
+</ul>
+@Html.Grid(Model).Columns(column =>
+{
+    column.For(x => x.Subject).Named("נושא");
+    column.For(x => x.Body.SetBr()).Named("הודעה").Attributes(@class => "wrap");
+    column.For(x => x.CreatedBy.FullName).Named("שם");
+    column.For(x => x.CreatedDate).Named("תאריך");
+    column.For(x => Html.ActionLink("מחיקה", "DestroyMessage", new { x.Id, categoryId = ViewData["categoryId"] }, new { @class = "delete" }));
+})
+@Html.Raw(Html.Pager((IPagination)Model).Format("מציג {0} - {1} מתוך {2} ").SingleFormat("מציג {0} מתוך {1} ").Last("אחרון").First("ראשון").Next("הבא").Previous("הקודם").Next("הבא").Previous("הקודם").ToString())
+
+@section HeadContent{
+    <script type="text/javascript">
+        $(function () {
+            $("#categoryId").change(function () {
+                window.location.href = "/Forums/List/"+this.value;
+            });
+
+            $('#categoryTitle').blur(function () {
+		     
+                $.post('@Url.Action("ForumTitle")', {
+		            categoryId: @ViewData["categoryId"].ToString(),
+		            title: this.value
+		        });
+		    });
+		});
+    </script>
+
+}

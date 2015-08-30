@@ -1,0 +1,23 @@
+﻿@model IList<Portal.Entities.Gallery>
+@{
+    Layout = null;       
+}
+
+
+<div class="box-container box-container-red">
+    <h4>
+        <span>Gallery</span>
+    </h4>
+    <div class="content">
+        <ul id="galleries-box">
+            @foreach (var item in Model) { 
+            <li>
+                <a  href="@Url.Action("Show", "Galleries", new{item.Id}, null) ">
+                    @Html.GalleryPicture(item)
+                    <strong>
+                        @item.Title</strong> </a>
+            </li>
+            } 
+        </ul>
+    </div>
+</div>

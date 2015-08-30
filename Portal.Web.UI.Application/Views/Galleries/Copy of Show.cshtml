@@ -1,0 +1,87 @@
+﻿@model Portal.Entities.Gallery
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+		<h2>Elastic Transition</h2>
+		<p><a class="group1" href="../../Public/images/board.png" title="Me and my grandfather on the Ohoopee.">Grouped Photo 1</a></p>
+		<p><a class="group1" href="../../Public/images/heands.png" title="On the Ohoopee as a child">Grouped Photo 2</a></p>
+		<p><a class="group1" href="../../Public/images/board.png" title="On the Ohoopee as an adult">Grouped Photo 3</a></p>
+
+
+<div class="box">
+    <h4 class="box-title">גלריה
+    </h4>
+    <div class="box-content">
+
+        <ul id="galleries-box">
+            @foreach (var item in Model.GetNames)
+            {
+                <li>
+                    <a id="@Url.Content("~/public/userfiles/galleries/large/" + Model.Id + "/" + item)"
+                           data-toggle="modal" data-target="#myModal"  class="gal_photo" >
+                        <img height="100" width="120" src='@Url.Content("~/public/userfiles/galleries/small/" + Model.Id + "/" + item)' />
+                    </a>
+                </li>
+            }
+        </ul>
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+@*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <img class="big_modal" src="" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
+
+            </div>
+        </div>
+    </div>
+</div>*@
+<script>
+
+    $(document).ready(function () {
+        $('.gal_photo').click(function () {
+
+            var src = $(this).attr('id');
+
+            $('.big_modal').attr('src', src);
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+    $(document).ready(function () {
+        //Examples of how to assign the Colorbox event to elements
+        $(".group1").colorbox({ rel: 'group1' });
+    });
+
+
+</script>

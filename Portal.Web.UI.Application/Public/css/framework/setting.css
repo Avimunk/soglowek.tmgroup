@@ -1,0 +1,67 @@
+#setting-menu ul,
+#setting-menu li,
+#setting-menu{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+#setting-menu {
+	float: left;
+	border-top: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	width: 160px;
+}
+
+body.rtl #setting-menu{
+	float: right;
+	border-left: 0;
+	border-right: 1px solid #CCCCCC;
+}
+
+#setting-menu a {
+	display: block;
+	padding: 5px 10px;
+	border-bottom: 0;
+	background: #f0f0f0;
+}
+
+#setting-menu li {
+	border-bottom: 1px solid #CCCCCC;
+}
+
+#setting-menu a.s, #setting-menu a:hover {
+	background: #FFFFFF;
+	border-right: 1px solid #ffffff;
+	margin-right: -1px;
+}
+
+#setting-content {
+	border: 1px solid #CCCCCC;
+	_height: 400px;
+	min-height: 400px;
+	margin-left: 161px;
+	padding: 20px;
+}
+
+body.rtl #setting-content {
+	margin-right: 161px;
+	margin-left: 0;
+}
+
+#setting-content fieldset{
+	width: 600px;
+}
+
+#setting-menu ul li{
+	border-bottom: 0;
+	
+}
+
+#setting-menu ul li a{
+	font-size: 90%;
+	padding: 2px 20px;
+}
+
+

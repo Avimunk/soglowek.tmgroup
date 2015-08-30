@@ -1,0 +1,20 @@
+﻿@model IList<Portal.Entities.Gallery>
+@{
+    ViewBag.Title = "תמונות";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+    תמונות
+</h2>
+<ul class="toolbar">
+    <li>
+        <a class="icon icon-add" href="@Url.Action("Create")">הוסף חדש</a>
+    </li>
+</ul>
+@Html.Grid(Model).Columns(column => {
+    column.For(x => Html.GalleryPicture(x));
+    column.For(x => x.Date.ToShortDateString()).Named("תאריך");
+    column.For(x => x.Title).Named("שם").Attributes(@class => "wrap");
+    column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+    column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+})

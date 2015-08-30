@@ -1,0 +1,16 @@
+﻿@model IList<Forum>
+@{
+	Layout = null;
+		 
+}
+<div class="">
+	<h4 class="box-title-forum">
+	הרשת הארגונית
+	</h4>
+	<div class="box-content">
+		@Html.ActionLink("הודעה חדשה", "Create", "ForumItems")
+		<div class="forum-list" >
+			@Html.Partial("ForumList", Model)
+		</div>
+	</div>
+    </div>

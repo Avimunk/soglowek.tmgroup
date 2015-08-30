@@ -1,0 +1,11 @@
+﻿@model Portal.Models.Calendars.CalendarFormModel
+@{           
+    ViewBag.Title = "אירועים";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+    אירועים
+</h2>
+@using (Html.BeginForm()) {
+    @Html.Partial("CalendarForm");
+}

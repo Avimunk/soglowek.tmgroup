@@ -1,0 +1,22 @@
+﻿#galleries-box {
+    overflow: hidden;
+}
+
+#galleries-box li {
+    float: right;
+    padding: 5px;
+    list-style: none;
+    max-width: 245px;
+}
+
+#galleries-box img {
+    border: 1px solid #0E83C1;
+    display: block;
+    width: 226px;
+    height: 181px;
+}
+
+#galleries-box strong {
+    display: block;
+    text-align: center;
+}

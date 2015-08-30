@@ -1,0 +1,38 @@
+#paging{
+	overflow: hidden;
+}
+
+#paging, #paging li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#paging li{
+	float: left;
+}
+
+#paging a,
+#paging span, 
+#paging strong{
+	display: block;
+	padding: 2px 4px;
+	text-decoration:none;
+	margin-left: 5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+#paging span{
+	background: #808185;
+	color: #FFFFFF;
+	border: 1px solid  #CCCCCC;
+}
+
+#paging a{
+	border: 1px solid #CCCCCC;
+}
+
+#paging a:hover{
+	background: #F0F0F0;
+}

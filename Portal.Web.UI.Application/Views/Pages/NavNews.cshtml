@@ -1,0 +1,22 @@
+﻿@model IList<Portal.Entities.Page>
+@{
+    Layout = null;
+}
+<ul id="right-nav">
+   
+    @foreach (var item in Model) {
+        <li>
+         @if (item.Picture != null)
+          {
+          <img class="menu_img" width="12" src="@Href("~/public/userfiles/pages/" + item.Picture)"/>
+          }
+            @Html.PageLink(item)
+        </li>
+    }
+  
+    <!--
+    <li class="right">
+        @Html.ActionLink("Logout", "Logout", "Misc", null, new { id = "logout-link" })
+    </li>
+    -->
+</ul>

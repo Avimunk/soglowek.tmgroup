@@ -1,0 +1,44 @@
+﻿@model Portal.Models.Docs.DocFormModel
+@{
+    Layout = null;
+}
+<fieldset>
+    <legend>פרטים</legend>
+    <dl>
+        <dt>שם:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Name)
+
+        </dd>
+        @if(!string.IsNullOrEmpty(Model.Url)){
+        <dt>לינק:</dt>
+        <dd>
+
+            <a target="_blank" href="/Public/userfiles/docs/@Model.Url">להורדת הקובץ</a>
+        </dd>
+        }
+        <dt>תוכן:</dt>
+        <dd>
+            @Html.TextAreaFor(x => x.Content)
+        </dd>
+        <dt>העלת מסמך</dt>
+        <dd>
+            <input name="upload_file" type="file" />
+        </dd>
+
+
+        @Html.EditorFor(model => model.isAvailable2All)
+
+    </dl>
+    @Html.HiddenFor(x => x.Url)
+    @Html.HiddenFor(x => x.Active)
+    
+</fieldset>
+
+<div class="submit-btn">
+    <input type="submit" value="שמור" />
+    <span>או</span>
+    @Html.ActionLink("אחורה", "Index")
+    
+</div>
+

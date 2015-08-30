@@ -1,0 +1,18 @@
+#login{
+	margin: 50px auto;
+	width: 300px;
+}
+
+#login #logo{
+	position: relative;
+	margin-bottom: 10px;
+}
+
+#login fieldset{
+	background:url(images/lock.gif) no-repeat bottom left;
+	padding-bottom: 60px;
+}
+
+#login fieldset input{
+	width: 140px;
+}

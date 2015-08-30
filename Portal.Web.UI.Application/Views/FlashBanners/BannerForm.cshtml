@@ -1,0 +1,64 @@
+﻿@model Portal.Models.FlashBanners.FlashBannerFormModel
+<fieldset>
+	<legend>פרטים</legend>
+	<dl>
+		<dt>שם:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Name)
+		</dd>
+		<dt>קישור:</dt>
+		<dd>
+			@Html.EditorFor(x => x.Url, new { @class="ltr"})
+			
+		</dd>
+		  <span id="UploadPicture-container">
+            <dt>קובץ:</dt>
+            <dd>
+                <input type="file" name="UploadPicture" />
+                <small>(1008x285)</small>
+                 <small>.jpg</small>
+                @if (Model.TypeId == 1 && !string.IsNullOrEmpty(Model.Banner))
+                  {
+                foreach (var item in Model.Banner.Split('|'))
+                  {
+                <span>
+                    @item
+                    | <a id="<%=item %>" class="remove-img" href="#">מחק</a><br />
+                </span>
+                } 
+                }
+            </dd>
+        </span>
+	</dl>
+</fieldset>
+<div class="submit-btn">
+    @Html.HiddenFor(x => x.Banner)
+	<input type="submit" value="שמור" />
+	<span>או</span>
+	@Html.ActionLink("אחורה", "Index")
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#TypeId").change(function () {
+            $("#UploadPicture-container, #YouTubeCode-container").hide();
+
+            if (this.value == 1 || this.value == 3) {
+                $("#UploadPicture-container").show();
+            } else if (this.value == 2) {
+                $("#YouTubeCode-container").show();
+            }
+        }).change();
+
+        $("a.remove-img").click(function () {
+
+            var a = $(this);
+            var img = a.attr("id");
+            a.parent().remove();
+
+            $("#Banner").val($("#Banner").val().replace(img, ""));
+
+            return false;
+        });
+    });
+</script>
+

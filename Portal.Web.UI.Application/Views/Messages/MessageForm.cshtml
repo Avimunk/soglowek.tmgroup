@@ -1,0 +1,27 @@
+﻿@model Portal.Models.Messages.MessageFormModel
+@{
+	Layout = null;
+}
+<fieldset>
+	<legend>פרטים</legend>
+	<dl>
+		<dt>שם:</dt>
+		<dd>
+			@Html.EditorFor(model => model.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+		</dd>
+		<dt>לינק:</dt>
+		<dd>
+			@Html.TextBoxFor(x => x.Url, new { @class = "ltr" })
+		</dd>
+		<dt>תוכן:</dt>
+		<dd>
+			@Html.TextAreaFor(x => x.Content)
+		</dd>
+	</dl>
+</fieldset>
+<div class="submit-btn">
+	<input type="submit" value="שמור" />
+	<span>או</span>
+	@Html.ActionLink("אחורה", "Index")
+</div>

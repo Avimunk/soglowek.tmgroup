@@ -1,0 +1,52 @@
+﻿@model Portal.Entities.Department
+@{
+	ViewBag.Title = "סקר";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadContent {
+    @Html.Script("jorgchart/jquery.jOrgChart", "jorgchart/prettify")
+    @Html.Css("jorgchart/custom", "jorgchart/jquery.jOrgChart", "jorgchart/prettify")
+
+   
+    <style type="text/css">
+        .tree,
+        .tree div {
+            direction: ltr !important;
+        }
+
+        .tree .node img {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tree .node span {
+            display: block;
+            float: none !important;
+        }
+
+        .tree .node .node-content {
+            padding: 10px 0;
+        }
+
+        .tree .node .node-title {
+            font-weight: bold;
+            font-size: 11px;
+            color: #b8251e;
+        }
+
+        .tree .node .node-caption {
+            font-size: 10px;
+            color: #b8251e;
+            height: 25px;
+        }
+    </style>
+}
+<div class="box">
+	<h4 class="box-title">
+		מחלקה - @Model.Name
+	</h4>
+	<div class="box-content">
+        @Html.Partial("~/Views/Shared/Tree/Tree.cshtml", (Portal.Web.UI.Tree)ViewBag.EmployeesTree)        
+	</div>
+</div>

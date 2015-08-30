@@ -1,0 +1,22 @@
+.collapsible {
+}
+
+.collapsible legend {
+	cursor: pointer;
+	background: #f0f0f0 url(images/control-270.png) no-repeat left center;
+	padding-left: 18px;
+}
+
+.collapsible-closed {
+	border-bottom-color: #ffffff;
+	border-left-color: #ffffff;
+	border-right-color: #ffffff;
+}
+
+.collapsible-closed legend{
+	background-image: url(images/control.png);
+}
+
+.collapsible-closed dl {
+	display: none;
+}

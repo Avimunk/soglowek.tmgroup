@@ -1,0 +1,183 @@
+﻿@model Portal.Entities.Page
+@{
+    ViewBag.Title = Model.Name;
+    var stream = false;
+
+
+    if (Model.TypeId == 999)
+    {
+        Layout = "~/Views/Shared/_StreamLayout.cshtml";
+        stream = true;
+    }
+    
+    
+    if (Model.TypeId == 56565)
+    {
+        Layout = "~/Views/Shared/_MP4StreamLayout.cshtml";
+        stream = true;
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    var currentId = string.IsNullOrEmpty(Request.QueryString["prevId"]) ? Model.Id : long.Parse(Request.QueryString["prevId"]);
+
+    long menu_activate = 0;
+    if (Model.Parent == null)
+    {
+        menu_activate = Model.Id;
+
+    }
+    else if (Model.Parent.Parent == null)
+    {
+        menu_activate = Model.Parent.Id;
+
+    }
+    else
+    {
+        menu_activate = Model.Parent.Parent.Id;
+    }
+}
+@if (stream)
+{
+    
+    <iframe class="iframetarget" id="frame1" width="100%" height="900" src="@Model.Iframelink1" frameborder="0" allowfullscreen="" >
+    </iframe>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            setInterval(function () {
+                loadSource();
+            }, 3000);
+
+
+
+
+
+
+
+
+
+            function loadSource() {
+
+                var currentSource = 0;
+                var sources = ['@Model.Iframelink1', '@Model.Iframelink2', '@Model.Iframelink3', '@Model.Iframelink4', '@Model.Iframelink5'];
+                currentSource++;
+                if (currentSource == sources.length) {
+                    nextSource = 0;
+                    currentSource = 0;
+                }
+                else {
+                    nextSource = currentSource;
+                }
+
+
+                $("#frame1").fadeOut().attr('src', sources[nextSource]).fadeIn();
+
+            }
+
+
+
+        });
+    </script>
+
+
+
+}
+else
+{
+    
+
+    <div id="right_span" class="col-sm-2" style="clear: both;">
+        <ul class="right-menu">
+            @Html.Action("RightMenu", Model)
+        </ul>
+    </div>
+
+    <div id="center_span" class="col-sm-10">
+        <div class="box">
+            <h4 class="box-title">
+                @Html.BreadCrumbs(Model)
+            </h4>
+            <div class="box-content page-content">
+                @if (Model.IsIFrame)
+                {
+		
+                    <iframe src="@Html.Raw(Model.Url)" style="width: 100%; height: 600px" frameborder="0">
+                    </iframe>
+                }
+                else
+                {
+                    @Html.Raw(Model.Content)
+                }
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#nav-menu-0").parent().removeClass("active");
+            $("#nav-menu-@menu_activate").parent().addClass("active");
+
+
+            if ($("li", "ul.right-menu").length == 0) {
+                $("ul.right-menu").remove();
+                $("div.page-content").css("margin-right", "0");
+                $('#right_span').remove();
+                $('#center_span').removeClass('col-sm-10').addClass('col-sm-12');
+            }
+            //$("ul", "ul.right-menu").hide();
+            $("#right-menu-@Model.Id").parent().find("ul:first").show();
+            $("#right-menu-@Model.Id").addClass("s").parents("ul").show().prev().addClass("s");
+
+
+
+
+            $(document).ready(function () {
+                var header = $(".header");
+
+                var s = $("#sticker");
+                var pos = s.position();
+                $(window).scroll(function () {
+                    var windowpos = $(window).scrollTop();
+                    if ($(window).scrollTop() > 30) {
+                        s.addClass("stick");
+                        $(".header").addClass("navStick");
+                        $("#carousel-example-generic").hide();
+                    } else {
+                        s.removeClass("stick");
+                        $(".header").removeClass("navStick");
+                        $("#carousel-example-generic").show();
+                    }
+                });
+            });
+
+        });
+
+
+
+
+ 
+
+    </script>
+    
+
+}
+@section HeadContent{
+    @if (Model.IsIFrame)
+    {
+        <style type="text/css">
+            #left-side, #right-side {
+                display: none;
+            }
+            
+            .page-content {
+                width: 100%;
+                margin: 0;
+            }
+        </style>
+    }
+}

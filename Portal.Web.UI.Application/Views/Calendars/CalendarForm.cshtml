@@ -1,0 +1,56 @@
+﻿@model Portal.Models.Calendars.CalendarFormModel
+@{
+    Layout = null;       
+}
+<fieldset>
+    <legend>פרטים</legend>
+    <dl>
+        <dt>שם אירוע:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Title)
+        </dd>
+        <dt>תאריך:</dt>
+        <dd>
+            @Html.TextBox("Date", Model.Date.ToShortDateString(), new { @class = "datepicker" })
+        </dd>
+         <dt>משעה:</dt>
+        <dd>
+		@Html.DropDownListFor(x => x.Minutes, Model.AllMinutes)
+			@Html.DropDownListFor(x => x.Hours, Model.AllHours)
+            	
+		</dd>
+         <dt>עד שעה :</dt>
+        <dd>
+		@Html.DropDownListFor(x => x.MinutesUntill, Model.AllMinutesUntill)
+			@Html.DropDownListFor(x => x.HoursUntill, Model.AllHoursUntill)
+            	
+		</dd>
+           <dt>מדריך:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Teacher)
+        </dd>
+           <dt>מיקום:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Place)
+        </dd>
+           <dt>למי זה מיועד :</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Audience)
+        </dd>
+        <dt>לינק:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Url)
+        </dd>
+        <dt>תיאור:</dt>
+        <dd>
+            @Html.TextAreaFor(x => x.Abstract)
+        </dd>
+        
+      
+    </dl>
+</fieldset>
+<div class="submit-btn">
+    <input type="submit" value="שמור" />
+    <span>או</span>
+    @Html.ActionLink("בטל", "Index")
+</div>

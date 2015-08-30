@@ -1,0 +1,25 @@
+﻿@model IList<Portal.Entities.Gallery>
+@{
+    ViewBag.Title = "Galleries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box page-content" style="width: 100%;">
+    <h4 class="box-title">
+       גלריה תמונות
+    </h4>
+    <div class="box-content">
+     
+        <table>
+            <ul id="galleries-box">
+                @foreach (var item in Model) {
+                    <li>
+                        <a href="@Url.Action("Show", "Galleries", new { item.Id }, null)">
+                            @Html.GalleryPicture(item)
+                            <strong>
+                                @item.Title</strong> </a>
+                    </li>
+                }
+            </ul>
+        </table>
+    </div>
+</div>

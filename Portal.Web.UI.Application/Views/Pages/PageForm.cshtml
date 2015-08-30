@@ -1,0 +1,200 @@
+﻿@model Portal.Models.Pages.PageFormModel
+@{
+    Layout = null;
+}
+<fieldset>
+    <legend>פרטים</legend>
+    <dl>
+        <dt>שם:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Name)
+            @Html.ValidationMessageFor(x => x.Name)
+        </dd>
+        <dt>סוג:</dt>
+        <dd>
+            @Html.DropDownListFor(x => x.TypeId, Model.Types)
+        </dd>
+        <span id="url-container">
+            <dt>לינק:</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Url, new { @class = "ltr" })
+            </dd>
+            <dt>IFrame:</dt>
+            <dd>
+                @Html.CheckBoxFor(x => x.IsIFrame, new { @class = "check-box" })
+            </dd>
+            <dt>חלון חדש:</dt>
+            <dd>
+                @Html.CheckBoxFor(x => x.IsBlank, new { @class = "check-box" })
+            </dd>
+        </span><span id="content-container">
+            <dt>תוכן:</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.Content, new { @class = "ckeditor" })
+            </dd>
+
+                 
+
+        </span>
+        
+        <span id="mp4">
+            <dt>mp4  movie:</dt>
+            <dd>
+                @Html.TextAreaFor(x => x.Mp4Content, new { @class = "ckeditor" })
+            </dd>
+        </span>
+        
+        
+        <span id="tvlinks">
+            <dt>לינק 1:</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Iframelink1, new { @class = "ltr" })
+                <select id="Iframelink1" name="Iframelink1">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected="selected">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </dd>
+            <dt>לינק 2:</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Iframelink2, new { @class = "ltr" })
+                <select id="Iframelink2" name="Iframelink2">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected="selected">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </dd>
+            <dt>לינק 3:</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Iframelink3, new { @class = "ltr" })
+                <select id="Iframelink3" name="Iframelink3">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected="selected">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </dd>
+            <dt>לינק 4:</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Iframelink4, new { @class = "ltr" })
+                <select id="Iframelink4" name="Iframelink4">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected="selected">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </dd>
+            <dt>לינק 5:</dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Iframelink5, new { @class = "ltr" })
+                <select id="Iframelink5" name="Iframelink5">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected="selected">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </dd>
+        </span>
+    </dl>
+</fieldset>
+@Html.HiddenFor(x => x.Banner)
+<div class="submit-btn">
+    <input type="submit" value="שמור" />
+    <span>או</span>
+    @Html.ActionLink("אחורה", "Index", new { Model.ParentId, Model.SectionId })
+</div>
+
+
+@Html.HiddenFor(x => x.Iframelink1DelayTime)
+@Html.HiddenFor(x => x.Iframelink2DelayTime)
+@Html.HiddenFor(x => x.Iframelink3DelayTime)
+@Html.HiddenFor(x => x.Iframelink4DelayTime)
+@Html.HiddenFor(x => x.Iframelink5DelayTime)
+
+
+
+
+
+
+@Html.HiddenFor(x => x.ParentId)
+@Html.HiddenFor(x => x.PageTemplate)
+@Html.HiddenFor(x => x.SectionId)
+@Html.HiddenFor(x => x.Picture)
+<script type="text/javascript">
+    $(function () {
+        $("#TypeId").change(function () {
+            $("#content-container").hide();
+            $("#url-container").hide();
+            $("#mp4").hide();
+            $("#tvlinks").hide();
+
+            if (this.value == "3") {
+                $("#url-container").show();
+            } else {
+                $("#content-container").show();
+            }
+
+            if (this.value == "999") {
+                $("#tvlinks").show();
+                $("#content-container").hide();
+            } else {
+
+            }
+
+            if (this.value == "001") {
+                $("#tvlinks").hide();
+                $("#content-container").hide();
+                $("#mp4").show();
+            } else {
+
+            }
+
+        }).change();
+
+
+
+
+        $("#remove-image").click(function () {
+            var a = $(this);
+
+            if (confirm("למחק?")) {
+                a.parent().remove();
+                $("#Banner").val("");
+            }
+
+            return false;
+        });
+    });
+</script>

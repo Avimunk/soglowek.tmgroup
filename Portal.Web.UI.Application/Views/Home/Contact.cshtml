@@ -1,0 +1,76 @@
+﻿@model Setting
+@{
+    ViewBag.Title = "הצעות ייעול";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box col-sm-8">
+    <h4 class="box-title">הצעות ייעול
+    </h4>
+    <div class="box-content">
+        <table class="form">
+            <tbody>
+                <tr>
+                    <th>נושא:
+                    </th>
+                    <td>
+                        <input id="txt_title" type="text" onfocus="if(this.value=='נושא פניה')this.value='';"
+                            onblur="if(this.value=='')this.value='נושא פניה';" value="נושא פניה" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>הודעה:
+                    </th>
+                    <td>
+                        <textarea id="txt_msg" cols="80" rows="6" onfocus="if(this.value=='הודעה')this.value='';"
+                            onblur="if(this.value=='')this.value='הודעה';">הודעה</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="left">
+                        <input class="btn" id="send" type="button" onclick="SendForm()" value="שלח" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function SendForm() {
+        var error = "";
+       
+        if ($("#txt_title").val() == "נושא פניה") {
+            error += "חובה להזין נושא" + "\n";
+        }
+      
+        if ($("#txt_msg").val() == "הודעה") {
+            error += "חובה להזין הודעה" + "\n";
+        }
+        if (error != "") {
+            alert(error);
+        } else {
+
+            send_lead();
+        }
+
+
+    }
+
+    function send_lead() {
+        $('.btn').attr('disabled', 'disabled');
+        $.post("/misc/getlead", {
+            about: $("#txt_title").val(),
+            msg: $("#txt_msg").val()
+        } , function () {
+            alert("נשלח בהצלחה");
+            $("#txt_title").val('');
+           $("#txt_msg").val('');
+    });
+
+
+    }
+
+</script>

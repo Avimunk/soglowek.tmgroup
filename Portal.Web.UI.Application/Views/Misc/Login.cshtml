@@ -1,0 +1,72 @@
+﻿@model Portal.Models.Misc.LoginFormModel
+@{
+	Layout = "";	 
+		 
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<title>כניסה</title>
+	
+    <script src="../../Public/external_js/jquery.min.js" type="text/javascript"></script>
+
+	@Html.Css("framework/fieldset", "framework/default", "framework/message")
+     @Html.Script("cookie");
+           <script type="text/javascript">
+               $(function () {
+                   if ($.cookie("user") != null) {
+                       var username = $.cookie("user");
+                       var password = $.cookie("password");
+                       $("#Username").val(username);
+                       $("#Password").val(password);
+                       // $("#IsInternel").val("true");
+                       $("form").hide().submit();
+                   }});
+           </script>
+   
+	<style type="text/css">
+		div.login dt {
+			width: 12em;
+		}
+		
+		div.login fieldset {
+			min-height: 150px;
+		}
+	</style>
+</head>
+<body class="rtl">
+	@using (Html.BeginForm()) {
+		<div class="login" >
+			<img alt="" width="150" src="@Url.Content("~/public/images/newlogo.png")" id="Img1" />
+			<fieldset>
+				<legend>כניסה</legend>
+				<dl>
+					<dt>
+						<label>אימייל:</label>
+					</dt>
+					<dd>
+						@Html.TextBoxFor(x => x.Username)
+						@Html.ValidationMessageFor(x => x.Username)
+					</dd>
+				
+				</dl>
+                	<dl>
+					<dt>
+						<label>סיסמא:</label>
+					</dt>
+					<dd>
+						@Html.PasswordFor(x => x.Password)
+						@Html.ValidationMessageFor(x => x.Password)
+					</dd>
+				
+				</dl>
+			</fieldset>
+			<div class="submit-btn">
+				<input type="submit" value="כניסה" />
+			</div>
+		</div>
+    <input type="hidden" value="@ViewBag.login_name" id="hidden_name"/>
+     
+           }
+ </body>
+</html>

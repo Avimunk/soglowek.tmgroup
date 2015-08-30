@@ -1,0 +1,10 @@
+﻿@model Portal.Models.JobTitles.JobTitleFormModel
+@{
+	ViewBag.Title = "תפקיד";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	תפקיד</h2>
+@using (Html.BeginForm()) {
+	@Html.Partial("JobForm")
+}

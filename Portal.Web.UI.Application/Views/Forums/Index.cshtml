@@ -1,0 +1,64 @@
+﻿@model IPagination<Forum>
+@using MvcContrib.UI.Pager
+@{
+    ViewBag.Title = "הרשת הארגונית";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-3">
+    @{
+        IList<ForumItem> forums = ViewBag.list;
+        
+        }
+        <ul class="forum_list">
+        @foreach (ForumItem item in forums)
+        {
+           
+           if (HttpContext.Current.Request.Url.AbsolutePath == "/Forums/" + item.Id)
+           {
+             <li>
+            <a href="/Forums/@item.Id"> <strong>@item.Title</strong></a><br />
+                <h5>
+                    מנהל הפורום  - @item.Admin.FirstName @item.Admin.LastName 
+                </h5>
+           </li>
+            <hr />
+               
+           }
+           else
+           {
+                     <li>
+            <a href="/Forums/@item.Id"> @item.Title</a><br />
+                <h5>
+                    מנהל הפורום  - @item.Admin.FirstName @item.Admin.LastName 
+                </h5>
+           </li>
+            <hr />
+
+           }
+
+        }
+        </ul>
+     
+</div>
+
+
+
+<div class="col-sm-9">
+
+<div class="box">
+
+    <h4 class="box-title">@ViewData["catTitle"] 
+    </h4>
+    <div class="box-content">
+        @Html.ActionLink("הוסף הודעה חדשה", "Create", new { categoryId = ViewData["catId"] })
+        <div class="forum-list">
+            @Html.Partial("ForumList", Model.ToList())
+        </div>
+        <hr />
+
+        @Html.Raw(Html.Pager((IPagination)Model).Format("מציג {0} - {1} מתוך {2} ").SingleFormat("מציג {0} מתוך {1} ").Last("אחרון").First("ראשון").Next("הבא").Previous("הקודם").Next("הבא").Previous("הקודם").ToString())
+
+    </div>
+</div>
+    </div>

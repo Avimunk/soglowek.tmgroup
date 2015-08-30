@@ -1,0 +1,14 @@
+.toggle{
+	background: url(images/control.png) no-repeat left center;
+	padding-left: 16px;
+	cursor: pointer;
+}
+
+body.rtl .toggle{ 
+	background: url(images/control-180.png) no-repeat right center;
+	padding-right: 16px;
+}
+
+.toggle-open{
+	background-image: url(images/control-270.png)!important;
+}

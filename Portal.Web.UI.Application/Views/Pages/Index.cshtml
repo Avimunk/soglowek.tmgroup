@@ -1,0 +1,60 @@
+﻿@model Portal.Models.Pages.PageIndexModel
+@{
+	
+	ViewBag.Title = Model.Title;
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	@Model.Title
+</h2>
+<ul class="toolbar">
+	@if (Model.ParentId != null) {
+		<li>
+			<a class="icon icon-arrow-left" href="@Url.Action("Index", new { parentId = Model.PrevParentId, Model.SectionId })">
+				אחורה</a>
+		</li>
+		<li class="seperator">
+		</li>
+ }
+	<li>
+		<a class="icon icon-add" href="@Url.Action("Create", new { Model.ParentId, Model.SectionId })">
+			הוסף חדש</a>
+	</li>
+	<li class="search">
+		@Html.DropDownListFor(x => x.SectionId, Model.Sections)
+	</li>
+</ul>
+@Html.Grid(Model.Pages).Columns(column => {
+	column.For(x => Html.CheckBoxFor(c => x.IsActive, new { id = "page-active-" + x.Id, @class = "page-active" })).Named("פעיל");
+	column.For(x => Html.PageName(x)).Named("שם").Attributes(@class => "wrap");
+	column.For(x => (x.UpdatedDate ?? DateTime.MinValue).ToShortDateString()).Named("שינוי אחרון");
+	column.For(x => Html.TextBoxFor(p => x.PageOrder, new { @class = "grid-order", id = "page-order-" + x.Id })).Named("סדר");
+	column.For(x => Html.ActionLink("לעמוד", "Show", new { x.Id }, new { target = "_blank" }));
+    column.For(x => Html.ActionLink("גישה", "permissions", new { x.Id }));
+	column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+	column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+})
+@section HeadContent{
+	<script type="text/javascript">
+		$(function () {
+			$("#SectionId").change(function () {
+				window.location.href = '@Url.Action("Index")?sectionId=' + this.value;
+			});
+
+			$("input.grid-order").change(function () {
+				$.post('@Url.Action("PageOrder")', {
+					id: this.id.split("-")[2],
+					pageOrder: this.value
+				});
+			});
+
+			$("input.page-active").click(function () {
+				var input = this;
+				$.post('@Url.Action("PageActive")', {
+					isActive: input.checked,
+					id: input.id.split("-")[2]
+				});
+			});
+		});
+	</script>
+}

@@ -1,0 +1,7 @@
+﻿@model IList<Forum>
+<ul>
+	@foreach (var item in Model) {
+		@Html.Partial("ForumRow", item)	
+	 
+ }
+</ul>

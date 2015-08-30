@@ -1,0 +1,62 @@
+﻿@model IList<Portal.Entities.Wiki>
+@{
+    ViewBag.Title = "מילון מונחים";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <h2>
+        מילון מונחים
+    </h2>
+    <h2>
+        <span  style="font-size: 22px; color: #39C; padding-bottom: 10px; font-weight: normal;">
+            אות שנבחרה:&nbsp;</span>@ViewData["currentLetter"]</h2>
+    <ul class="toolbar">
+        <li><a id="add_letter" class="icon icon-add" href="@Url.Action("Create")?letter=@ViewData["currentLetter"] ">
+            הוסף חדש</a> </li>
+        <li class="search">
+            
+            @Html.DropDownList("letter", (IEnumerable<SelectListItem>)ViewData["letters"])
+        </li>
+       @* <li class="search">
+            @Html.DropDownList("letterEn", (IEnumerable<SelectListItem>)ViewData["lettersEn"])
+        </li>*@
+        <li style="float: left;"><a class="" href="@Url.Action("Index")?letter=all">כל
+            האותיות</a> </li>
+    </ul>
+    @Html.Grid(Model).Columns(column =>
+      {
+          column.For(x => x.Letter).Named("אות");
+          column.For(x => x.Title).Named("כותרת");
+          column.For(x => x.Date.ToShortDateString()).Named("תאריך הוספה");
+
+          column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+          column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+      })
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (qs("letter") == "all") {
+                $('#add_letter').remove();
+
+            }
+
+
+        }
+    )
+        $(function () {
+            $("#letter").change(function () {
+                window.location.href = '@Url.Action("Index")?letter=' + this.value;
+            });
+          @*  $("#letterEn").change(function () {
+                window.location.href = '@Url.Action("Index")?letter=' + this.value;
+            });*@
+
+
+
+        });
+
+        function qs(key) {
+            key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx control chars
+            var match = location.search.match(new RegExp("[?&]" + key + "=([^&]+)(&|$)"));
+            return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+        }
+    </script>

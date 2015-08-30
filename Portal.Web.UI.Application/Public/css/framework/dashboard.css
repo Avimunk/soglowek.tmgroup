@@ -1,0 +1,57 @@
+.dashboard {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.column {
+	width: 33.3%;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.portlet-box{
+	margin: 0 5px;
+}
+
+.portlet {
+	margin-bottom: 10px;
+	border: 1px solid #CCCCCC;
+	background: #ffffff;
+}
+
+.portlet h2 {
+	font-size: 12px;
+	padding: 6px 10px;
+	margin: 0;
+	cursor: move;
+	background: #F0F0F0 url(images/toolbar-bg.gif);
+}
+
+.portlet h2 small {
+	float: right;
+}
+
+.portlet-content {
+	padding: 10px;
+}
+
+.portlet-header {
+	margin: 0.3em;
+	padding-bottom: 4px;
+	padding-left: 0.2em;
+	cursor: move;
+}
+
+.portlet-content {
+}
+
+.ui-sortable-placeholder {
+	border: 1px dotted black;
+	visibility: visible !important;
+	height: 50px !important;
+	
+}
+
+.ui-sortable-placeholder * {
+	visibility: hidden;
+}

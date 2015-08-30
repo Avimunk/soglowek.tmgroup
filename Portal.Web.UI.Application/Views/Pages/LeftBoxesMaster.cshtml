@@ -1,0 +1,46 @@
+﻿@model Setting
+@{
+    Layout = null;
+}
+
+
+@if (!string.IsNullOrEmpty(Model.FirstHpBody))
+{
+    <div class="box box-tnx">
+        <p class="box-title">
+            תודה מכל הלב
+        </p>
+        <div class="box-contents">
+            @Html.Raw(Model.FirstHpBody)
+            </div>
+        </div>
+}
+
+
+@if (!string.IsNullOrEmpty(Model.SecondHpBody))
+{
+    <div class="box left-boxes">
+        <p class="box-title">
+            ניהול הידע
+        </p>
+        <div class="box-contents">
+            @Html.Raw(Model.SecondHpBody)
+            </div>
+        </div>
+}
+
+
+@if (!string.IsNullOrEmpty(Model.GalleryBody))
+{
+    <div class="box left-boxes">
+        <p class="box-title">
+            משאבי ארגון
+        </p>
+        <div class="box-contents">
+            @Html.Raw(Model.GalleryBody)
+        </div>
+    </div>
+}
+
+
+

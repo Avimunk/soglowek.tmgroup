@@ -1,0 +1,384 @@
+﻿@model Portal.Models.Docs.DocFormModel
+@{
+    ViewBag.Title = "מסמכים";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+    מסמכים
+</h2>
+
+
+
+<form action="/Docs/Edit/@Model.Id" enctype="multipart/form-data" method="post" id="docform">
+    <fieldset>
+        <legend>פרטים</legend>
+        <dl>
+            <dt>שם:</dt>
+            <dd>
+                @Html.EditorFor(model => model.Name)
+
+            </dd>
+            <dt>תוכן:</dt>
+            <dd>
+                @Html.TextAreaFor(model => model.Content)
+            </dd>
+            <dt>העלת מסמך</dt>
+            <dd>
+                <input name="upload_file" type="file">
+            </dd>
+
+            <div id="linkDiv">
+                <dt>העלת לינק</dt>
+                <dd>
+                    @Html.EditorFor(model => model.Url)
+                </dd>
+            </div>
+
+            נגיש לכולם
+
+                     @Html.EditorFor(model => model.isAvailable2All)
+
+
+   @*         @if(Model.isAvailable2All == true)
+            {
+                <input type="checkbox" name="isAvailable2All" id="isAvailable2All" checked="checked" />
+            }
+            else
+            {
+                <input type="checkbox" name="isAvailable2All" id="isAvailable2All" />
+            }*@
+
+        </dl>
+         @Html.HiddenFor(model => model.isAvailable2All)
+        @Html.HiddenFor(model => model.Active)
+        @Html.HiddenFor(model => model.Downloaded)
+        @Html.HiddenFor(model => model.NotSubmited)
+        @Html.HiddenFor(model => model.Submited)
+
+
+
+
+            <div id="docGroups">
+
+
+        @Html.ListBox("deps", ViewBag.deps as System.Web.Mvc.MultiSelectList, new { @style = "min-height: 350px;", @id = "depsList" })
+
+
+        <select multiple="multiple" style=" min-height: 350px;  min-width: 140px;" id="UsersList"></select>
+
+        <input type="button" value="select" style="width:59px" id="btn" />
+
+        @*<select multiple="multiple" style=" min-height: 350px;  min-width: 140px;" id="UsersListtTar" name="UsersListtTar"></select>*@
+
+        <div>
+            @Html.ListBox("users", ViewBag.users as System.Web.Mvc.MultiSelectList, new { @style = "min-height: 350px; min-width: 140px", @id = "UsersListtTar", @name = "UsersListtTar" })
+            <input type="button" id="reset" value="reset all" />
+            <input type="button" onclick="listbox_remove('UsersListtTar');" value="Delete" />
+            <input id="UsersListEdit" name="UsersListEdit" type="hidden" value="">
+        </div>
+
+
+        </div>
+
+    </fieldset>
+
+
+
+    @*<fieldset>
+            <legend>מחלקות</legend>
+
+
+            @{
+
+                string[] docUnits = new string[] { "one", "two", "three" };
+                if (Model.Units.ToString() != null)
+                {
+
+                    docUnits = Model.Units.ToString().Split(',');
+                }
+                else
+                {
+                    docUnits = null;
+
+                }
+                }
+
+
+             @foreach (var item in (IEnumerable<Department>)ViewBag.allunits)
+             {
+
+
+
+
+                 var flag = "";
+                 if (docUnits != null)
+                 {
+                     foreach (var qwe in docUnits)
+                     {
+                         if (qwe == item.Id.ToString())
+                         {
+                             flag = "checked";
+                         }
+                         else
+                         {
+
+                         }
+
+                     }
+                 }
+
+                 <input style="width: initial;" @flag class="docusers"  type="checkbox" name="Units[]" value="@item.Id"  /> @item.Name <br />
+
+
+
+             }
+
+           <div>
+            <p>
+                <a href="#" id="checkall">Check all</a></p>
+            <p>
+                <a href="#" id="uncheckall">Uncheck all</a></p>
+            <p>
+        </div>
+        </fieldset>*@
+
+
+
+    <div class="submit-btn">
+        <input type="submit" value="שמור">
+        <span>או</span>
+        <a href="/Docs">אחורה</a>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+           if ($("#isAvailable2All").is(':checked')) {
+          $("#docGroups").hide();
+            }
+
+
+                    $("#isAvailable2All").change(function(){
+                    $("#docGroups").slideToggle();
+                
+            });
+
+
+                        $("#docform").submit(function(){
+                    if ($("#UsersListtTar option").size() == "0" && !$("#isAvailable2All").is(':checked')) {
+                            alert("חייב להיות או נגיש לכולם או לבחור מחלקות");
+                            return false;
+                   }else{
+                 
+                    return true;
+                   }
+            });
+
+
+
+
+    var usersIds = [];
+    var usersnames = [];
+
+    $("#reset").click(function(){
+        $('#UsersListtTar')
+            .find('option')
+            .remove();
+
+    });
+
+    $('#UsersList').change(function(){
+        usersIds = [];
+        usersnames = [];
+        $("#UsersList option:selected").each(function() {
+            usersIds.push($(this).val());
+            usersnames.push($(this).text());
+            //alert($(this).val());
+        });
+    });
+
+    $("#btn").click(function(){
+        //alert(usersIds);
+        //alert(usersnames);
+
+
+        var select = document.getElementById("UsersListtTar");
+        var options = usersnames;
+        var values = usersIds;
+        for(var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var val = values[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = val;
+            select.appendChild(el);
+        }
+
+
+
+
+    });
+
+
+    $('#docform').submit(function() {
+        // alert("here");
+        var ids= [];
+        $("#UsersListtTar option").each(function(){
+            // alert($(this).val());
+            ids.push($(this).val());
+
+        });
+
+        $("#UsersListEdit").val(ids);
+        // alert($("#userSS").val());
+    });
+
+
+
+
+    $("#doctype").change(function () {
+
+
+        if (this.value == "file") {
+            $("#fileDiv").show();
+            $("#linkDiv").hide();
+        } else {
+            $("#fileDiv").hide();
+            $("#linkDiv").show();
+        }
+    }).change();
+
+
+
+    $(document).ready(function () {
+        $("#linkDiv").hide();
+        $("#fileDiv").hide();
+
+
+
+        $("#depsList").click(function(){
+
+            // alert($('#depsList').val());
+
+            //alert(JSON.stringify({ids :$('#depsList').val() }));
+
+            $.getJSON("/Docs/GetUsers?ids="+$('#depsList').val(),null, function(data) {
+                $("#UsersList option").remove(); // Remove all <option> child tags.
+                $.each(data.Users, function(index, item) { // Iterates through a collection
+                    $("#UsersList").append( // Append an object to the inside of the select box
+                        $("<option></option>") // Yes you can do this.
+                            .text(item.Name + " " + item.Lastname )
+                            .val(item.ID)
+                    );
+                });
+            });
+
+
+
+
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/Docs/getEmps",
+            //    contentType: 'application/json',
+            //    data: JSON.stringify({ids:$('#depsList').val()})
+            //});
+
+
+        });
+
+
+
+
+        $('#saveDocUsers-@Model.Id').click(function () {
+
+
+            var users = [];
+            $('input[type=checkbox]:checked').each(function () {
+                users.push(this.value);
+                //alert(this.value);
+            });
+
+            alert(users);
+
+            $.ajax({
+                type: "POST",
+                url: "/Docs/UpdateUsers",
+                contentType: 'application/json',
+                data: JSON.stringify({users: users,id:@Model.Id})
+            });
+
+
+
+
+        });
+
+        jQuery("#checkall").click(function(source) {
+            $(':checkbox').each(function() {
+                this.checked = true;
+            });
+            return false;
+
+        });
+        jQuery("#uncheckall").click(function(source) {
+            $(':checkbox').each(function() {
+                this.checked = false;
+            });
+            return false;
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+
+    function listbox_remove(sourceID) {
+
+        //get the listbox object from id.
+        var src = document.getElementById(sourceID);
+
+        //iterate through each option of the listbox
+        for(var count= src.options.length-1; count >= 0; count--) {
+
+            //if the option is selected, delete the option
+            if(src.options[count].selected == true) {
+
+                try {
+                    src.remove(count, null);
+
+                } catch(error) {
+
+                    src.remove(count);
+                }
+            }
+        }
+    }
+
+
+    $(function(){
+        //alert("here");
+        var ids= [];
+        $("#UsersListtTar option").each(function(){
+            //alert($(this).val());
+            ids.push($(this).val());
+
+        });
+        //alert(ids);
+
+        $("#UsersListEdit").val(ids);
+        // alert($("#userSS").val());
+
+    });
+
+</script>
+

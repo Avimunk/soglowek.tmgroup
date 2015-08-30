@@ -1,0 +1,90 @@
+﻿@model Portal.Entities.Poll
+@{
+    ViewBag.Title = "תוצאות סקר: סקר";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+    <h4 class="box-title">
+        תוצאות סקר
+    </h4>
+    <h2>סיכום</h2>
+    <p>@Html.Raw(Model.Summary)</p>
+    <div class="box-content">
+        @*@using (Html.BeginForm())
+            {
+                foreach (var item in Model.PollItems)
+                {
+                      <table class="poll-table">
+                          <caption>@item.Title</caption>
+                          @if (!string.IsNullOrEmpty(item.Option1))
+              {
+                              <tr>
+                                  <td style="width: 100px;">
+                                      @Html.ProgressBar(item, item.Option1Count)
+                                  </td>
+                                  <td>
+                                      @item.Option1
+                                  </td>
+                              </tr>
+              }
+                          @if (!string.IsNullOrEmpty(item.Option2))
+              {
+                              <tr>
+                                  <td>
+                                      @Html.ProgressBar(item, item.Option2Count)
+                                  </td>
+                                  <td>
+                                      @item.Option2
+                                  </td>
+                              </tr>
+              }
+                          @if (!string.IsNullOrEmpty(item.Option3))
+              {
+                              <tr>
+                                  <td>
+                                      @Html.ProgressBar(item, item.Option3Count)
+                                  </td>
+                                  <td>
+                                      @item.Option3
+                                  </td>
+                              </tr>
+              }
+                          @if (!string.IsNullOrEmpty(item.Option4))
+              {
+                              <tr>
+                                  <td>
+                                      @Html.ProgressBar(item, item.Option4Count)
+                                  </td>
+                                  <td>
+                                      @item.Option4
+                                  </td>
+                              </tr>
+              }
+                  @if (!string.IsNullOrEmpty(item.Option5))
+              {
+                              <tr>
+                                  <td>
+                                      @Html.ProgressBar(item, item.Option5Count)
+                                  </td>
+                                  <td>
+                                      @item.Option5
+                                  </td>
+                              </tr>
+              }
+                  @if (!string.IsNullOrEmpty(item.Option6))
+              {
+                              <tr>
+                                  <td>
+                                      @Html.ProgressBar(item, item.Option6Count)
+                                  </td>
+                                  <td>
+                                      @item.Option6
+                                  </td>
+                              </tr>
+              }
+                      </table>
+                      <br />
+                }
+            }*@
+    </div>
+</div>

@@ -1,0 +1,138 @@
+﻿.toolbar, .toolbar li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+.toolbar {
+	background: url(images/toolbar-bg.gif);
+	border: 1px solid #CCCCCC;
+	border-bottom: 0;
+	overflow: hidden;
+}
+
+.toolbar-bottom {
+	border: 1px solid #CCCCCC;
+	border-top: 0;
+}
+
+.toolbar li {
+	font-size: 11px;
+	float: left;
+	padding: 1px;
+	line-height: 24px;
+}
+
+body.rtl .toolbar li {
+	float: right;
+}
+
+.toolbar .page-txt {
+	width: 40px;
+	text-align: center;
+}
+
+.toolbar .seperator {
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #ffffff;
+	padding: 0;
+	height: 22px;
+	margin: 2px 4px;
+}
+
+.toolbar li a {
+	display: block;
+	color: #000000;
+	padding: 4px;
+	text-transform: capitalize;
+	border-width: 1px;
+	border-style: solid;
+	border-color: transparent;
+	line-height: normal;
+}
+
+body.rtl .toolbar li a {
+}
+
+.toolbar li a.icon {
+	padding: 4px 4px 4px 20px;
+}
+
+body.rtl .toolbar li a.icon {
+	padding: 4px 20px 4px 4px;
+}
+
+.toolbar span {
+	text-indent: -20000px;
+	height: 16px;
+	display: block;
+}
+
+body.rtl .toolbar span {
+	text-indent: 0;
+}
+
+.toolbar li a:hover {
+	border-color: #CCCCCC;
+}
+
+/*.toolbar li a:active, .toolbar li a:focus {
+	outline: none;
+}*/
+
+.toolbar li a.icon {
+	background-position: 3px 4px;
+}
+
+body.rtl .toolbar li a.icon {
+	background-position: right center;
+}
+
+.toolbar li.search {
+	float: right;
+}
+
+body.rtl .toolbar li.search {
+	float: left;
+}
+
+.toolbar select, .toolbar input, .toolbar input[type=text] {
+	font-size: 11px;
+}
+
+.toolbar input {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.pagination {
+	border: 1px solid #CCCCCC;
+	border-top: 0;
+	background: url(images/toolbar-bg.gif);
+	padding: 5px;
+	font-size: 11px;
+}
+
+.pagination ul, .pagination li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+.pagination ul {
+	overflow: hidden;
+}
+
+.pagination li {
+	float: left;
+}
+
+.pagination li a, .pagination li span {
+	display: block;
+	padding: 2px 5px;
+}
+
+.pagination li span {
+	font-weight: bold;
+}

@@ -1,0 +1,97 @@
+﻿@{
+	ViewBag.Title = "בקשה לשינוי Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-8">
+<div class="box">
+	<h4 class="box-title">
+		בקשה לשינוי Details
+	</h4>
+	<div class="box-content">
+		@if (ViewBag.IsSent) {
+			<text>תודה שפנית אלינו</text>
+  }
+  else {
+	  
+			<text> שלום,<br /> תיבת טקסט זו מיועדת לדיווח על תקלה או בעיה בDetails האישיים שלך בכרטיס
+			זה.<br />
+			ניתן לשלוח לנו בתיבת טקסט זו בקשות לשינוי Details כגון:
+			<br /><br />
+			<table>
+				<tr>
+					<td>
+						שם משפחה
+					</td>
+					<td style="width: 50px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						שם פרטי
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						שם משפחה באנגלית
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						שם פרטי באנגלית
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						טלפון
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						נייד
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td align="left">
+						Email
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
+			<br />
+			<br />
+			</text>
+	  
+	  using (Html.BeginForm()) {
+			<table class="form">
+				<tr>
+					<th>
+						הודעה:
+					</th>
+					<td>
+						<textarea rows="6" cols="80" name="feedback"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<input type="submit" value="Submit" class="btn" />
+					</td>
+				</tr>
+			</table>
+	  }
+  }
+	</div>
+</div>
+    </div>

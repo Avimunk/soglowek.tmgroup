@@ -1,0 +1,20 @@
+﻿@model Portal.Web.UI.TreeNode
+
+<li>
+    <a href="@Url.Action(Model.Action, Model.Controller, new { id = Model.Id })">
+        <img src="@Html.Raw(Model.ThumbImageUrl)" alt="" title="" />
+    </a>
+    <div class="node-content">
+        <span class="node-title">@Html.Raw(Model.Title)</span>
+        <span class="node-caption">@Html.Raw(Model.Caption)</span>
+    </div>
+    @if (Model.ChildNodes.Count > 0)
+    {
+        <ul>
+            @foreach (Portal.Web.UI.TreeNode childNode in Model.ChildNodes)
+            {
+                @Html.Partial("~/Views/Shared/Tree/TreeNode.cshtml", childNode)
+            }
+        </ul>
+    }
+</li>

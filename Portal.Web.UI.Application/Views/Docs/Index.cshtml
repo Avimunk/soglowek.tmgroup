@@ -1,0 +1,88 @@
+﻿@model IList<Portal.Entities.Doc>
+@{
+    ViewBag.Title = "קרא וחתום";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	קרא וחתום</h2>
+<ul class="toolbar">
+	<li>
+		<a class="icon icon-add" href="@Url.Action("Create")">
+			הוסף מסמך חדש</a>
+	</li>
+</ul>
+@{
+    IEnumerable<Employee> emps = ViewBag.emps;
+    
+    
+    }
+
+@Html.Grid(Model).Columns(column => {
+    column.For(x => Html.CheckBoxFor(c => x.Active, new { id = "page-active-" + x.Id, @class = "page-active" })).Named("פעיל");
+	column.For(x => x.Name).Named("שם").Attributes(@class=>"wrap");
+    //column.For(x => Html.CountSubmited(x)).Named("משתמשים אישרו קריאה").Attributes(@class => "wrap");
+
+    column.For(x => Html.ActionLink(x.Submited == "0" ? "0" : x.Submited.Split(',').Length.ToString(), "ExportToExcelSubmited", new { x.Id })).Named("משתמשים אישרו קריאה");
+
+   
+        
+    //column.For(x => x.NotSubmited).Named("משתמשים  שלא אישרו קריאה").Attributes(@class => "wrap");
+    column.For(x => Html.ActionLink(x.NotSubmited, "ExportToExcelNotSubmited", new { x.Id})).Named("משתמשים  שלא אישרו קריאה").Attributes(@class => "wrap");
+    column.For(x => Html.Label("משתמשים", emps.Count().ToString())).Named("סה''כ משתמשים").Attributes(@class => "wrap");
+	column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
+	column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
+})
+@section HeadContent{
+	<script type="text/javascript">
+		$(function () {
+
+		    $("input.page-active").click(function () {
+		       
+		        var input = this;
+		     
+				$.post('@Url.Action("Active")', {
+					isActive: input.checked,
+					id: input.id.split("-")[2]
+				});
+			});
+		});
+        
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+﻿@model Portal.Models.Employees.EmployeeFormModel
+@{
+	ViewBag.Title = "הוספת עובד חדש";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>
+	הוספת עובד חדש</h2>
+@using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	@Html.Partial("EmployeeForm")
+}

@@ -1,0 +1,22 @@
+﻿@model Portal.Models.Polls.PollFormModel
+@Html.Partial("PollForm")
+<ul class="toolbar">
+    <li>
+        <a class="icon icon-add" href="@Url.Action("Create", "PollItems", new { Model.Id })">
+            הוסף שאלה חדשה
+        </a>
+    </li>
+</ul>
+@Html.Grid(Model.Items).Columns(column =>
+{
+    column.For(x => x.Title).Named("פריטים").Attributes(@class => "wrap");
+    column.For(x => Html.ActionLink("עריכה", "edit", "PollItems", new { x.Id }, null));
+    column.For(x => Html.ActionLink("מחיקה", "destroy", "PollItems", new { x.Id }, new { @class = "delete" }));
+})
+
+<div class="submit-btn">
+	<input type="submit" value="שמור" />
+	<span>או</span>
+	@Html.ActionLink("אחורה", "Index")
+</div>
+

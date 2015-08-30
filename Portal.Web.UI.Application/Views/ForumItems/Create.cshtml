@@ -1,0 +1,77 @@
+﻿@model Portal.Models.Forums.ForumItemModel
+@{
+    ViewBag.Title = "הודעה חדשה";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-sm-9">
+    <div class="box">
+        <h4 class="box-title"></h4>
+        <div class="box-content">
+            <form action="/ForumItems/Create" method="post" style="padding:10px;">
+                <table class="form">
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <td class="subj">
+                            @Html.TextBoxFor(x => x.Title)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Admin
+                        </th>
+                        <td>
+                            <select id="Admin" name="Admin">
+                                <option value="">Choose please</option>
+                                @foreach (var user in ViewBag.users)
+                                {
+                                    <option value="@user.Id">@user.FirstName @user.LastName</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Active
+                        </th>
+                        <td>
+                            <input id="Active" name="Active" type="checkbox">
+                        </td>
+                    </tr>
+                </table>
+
+                <ol>
+                    @foreach (var user in ViewBag.users)
+                    {
+                        <li>
+                            <input value="@user.Id" id="user-id-@user.Id" name="ForumUsers[]" type="checkbox"> - @user.FirstName @user.LastName
+                        </li>
+                    }
+                </ol>
+                <div class="submit-btn">
+                    <input value="Save" type="submit" style="background:white">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

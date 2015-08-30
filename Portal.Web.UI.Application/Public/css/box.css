@@ -1,0 +1,32 @@
+.box{
+	background: #fcfcfc;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	clear: left;
+	
+}
+
+.box-title{
+	color: #555;
+	padding: 4px 10px 0 10px;
+	font-weight: normal;
+	line-height: 20px;
+	/* text-transform: uppercase; */
+}
+
+.box-title span{
+	float: right;
+}
+
+.box-content{
+	margin: 20px 20px 0 20px;
+	padding: 0px 0;
+	overflow: hidden;
+}
+
+.ui-corner-all 
+{
+    -moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+border-radius: 0px;
+}

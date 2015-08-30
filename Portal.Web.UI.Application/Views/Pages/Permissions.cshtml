@@ -1,0 +1,42 @@
+﻿@model Portal.Models.Pages.PermissionsFormModel
+@{
+    ViewBag.Title = "Permissions";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm()) {
+	<fieldset class="permissions-list">
+		<legend>Details</legend>
+		<dl>
+           
+			<dt class="perm_title">תפקיד:</dt>
+			<dd>
+				@Html.CheckBoxList(Model.JobTitles, "JobTitleId", Model.JobTitleId)
+			</dd>
+			<hr style="clear: both" />
+			<dt class="perm_title">מחלקה:</dt>
+			<dd>
+				@Html.CheckBoxList(Model.Departments, "DepartmentId", Model.DepartmentId)
+			</dd>
+			<hr style="clear: both" />
+          
+			<dt class="perm_title">עובד:</dt>
+			<dd>
+				@Html.CheckBoxList(Model.Employees, "EmployeeId", Model.EmployeeId)
+			</dd>
+		</dl>
+	</fieldset>
+	<div class="submit-btn">
+		<input type="submit" value="שמור" />
+		<span>או</span>
+		@Html.ActionLink("אחורה", "Index", new { Model.ParentId })
+	</div>
+	@Html.HiddenFor(x => x.Id)
+	@Html.HiddenFor(x => x.SectionId)
+	@Html.HiddenFor(x => x.ParentId)
+
+	
+	@Html.HiddenFor(x => x.Department)
+	@Html.HiddenFor(x => x.JobTitle)
+
+	@Html.HiddenFor(x => x.Employee)
+}

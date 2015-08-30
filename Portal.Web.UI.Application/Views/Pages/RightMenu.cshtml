@@ -1,0 +1,37 @@
+﻿@model IList<Portal.Entities.Page>
+@{
+    Layout = null;
+}
+<ul id="right-nav">
+    @foreach (var item in Model)
+    {
+        <li>
+
+            @Html.PageLink(item,"right")
+            @if (item.Children.ByPermissions(ViewContext.HttpContext).Any())
+            {
+                <ul>
+                    @foreach (var childItem in item.Children.ByPermissions(ViewContext.HttpContext).OrderBy(x => x.PageOrder))
+                    {
+                        <li>
+
+                            @Html.PageLink(childItem,"right")
+                            @if (childItem.Children.ByPermissions(ViewContext.HttpContext).Any())
+                            {
+                                <ul>
+                                    @foreach (var subchildItem in childItem.Children.ByPermissions(ViewContext.HttpContext).OrderBy(x => x.PageOrder))
+                                    {
+                                        <li>
+
+                                            @Html.PageLink(subchildItem,"right")
+                                        </li>	
+                                    }
+                                </ul>
+                            }
+                        </li>	
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>

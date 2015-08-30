@@ -1,0 +1,189 @@
+﻿@model dynamic
+@{
+    Layout = null;           
+}
+<div id="datepicker-div">
+</div>
+<div id="theDiv">
+</div>
+
+
+
+
+<style type="text/css">
+    #datepicker-div{
+  border-bottom: medium dotted #ff0000;
+    font-size: 12px;
+    }
+    #datepicker-div .s a {
+     font-weight: bold;
+background: #7dc699;
+color: #FFFFFF;
+    }
+    
+    .ui-datepicker {
+        width: 100%;
+    }
+    #theDiv div
+    {
+     
+        
+    }
+        #theDiv 
+    {
+       
+overflow: auto;
+padding-right: 14px;
+padding-top: 14px;
+
+    }
+    
+   
+    
+        #theDiv strong, #theDiv p, #theDiv span 
+    {
+        display: block;
+
+font-size: 17px;
+        
+    }
+            #theDiv strong
+    {
+color: #A51A16;
+font-size: 19px;
+text-align: right;
+direction: ltr;
+    }
+    #theDiv p
+    {
+       font-size: 19px;
+color: red;
+font-weight: bold;
+
+    }
+    
+    
+ .ui-datepicker-rtl .ui-datepicker-next,.ui-datepicker-rtl .ui-datepicker-prev
+ {
+       top: 2px;
+ }
+ .ui-datepicker .ui-datepicker-title {
+margin: 0 2.3em;
+line-height: 2em;
+text-align: center;
+color: #fff;
+}
+</style>
+@*<span>לפרטים <a href="@Url.Action("List", "Calendars")/?date=' + d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getYear() + 1900)">נוספים</a></span>*@
+<script type="text/javascript">
+
+
+
+
+    //    $("#datepicker-div").load(function () {
+
+    //         alert($("a.ui-state-highlight").html());
+    //        alert("sdsdsd");
+
+    //    });
+
+    $(function () {
+        var months = [], days = [], is_loaded = true;
+
+
+        $.post('@Url.Action("GetDates", "Calendars") ', null, function (data) {
+            $.each(data, function (i, v) {
+                months.push(v.month);
+                days.push(v.day);
+            });
+
+            $("#datepicker-div").datepicker({
+                beforeShowDay: addDates,
+                dateFormat: dateFormat,
+                onSelect: function (date, ins) {
+
+                    var d = $(this).datepicker("getDate");
+                    var date = $(this).datepicker('getDate');
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    var ddd = { date: day + '-' + month + '-' + year };
+                    var date2 = d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getYear() + 1900);
+                    //window.location.href = '@Url.Action("List", "Calendars")/?date=' + d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getYear() + 1900);
+                    var link = '@Url.Action("List", "Calendars")/?date=' + d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getYear() + 1900);
+
+                    //                    $.ajax({
+                    //                        url: "Calendars/GetAllTasks",
+                    //                        type: "POST",
+                    //                        data: { date: day + '-' + month + '-' + year },
+                    //                        success: function (msg) {
+                    //                            var cats = msg.d;
+                    //                            $.each(cats, function (index, cat) {
+                    //                                alert(cat);
+                    //                            });
+                    //                        },
+                    //                        error: function (jqXHR, textStatus, errorThrown) {
+
+                    //                        }
+                    //                    });
+                    //alert(link);
+
+                    $.post('@Url.Action("GetNews", "Calendars") ', ddd, function (data) {
+                        $('#theDiv').html("");
+
+                        //alert(data.length);
+                        if (data.length == 0) {
+                            //alert("empty date");
+                            $('#theDiv').append('<div><strong>אין אירועים</strong></div>');
+                        }
+                        $.each(data, function (i, v) {
+                            //alert(v.Title);
+
+                            //$("#target").click();
+                            $('#theDiv').append('<div><strong>' + v.Hour + ' : ' + v.Minute + '</strong><p>' + v.Title + '</p>' + v.Place + '</div>');
+                            $('#theDiv').append('<a href="' + link + '">לרשימה המלאה</a>');
+                            // $('.modal-body').append('<div><strong>' + v.Hour + ' : ' + v.Minute + '</strong><p>' + v.Title + '</p><span>' + v.Abstract + '</span></div>');
+                        })
+
+
+                    });
+
+
+
+
+                }
+
+            });
+            $("a.ui-state-highlight").click();
+            // alert($("a.ui-state-highlight").html());
+
+        });
+
+        function addDates(date) {
+            for (var i = 0; i < days.length; i++) {
+                if (date.getMonth() == months[i] - 1 && date.getDate() == days[i]) {
+                    return [true, "s"];
+                }
+            }
+            return [true, ""];
+        }
+    });
+</script>
+
+@*<script>
+    $(document).ready(function () {
+
+        var data = "02-02-2015";
+
+        $.post('@Url.Action("GetDates", "Calendars") ', data, function (data) {
+
+            $.each(data, function (i, v) {
+                alert(v.title);
+            })
+
+        });
+
+
+    });
+
+</script>*@
