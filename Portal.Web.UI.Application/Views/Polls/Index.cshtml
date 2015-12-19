@@ -16,9 +16,21 @@
     @Html.Grid(Model).Columns(column =>
 {
     column.For(x => x.Title).Named("שם").Attributes(@class => "wrap");
-    column.For(x => Html.ActionLink("הצג", "show", new { x.Id }));
+    column.For(x => x.CultureDisplayName).Named("שפה").Attributes(@class => "nowrap");
+    column.For(x => Status(x.Object)).Encode(false).Named("גירסא").Attributes(@class => "wrap");
+    column.For(x => Html.ActionLink("הצג", "Take", new { x.Id }));
     column.For(x => Html.ActionLink("עריכה", "edit", new { x.Id }));
     column.For(x => Html.ActionLink("דוח מסכם", "ExportToExcel", new { x.Id }));
     column.For(x => (!x.Anonymous) ? Html.ActionLink("דוח תשובות", "ExportToExcel", new { x.Id, type = 2 }) : null);
     column.For(x => Html.ActionLink("מחיקה", "destroy", new { x.Id }, new { @class = "delete" }));
 })
+@helper Status(Poll o) { 
+    if (o != null)
+    {
+        <input type="checkbox" checked disabled title="@Html.Raw(o.Title)" />
+    }
+    else
+    {
+        <input type="checkbox" disabled />
+    }
+}

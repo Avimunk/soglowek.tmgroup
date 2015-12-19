@@ -24,6 +24,26 @@ namespace Portal.Controllers
 			return View(items);
 		}
 
+        public ActionResult DropDownList()
+        {
+            var items = GetSession.QueryOver<Department>()
+                .OrderBy(d => d.Name).Asc
+                .List();
+
+            var listItems = new List<SelectListItem>();
+
+            foreach (Department department in items)
+            {
+                listItems.Add(new SelectListItem()
+                {
+                    Value = department.Id.ToString(),
+                    Text = department.Name
+                });
+            }
+
+            return View(items);
+        }
+
 		[Admin]
 		public ActionResult Create() {
             var model = new DepartmentFormModel();

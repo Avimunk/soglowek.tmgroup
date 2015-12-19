@@ -46,3 +46,33 @@
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+.ui-tabs {
+    direction: rtl;
+    border: 0;
+    background: 0;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected,
+.ui-tabs .ui-tabs-nav li.ui-state-default {
+    float: right;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    float: right;
+}
+
+.ui-tabs .ui-widget-header {
+    border: 0;
+    border-bottom: 1px solid #dddddd;
+    background: #fff url(images/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x;
+}
+
+.ui-tabs th,
+.ui-tabs td {
+    padding:  5px 0;
+    vertical-align: top;
+}
+.ui-tabs th {
+    text-align: right;
+}

@@ -1,0 +1,24 @@
+﻿body {
+    direction: ltr;
+}
+
+[type="radio"] + span:before {
+    margin: 0 20px 0 0;
+}
+
+.poll-taking form > ul > li {
+    position: relative;
+    padding: 10px 0 0 40px;
+    font-weight: bold;
+    margin: 40px 0 0 80px;
+}
+
+.poll-taking form > ul > li:before {
+    left: -80px;
+}
+.poll-taking .poll-item .minimum-text {
+    text-align: right;
+}
+.poll-taking .poll-item .maximum-text {
+    text-align: left;
+}

@@ -212,12 +212,27 @@
     </div>
     <div class="col-md-3">
         <div class="phoneform first_line">
-            <form action="@Url.Action("SearchUsers", "Employees")" class="search-form">
-            <input name="phoneq" id="phoneq" type="text" onfocus="if(this.value=='חפש אנשים')this.value='';"
-                onblur="if(this.value=='')this.value='חפש אנשים';" value="חפש אנשים" />
+            <form action="@Url.Action("SearchUsers", "Employees")" class="search-form user-form">
+            <input name="phoneq" id="phoneq" type="text" placeholder="חפש אנשים" />
             <button class="search-btn">
             </button>
+                <button class="advanced-search-btn search-btn"></button>
             </form>
+            <div class="advanced-search-form small_border">
+                
+                <form action="@Url.Action("SearchUsers", "Employees")">
+                    <input name="phoneq" id="phoneq" type="text" placeholder="שם" />
+                    <br /><br />
+                    <input name="aliasq" id="aliasq" type="text" placeholder="כינוי" />
+                    <br /><br />
+                    @Html.Action("DropDownList", "Departments")
+                    <br /><br />
+                    <div style="text-align: left;">
+                        <input type="submit" class="search-btn" value="חפש" />
+                    </div>
+                </form>
+            </div>
+
         </div>
         <div class="box news_1 newbox" style="border:none;">
             <div class="box_news">
@@ -520,5 +535,8 @@
                 doc: docID
             });
         });
+
+
+
     });
 </script>

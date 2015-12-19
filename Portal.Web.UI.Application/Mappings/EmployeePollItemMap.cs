@@ -19,9 +19,13 @@ namespace Portal.Mappings
 			Map(x => x.Option4Count);
             Map(x => x.Option5Count);
             Map(x => x.Option6Count);
+            Map(x => x.AnswerValue);
+            Map(x => x.AnswerText);
+            Map(x => x.SessionId);
 
             References(x => x.Employee);
             References(x => x.PollItem);
+            References(x => x.PollTaking);
         }
 	}
 }

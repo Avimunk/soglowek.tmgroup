@@ -1,0 +1,11 @@
+﻿@model IList<Portal.Entities.Department>
+@{
+    Layout = null;
+}
+
+
+@Html.DropDownList("DepartmentId", new SelectList(
+                                Model.Select(x => new { Value = x.Id, Text = x.Name }),
+                                "Value",
+                                "Text"
+                ), "")

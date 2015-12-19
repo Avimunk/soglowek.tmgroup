@@ -33,6 +33,12 @@
          
             @Html.TextBox("BDay", Model.BDay.ToShortDateString(), new { @class = "datepicker" })
         </dd>
+        <dt>כינוי:</dt>
+        <dd>
+            @Html.TextBoxFor(x => x.Alias)
+
+        </dd>
+
         <dt>פעיל:</dt>
         <dd>
             @Html.CheckBoxFor(x => x.IsActive)
@@ -43,7 +49,7 @@
         </dd>
         <dt>תפקיד:</dt>
         <dd>
-          @* @Html.TextBoxFor(x => x.JobTitle)*@  @Html.DropDownListFor(x=>x.JobTitle, Model.JobTitles) 
+          @* @Html.TextBoxFor(x => x.JobTitle)*@  @* @Html.DropDownListFor(x=>x.JbTitle, Model.JobTitles)  *@
         </dd>
 
          <dt>username:</dt>

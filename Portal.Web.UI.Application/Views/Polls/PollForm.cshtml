@@ -1,38 +1,123 @@
 ﻿@model Portal.Models.Polls.PollFormModel
-<fieldset>
-    <legend>פרטים</legend>
-    <dl>
-        <dt>שם:</dt>
-        <dd>
+
+<table>
+    <tr>
+        <th>שם:</th>
+        <td>
             @Html.EditorFor(model => model.Title)
             @Html.ValidationMessageFor(model => model.Title)
-        </dd>
-        <dt>הנחיות:</dt>
-        <dd>
+        </td>
+    </tr>
+    <tr>
+        <th>גירסא של:</th>
+        <td>
+            @Html.DropDownListFor(x => x.Object_id, new SelectList(
+Model.Objects.Select(x => new { Value = x.Id, Text = x.Title }),
+        "Value",
+        "Text"
+    ), "")
+        </td>
+    </tr>
+    <tr>
+        <th>שפה:</th>
+        <td>
+            @Html.DropDownListFor(x => x.LCID, Model.Cultures, new { @style = "direction: ltr;" })
+            @Html.ValidationMessageFor(model => model.LCID)
+        </td>
+    </tr>
+    <tr>
+        <th>אנונימי:</th>
+        <td>
+            @Html.CheckBoxFor(model => model.Anonymous)
+        </td>
+    </tr>
+    <tr>
+        <th>זמין:</th>
+        <td>
+            @Html.CheckBoxFor(model => model.Enabled, new { @checked = "checked" })
+        </td>
+    </tr>
+    <tr>
+        <th>עריכה ע"י משתמש":</th>
+        <td>
+            @Html.CheckBoxFor(model => model.UserEditable, new { @checked = "checked" })
+        </td>
+    </tr>
+    <tr>
+        <th>בחירת מחלקה:</th>
+        <td>
+            @Html.CheckBoxFor(model => model.RequireDepartment)
+        </td>
+    </tr>
+    <tr>
+        <th>בחירת מנהל:</th>
+        <td>
+            @Html.CheckBoxFor(model => model.RequireManager)
+        </td>
+    </tr>
+    <tr>
+        <th>חלון:</th>
+        <td>
+            @Html.DropDownListFor(x => x.WindowTarget, new SelectList(
+            new List<Object>{
+                new { Value = "_self", Text = "פנימי"  },
+                new { Value = "_blank", Text = "חדש" }
+            },
+            "Value",
+            "Text"
+    ))
+        </td>
+    </tr>
+    <tr>
+        <th>משתמש אנונימי:</th>
+        <td>
+            @Html.DropDownListFor(x => x.AnonymousUser_id, new SelectList(
+                            Model.AnonymousUsers.Select(x => new { Value = x.Id, Text = x.FullName }),
+        "Value",
+        "Text"
+    ), "")
+        </td>
+    </tr>
+    <tr>
+        <th>כפתור התחל:</th>
+        <td>
+            @Html.TextBoxFor(model => model.StartCaption)
+            @Html.ValidationMessageFor(model => model.StartCaption)
+        </td>
+    </tr>
+    <tr>
+        <th>כפתור סיום:</th>
+        <td>
+            @Html.TextBoxFor(model => model.EndCaption)
+            @Html.ValidationMessageFor(model => model.EndCaption)
+        </td>
+    </tr>
+    <tr>
+        <th>לא רלוונטית:</th>
+        <td>
+            @Html.TextBoxFor(model => model.IrrelevantCaption)
+            @Html.ValidationMessageFor(model => model.IrrelevantCaption)
+        </td>
+    </tr>
+    <tr>
+        <th>הנחיות:</th>
+        <td>
             @Html.TextAreaFor(model => model.Description, new { @class = "ckeditor" })
             @Html.ValidationMessageFor(model => model.Description)
-        </dd>
-        <dt>סיכום:</dt>
-        <dd>
+        </td>
+    </tr>
+    <tr>
+        <th>סיכום:</th>
+        <td>
             @Html.TextAreaFor(model => model.Summary, new { @class = "ckeditor" })
             @Html.ValidationMessageFor(model => model.Summary)
-        </dd>
-        <dt>אנונימי:</dt>
-        <dd>
-            @Html.CheckBoxFor(model => model.Anonymous)
-        </dd>
-        <dt>זמין:</dt>
-        <dd>
-            @Html.CheckBoxFor(model => model.Enabled, new { @checked = "checked" })
-        </dd>
-        <dt>תוכן כאשר לא זמין:</dt>
-        <dd>
+        </td>
+    </tr>
+    <tr>
+        <th>תוכן כאשר לא זמין:</th>
+        <td>
             @Html.TextAreaFor(model => model.DisabledContent, new { @class = "ckeditor" })
-        </dd>
-        <dt>עריכה ע"י משתמש":</dt>
-        <dd>
-            @Html.CheckBoxFor(model => model.UserEditable, new { @checked = "checked" })
-        </dd>
-    </dl>
-</fieldset>
-
+        </td>
+    </tr>
+    <tr>
+</table>

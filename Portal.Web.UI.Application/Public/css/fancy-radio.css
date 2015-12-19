@@ -1,0 +1,40 @@
+﻿[type="radio"] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px; margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* One radio button per line */
+label {
+    display: block;
+    cursor: pointer;
+    font-size: 24px;
+}
+[type="radio"] + span {
+    display: block;
+}
+
+/* the basic, unchecked style */
+[type="radio"] + span:before {
+    content: '';
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    vertical-align: -3px;
+    border-radius: 50%;
+    /*border: 0.125em solid #fff;*/
+    box-shadow: 0 0 0 3px #808284;
+    margin: 0 0 0 20px;
+    transition: 0.5s ease all;
+    behavior: url(/public/pie/PIE.htc);
+}
+
+/* the checked style using the :checked pseudo class */
+[type="radio"]:checked + span:before {
+    background: #c5191f;
+    box-shadow: 0 0 0 3px #808284;
+}

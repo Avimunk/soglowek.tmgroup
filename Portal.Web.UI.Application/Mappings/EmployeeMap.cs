@@ -16,6 +16,7 @@ namespace Portal.Mappings
             Map(x => x.LastName);
             Map(x => x.EnglishFirstName);
             Map(x => x.EnglishLastName);
+            Map(x => x.Alias);
             Map(x => x.Username);
             Map(x => x.Phone);
             Map(x => x.Mobile);

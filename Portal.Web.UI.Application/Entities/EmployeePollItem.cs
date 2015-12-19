@@ -20,6 +20,9 @@ namespace Portal.Entities
 		public virtual int Option4Count { get; set; }
         public virtual int Option5Count { get; set; }
         public virtual int Option6Count { get; set; }
-      
+        public virtual int AnswerValue { get; set; }
+        public virtual string AnswerText { get; set; }
+        public virtual PollTaking PollTaking { get; set; }
+        public virtual Guid SessionId { get; set; }
 	}
 }

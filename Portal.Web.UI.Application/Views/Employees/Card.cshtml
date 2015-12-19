@@ -14,6 +14,12 @@
             <tr>
                 <th>
                     @Html.EmployeeImage(Model)
+                    <br />
+                    <a href="#" class="edit-button">עדכן</a>
+
+
+ 
+
                 </th>
                 <td>
                     <label>
@@ -27,6 +33,34 @@
                     </label>
                      <div class="card_div">
                     @Model.LastName<span>@Model.EnglishLastName</span></div><br />
+
+                    @if (Model.Alias != "")
+                    {
+                        <div>
+                            <label>
+                                כינוי / שם מוכר:
+                            </label>
+                            <div class="card_div">
+                                @Model.Alias
+                                <div class="edit">
+                                    @if (ViewContext.IsOwner(Model))
+                                    {
+                                        using (Html.BeginForm("UpdateAlias", "Employees"))
+                                        {
+                                            @Html.TextBoxFor(x => x.Alias)
+                                            <input type="submit" value="עדכן כינוי" class="btn" style="display: inline-block;" />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @Model.Alias.SetBr()
+                                    }
+                                </div>
+                            </div><br />
+                        </div>
+                    }
+
+
                     <label>
                         אימייל:
                     </label>
@@ -71,7 +105,7 @@
                     <div class="card_div">
                     @Model.BDay.ToString("M")</div><br />
 
-                    
+                   
                     @if (Model.JbTitle!=null){
                     <label>
                         תפקיד:
@@ -96,12 +130,14 @@
                             מנהל:
                         </label>
                         
-                        @Html.ActionLink(Model.ManagerName, "Card", "Employees", new { Model.Manager.Id }, null)
+                        @Html.ActionLink(Model.Manager.FullName, "Card", "Employees", new { Model.Manager.Id }, null)
 
                     }
                 </td>
             </tr>
         </table>
+    
+
     </div>
 </div>
 <div class="box">
@@ -233,3 +269,27 @@
     </div>
 </div>
     </div>
+
+@section HeadContent {
+    <style type="text/css">
+        .edit {
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            $(".edit-button").on("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $(".edit").toggle();
+
+                if ($(".edit").is(':visible')) {
+                    $(this).html('הסתר');
+                } else {
+                    $(this).html('עדכן');
+                }
+            });
+        });
+    </script>
+}

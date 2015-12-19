@@ -52,5 +52,7 @@ namespace Portal.Entities
          public virtual string BDayEmails { get; set; }
          public virtual bool BDayEmailsAllow { get; set; }
 
+         public virtual IList<Department> Departments { get; set; }
+
 	}
 }

@@ -26,13 +26,31 @@
             if (j == 0)
             {
             <div class="item active">
-                <img class="ban-img" alt="" title="" src="@Url.Content("~/public/UserFiles/flashbanners/" + item_img.Banner) " />
+                @if (!String.IsNullOrWhiteSpace(item_img.Url))
+                {
+                    <a href="@item_img.Url">
+                        <img class="ban-img" alt="" title="" src="@Url.Content("~/public/UserFiles/flashbanners/" + item_img.Banner) " />
+                    </a>
+                }
+                else
+                {
+                    <img class="ban-img" alt="" title="" src="@Url.Content("~/public/UserFiles/flashbanners/" + item_img.Banner) " />                    
+                }
             </div>
             }
             else
             { 
             <div class="item">
-                <img class="ban-img" alt="" title="" src="@Url.Content("~/public/UserFiles/flashbanners/" + item_img.Banner) " />
+                @if (!String.IsNullOrWhiteSpace(item_img.Url))
+                {
+                    <a href="@item_img.Url">
+                        <img class="ban-img" alt="" title="" src="@Url.Content("~/public/UserFiles/flashbanners/" + item_img.Banner) " />
+                    </a>
+                }
+                else 
+                { 
+                    <img class="ban-img" alt="" title="" src="@Url.Content("~/public/UserFiles/flashbanners/" + item_img.Banner) " />
+                }
             </div>
         
             } j++;

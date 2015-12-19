@@ -65,7 +65,7 @@ namespace Portal
             routes.MapRoute(
 "forumsAuto", // Route name
 "Forums/AutoCreate", // URL with parameters
-new { controller = "Forums", action = "AutoCreate"} // Parameter defaults
+new { controller = "Forums", action = "AutoCreate" } // Parameter defaults
 );
 
             routes.MapRoute(
@@ -92,11 +92,14 @@ new { controller = "Forums", action = "List", categoryId = UrlParameter.Optional
 new { controller = "Forums", action = "ForumTitle", categoryId = UrlParameter.Optional, title = UrlParameter.Optional } // Parameter defaults
 );
 
+
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+
 
 
 

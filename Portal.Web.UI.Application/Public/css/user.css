@@ -78,6 +78,24 @@ body
     height: 30px;
 }
 
+.search-form .advanced-search-btn {
+    background: url("../images/magnifying_glass_search_2.png");
+    border: 1px solid rgb(190, 190, 190);
+    height: 25px;
+    left: 0px;
+    width: 30px;
+    margin: 0;
+    overflow: hidden;
+    padding: 11px;
+    position: absolute;
+    top: 0px;
+    /* width: 17px; */
+    background-repeat: no-repeat;
+    background-size: 81%;
+    background-position: 3.5px;
+    height: 30px;
+}
+
 .search-form input {
     color: #777777;
     font-size: 15px;
@@ -88,6 +106,24 @@ body
     height: 30px;
     width: 89%;
 }
+
+.user-form input {
+    width: 61%;
+}
+
+.user-form button {
+    left: 35px;
+}
+
+.user-form .advanced-search-btn {
+    left: 0 !important;
+}
+
+
+.home .user-form input {
+    width: 75%;
+}
+
 
 .search-form td {
     vertical-align: middle;
@@ -919,6 +955,7 @@ a.scrolltotop {
 .first_line
 {
     margin-bottom:16px;
+    position: relative;
 }
 
 .display-label {

@@ -158,12 +158,12 @@ fieldset dd div {
 }
 
 fieldset input {
-	width: 200px;
+	/*width: 200px;*/
 }
 
 fieldset textarea {
-	height: 100px;
-	width: 400px;
+	/*height: 100px;
+	width: 400px;*/
 }
 
 input.check-box {

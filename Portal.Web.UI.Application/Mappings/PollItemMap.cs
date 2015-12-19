@@ -13,8 +13,17 @@ namespace Portal.Mappings
         {
 			Id(x => x.Id);
 
+            Map(x => x.Type).CustomType<int>();
+            Map(x => x.Heading);
             Map(x => x.Title);
-			Map(x => x.Option1);
+            Map(x => x.Caption);
+            Map(x => x.Description);
+            Map(x => x.MinimumValue);
+            Map(x => x.MinimumText);
+            Map(x => x.MaximumValue);
+            Map(x => x.MaximumText);
+            Map(x => x.Required);
+            Map(x => x.Option1);
 			Map(x => x.Option2);
 			Map(x => x.Option3);
 			Map(x => x.Option4);
@@ -26,6 +35,7 @@ namespace Portal.Mappings
 			Map(x => x.Option4Count);
             Map(x => x.Option5Count);
             Map(x => x.Option6Count);
+            Map(x => x.LCID);
 
             References(x => x.Poll);
 

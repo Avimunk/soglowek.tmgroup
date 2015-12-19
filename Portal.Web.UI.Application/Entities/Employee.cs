@@ -16,6 +16,7 @@ namespace Portal.Entities
         public virtual string LastName { get; set; }
         public virtual string EnglishFirstName { get; set; }
         public virtual string EnglishLastName { get; set; }
+        public virtual string Alias { get; set; }
         public virtual JobTitle JbTitle { get; set; }
         public virtual long EmployeeMessagesCount { get; set; }
         public virtual string Phone { get; set; }

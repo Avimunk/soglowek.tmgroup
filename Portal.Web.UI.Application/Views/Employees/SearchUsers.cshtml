@@ -8,7 +8,7 @@
 <div class="col-sm-8">
     <div class="box">
         <h4 class="box-title">
-            חיפוש מתקדם
+            <a href="#" class="advanced-search-btn">חיפוש מתקדם</a>
         </h4>
         <div class="box-content">
             @foreach (var item in Model)
@@ -32,6 +32,16 @@
                                 אימייל:</label><div class="card_div">
                                     @item.Email.ToEmail()</div>
                             <br />
+                            @if (!String.IsNullOrWhiteSpace(item.Alias))
+                            {
+                                <label>
+                                    כינוי:
+                                </label>
+                                <div class="card_div">
+                                    @item.Alias
+                                </div>
+                                <br />
+                            }
                             @if (item.Phone != "")
                             {
                                 <label>

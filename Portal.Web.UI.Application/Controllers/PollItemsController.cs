@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using Portal.Models.Polls;
 using Portal.Entities;
 using Portal.Attributes;
+using Portal.Common;
+using Portal.Common.Extensions;
+
 using AutoMapper;
 using NHibernate.Linq;
 
@@ -29,7 +32,7 @@ namespace Portal.Controllers
 			return View(model);
 		}
 
-        [Admin, HttpPost, Transaction]
+        [Admin, HttpPost, Transaction, ValidateInput(false)]
         public ActionResult Create(PollItemFormModel model)
         {
             if (ModelState.IsValid)
@@ -39,8 +42,9 @@ namespace Portal.Controllers
                 item.Poll = GetSession.Get<Poll>(model.Poll_Id);
 
                 GetSession.Save(item);
-
-                return RedirectToAction("Edit", "Polls", new { id = model.Poll_Id });
+                
+                return Redirect(Url.RouteUrl(new { controller = "Polls", action = "Edit", id = model.Poll_Id }) + "#items");
+                //return RedirectToAction("Edit", "Polls", new { id = model.Poll_Id });
             }
             return View(model);
         }
@@ -85,7 +89,7 @@ namespace Portal.Controllers
 			return View(model);
 		}
 
-		[Admin, HttpPost, Transaction]
+		[Admin, HttpPost, Transaction, ValidateInput(false)]
         public ActionResult Edit(PollItemFormModel model)
         {
             var item = GetSession.Get<PollItem>(model.Id);
@@ -95,7 +99,8 @@ namespace Portal.Controllers
 
 				GetSession.Update(item);
 
-                return RedirectToAction("Edit", "Polls", new { id = model.Poll_Id });
+                return Redirect(Url.RouteUrl(new { controller = "Polls", action = "Edit", id = model.Poll_Id }) + "#items");
+                //return RedirectToAction("Edit", "Polls", new { id = model.Poll_Id });
 			}
 
 			return View(model);

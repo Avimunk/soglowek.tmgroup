@@ -1,49 +1,128 @@
 ﻿@model Portal.Models.Polls.PollItemFormModel
+@using Portal.Helpers
 
 <fieldset>
-	<legend>פרטים</legend>
-	<dl>
-        <dt>שם:</dt>
+    <legend>פרטים</legend>
+    <dl>
+        <dt>כותרת:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Heading)
+            @Html.ValidationMessageFor(model => model.Heading)
+        </dd>
+        <dt>תת כותרת:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Caption)
+            @Html.ValidationMessageFor(model => model.Caption)
+        </dd>
+        <dt>שאלה:</dt>
         <dd>
             @Html.EditorFor(model => model.Title)
             @Html.ValidationMessageFor(model => model.Title)
         </dd>
-		<dt>אופציה 1:</dt>
-		<dd>
-			@Html.EditorFor(model => model.Option1)
-			@Html.ValidationMessageFor(model => model.Option1)
-		</dd>
-		<dt>אופציה 2:</dt>
-		<dd>
-			@Html.EditorFor(model => model.Option2)
-			@Html.ValidationMessageFor(model => model.Option2)
-		</dd>
-		<dt>אופציה 3:</dt>
-		<dd>
-			@Html.EditorFor(model => model.Option3)
-			@Html.ValidationMessageFor(model => model.Option3)
-		</dd>
-		<dt>אופציה 4:</dt>
-		<dd>
-			@Html.EditorFor(model => model.Option4)
-			@Html.ValidationMessageFor(model => model.Option4)
-		</dd>
-        	<dt>אופציה 5:</dt>
-		<dd>
-			@Html.EditorFor(model => model.Option5)
-			@Html.ValidationMessageFor(model => model.Option5)
-		</dd>
-        	<dt>אופציה 6:</dt>
-		<dd>
-			@Html.EditorFor(model => model.Option6)
-			@Html.ValidationMessageFor(model => model.Option6)
-		</dd>
-	</dl>
+
+        <dt>חובה:</dt>
+        <dd>
+            @Html.CheckBoxFor(model => model.Required)
+        </dd>
+        <dt>סוג:</dt>
+        <dd>
+            @Html.DropDownListFor(x => x.Type, new List<SelectListItem>
+                    {
+                        new SelectListItem() {Text = "בחר סוג", Value=""},
+                        new SelectListItem() {Text = "ריבוי תשובות", Value="Multiple"},
+                        new SelectListItem() {Text = "פתוחה", Value="Open"},
+                        new SelectListItem() {Text = "טווח", Value="Range"}
+                    }, new { id = "questionType" })
+            @Html.ValidationMessageFor(model => model.Type)
+        </dd>
+    </dl>
+    <dl id="questionTypeMultiple" class="questionTypeChoice">
+        <dt>אופציה 1:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Option1)
+            @Html.ValidationMessageFor(model => model.Option1)
+        </dd>
+        <dt>אופציה 2:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Option2)
+            @Html.ValidationMessageFor(model => model.Option2)
+        </dd>
+        <dt>אופציה 3:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Option3)
+            @Html.ValidationMessageFor(model => model.Option3)
+        </dd>
+        <dt>אופציה 4:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Option4)
+            @Html.ValidationMessageFor(model => model.Option4)
+        </dd>
+        <dt>אופציה 5:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Option5)
+            @Html.ValidationMessageFor(model => model.Option5)
+        </dd>
+        <dt>אופציה 6:</dt>
+        <dd>
+            @Html.EditorFor(model => model.Option6)
+            @Html.ValidationMessageFor(model => model.Option6)
+        </dd>
+    </dl>
+    <dl id="questionTypeOpen" class="questionTypeChoice"></dl>
+    <dl id="questionTypeRange" class="questionTypeChoice">
+        <dt>טווח:</dt>
+        <dd>
+            @Html.TextBoxFor(model => model.MinimumValue, new { id = "minimumValue", type = "number", min = "0", max = "100" })
+            @Html.TextBoxFor(model => model.MaximumValue, new { id = "maximumValue", type = "number", min = "0", max = "100" })
+            @Html.ValidationMessageFor(model => model.MinimumValue)
+            @Html.ValidationMessageFor(model => model.MaximumValue)<br />
+            <span id="minimumValueDisplay">@Html.Raw(Model.MinimumValue.ToString())</span>: @Html.EditorFor(model => model.MinimumText)<br />
+            <span id="maximumValueDisplay">@Html.Raw(Model.MaximumValue.ToString())</span>: @Html.EditorFor(model => model.MaximumText)
+        </dd>
+    </dl>
+    <dl>
+        <dt>תיאור:</dt>
+        <dd>
+            @Html.TextAreaFor(model => model.Description, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </dd>
+    </dl>
 </fieldset>
 @Html.HiddenFor(x => x.Poll_Id)
+
 <div class="submit-btn">
-	<input type="submit" value="שמור" />
-	<span>או</span>
-	@Html.ActionLink("אחורה", "Edit", "Polls", new { id = Model.Poll_Id }, null)
+    <input type="submit" value="שמור" />
+    <span>או</span>
+    <a href="@Url.Action("Edit", "Polls", new { id = Model.Poll_Id }, null)#items">אחורה</a>
 </div>
 
+<script>
+    function setChoices() {
+        $(".questionTypeChoice").hide();
+
+        switch ($("#questionType").val()) {
+            case "Multiple":
+                $("#questionTypeMultiple").show();
+                break;
+            case "Open":
+                $("#questionTypeOpen").show();
+                break;
+            case "Range":
+                $("#questionTypeRange").show();
+                break;
+        }
+    }
+    $(function () {
+        $("#questionType").on("change", function (e) {
+            setChoices();
+        });
+        $("#minimumValue").on("change", function (e) {
+            $("#minimumValueDisplay").html($(this).val());
+        });
+        $("#maximumValue").on("change", function (e) {
+            $("#maximumValueDisplay").html($(this).val());
+        });
+
+        setChoices();
+    });
+</script>

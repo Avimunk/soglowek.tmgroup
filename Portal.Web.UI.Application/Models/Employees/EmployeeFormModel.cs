@@ -61,6 +61,7 @@ namespace Portal.Models.Employees
         public string LastName { get; set; }
         public string EnglishFirstName { get; set; }
         public string EnglishLastName { get; set; }
+        public string Alias { get; set; }
         public string Phone { get; set; }
         public string Mobile { get; set; }
         public string Range { get; set; }

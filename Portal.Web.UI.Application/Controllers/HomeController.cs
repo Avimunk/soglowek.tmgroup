@@ -72,6 +72,10 @@ namespace Portal.Controllers
                 ViewBag.DocCounter = 0;
             }
 
+            // Departments
+            item.Departments = GetSession.QueryOver<Department>().List();
+
+
             return View(item);
         }
 

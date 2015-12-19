@@ -7,17 +7,17 @@
     <h4 class="box-title">
         סקר - @Model.Title
     </h4>
- 
-      @if (Model.ReadOnly)
-      {
 
-      }
-      else
-      {
-             <h2>הנחיות</h2>
-            <p>@Html.Raw(Model.Description)</p>
-      }
-  
+    @if (Model.ReadOnly)
+    {
+
+    }
+    else
+    {
+        <h2>הנחיות</h2>
+        <p>@Html.Raw(Model.Description)</p>
+    }
+
     <div class="box-content">
         @if (Model.Enabled)
         {

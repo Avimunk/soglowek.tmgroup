@@ -1,0 +1,303 @@
+﻿@font-face {
+    font-family: 'Alef';
+    src: url('../fonts/alef/Alef-Bold.eot');
+    src: url('../fonts/alef/Alef-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/alef/Alef-Bold.woff') format('woff'),
+         url('../fonts/alef/Alef-Bold.ttf') format('truetype'),
+         url('../fonts/alef/Alef-Bold.svg#alefbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Alef';
+    src: url('../fonts/alef/Alef-Regular.eot');
+    src: url('../fonts/alef/Alef-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/alef/Alef-Regular.woff') format('woff'),
+         url('../fonts/alef/Alef-Regular.ttf') format('truetype'),
+         url('../fonts/alef/Alef-Regular.svg#alefregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+:focus {
+    outline: 0;
+}
+label span {
+    padding: 0 10px 0 0;
+}
+.form-control {
+    font-size: 25px;
+    height: 64px;
+}
+body.poll-taking {
+    font-family: 'Alef' !important;
+    background: url('../images/polls/bg.jpg') repeat 0 0 !important;
+    background-size: contain !important;
+    color: #524a48;
+}
+.poll-taking p {
+    margin: 30px 0;
+}
+.poll-taking h1 {
+    font-family: 'Alef' !important;
+    color: #c5191f;
+    font-weight: 900;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .poll-taking h1 {
+        font-size: 35px;
+    }
+}
+@media (min-width: 1200px) {
+    .poll-taking h1 {
+        font-size: 45px;
+    }
+}
+.poll-taking h2,
+.poll-taking h3 {
+    font-family: 'Alef' !important;
+    font-size: 40px;
+    color: #c5191f;
+    font-weight: 900;
+}
+.poll-taking h3 {
+    font-size: 30px;
+    color: #524a48;
+}
+.poll-taking img {
+    max-width: 100%;
+    outline: 0;
+}
+.poll-taking main {
+}
+@media (min-width: 1200px)  {
+    .poll-taking main {
+        margin: 60px auto;
+        width: 945px;
+    }
+}
+.poll-taking .wrapper > .container {
+    border: solid 10px #c5191f;
+    padding: 40px;
+    background: 0;
+}
+.poll-taking .container {
+    background: 0;
+}
+.poll-taking .instructions {
+    font-size: 17px;
+    color: #98918f;
+    margin: 40px 0;
+}
+.poll-taking input[type="submit"] {
+    background-color: #524a48;
+    
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px;
+
+    padding: 7px 30px;
+
+    outline: 0;
+}
+
+.poll-taking textarea,
+.poll-taking button,
+.poll-taking input[type="submit"] {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    behavior: url(/public/pie/PIE.htc);
+}
+
+.poll-taking textarea {
+    width: 100%;
+    font-size: 28px;
+    font-weight: 500;
+    color: #c5191f;
+    padding: 10px 30px;
+    resize: none;
+}
+.poll-taking {
+    font-weight: 700;
+    font-size: 24px;
+}
+.poll-taking.takeoptions {
+    text-align: center;
+}
+.poll-taking.takeoptions.wrapper > .container {
+    text-align: center;
+}
+.poll-taking.takeoptions input,
+.poll-taking.takeoptions select {
+    text-align: center;
+}
+.poll-taking .summary {
+    font-weight: 700;
+}
+
+.poll-taking form > ul {
+	list-style-type: none;
+	list-style-type: decimal !ie; /*IE 7- hack*/
+	
+	margin: 0;
+	padding: 0;
+	
+	counter-reset: li-counter;
+}
+.poll-taking form > ul > li {
+    position: relative;
+    padding: 10px 40px 0 0;
+    font-weight: bold;
+    margin: 40px 80px 0 0;
+    behavior: url(/public/pie/PIE.htc);
+}
+.poll-taking form > ul > li:before {
+    position: absolute;
+    top: 0;
+    right: -80px;
+    border: 2px solid #524a48;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 68px;
+    height: 68px;
+    font-size: 48px;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+    content: counter(li-counter);
+    counter-increment: li-counter;
+    behavior: url(/public/pie/PIE.htc);
+}
+.poll-taking form > ul > li h3 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+}
+.poll-taking form > ul > li label {
+    cursor: pointer;
+}
+.poll-taking form > ul > li label span {
+}
+.poll-taking .poll-item ul {
+    margin: 0;
+    padding: 0;
+}
+.poll-taking .poll-item ul li {
+    margin: 0 0 10px 0;
+    padding: 0;
+    list-style-type: none;
+}
+.poll-taking .poll-item .minimum-text {
+    text-align: left;
+}
+.poll-taking .poll-item .maximum-text {
+    text-align: right;
+}
+.poll-taking .irrelevant {
+    margin: 35px 0 0 0;
+    font-size: 18px;
+    color: #c5191f;
+    font-weight: 900;
+}
+
+/* Slider */
+.slider {
+    margin-top: -20px;
+}
+.slider span {
+    font-weight: 700;
+    font-size: 16px;
+}
+.slider .noUi-value {
+    font-weight: bold;
+    color: #524a48;
+    font-size: 25px;
+}
+.slider .noUi-target {
+    cursor: pointer;
+}
+.slider .noUi-horizontal .noUi-handle {
+    background: #c5191f;
+}
+
+.slider .slider-control[disabled] {
+    background: #B8B8B8;
+}
+
+.slider .slider-control[disabled] .noUi-handle {
+    background: #B8B8B8;
+}
+
+.slider .ui-slider .ui-slider-handle {
+    width: 21px !important;
+    height: 28px !important;
+    color: #ff0084 !important;
+}
+
+.slider .ui-state-hover,
+.slider .ui-widget-content .ui-state-hover,
+.slider .ui-widget-header .ui-state-hover,
+.slider .ui-state-focus,
+.slider .ui-widget-content .ui-state-focus,
+.slider .ui-widget-header .ui-state-focus {
+	border: 1px solid #0073ea;
+	background: #c5191f url(images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;
+	font-weight: bold;
+	color: #c5191f;
+}
+.slider .ui-state-active, .ui-widget-content .ui-state-active, 
+.slider .ui-widget-header .ui-state-active {
+    border: 1px solid #dddddd;
+    background: #c5191f url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x !important;
+    font-weight: bold;
+    color: #c5191f !important;
+}
+.slider .ui-slider-pips [class*=ui-slider-pip-initial] {
+    color: #c5191f;
+}
+.slider .ui-slider-pips [class*=ui-slider-pip-selected] {
+    color: #c5191f;
+}
+
+
+/* Culture Selector */
+.culture-selector ul {
+    margin: 0;
+    padding: 0;
+}
+.culture-selector ul li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.culture-selector button {
+    background-color: #fff;
+    color: #524a48;
+    border: 2px solid #524a48;
+    font-weight: 700;
+    font-size: 36px;
+    padding: 7px 30px;
+    outline: 0;
+}
+.culture-selector button:hover,
+.culture-selector button:focus,
+.culture-selector button.active {
+    background: #c5191f;
+    color: #fff;
+}
+
+.invisible-input {
+    width: 1px;
+    font-size: 0px;
+    border: 0;
+    background: 0;
+}
+
+.required-message {
+    display: none;
+}
