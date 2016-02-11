@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -162,21 +164,20 @@ namespace Portal.Controllers
         {
             var item = GetSession.Get<Poll>(model.Id);
 
-            bool anonymous = model.Anonymous;
-            if (!model.Anonymous && item.Anonymous)
-            {
-                if (item.PollItems.Any(pi => pi.EmployeePollItems.Count > 0))
-                {
-                    anonymous = true;
-                }
-            }
+            //bool anonymous = model.Anonymous;
+            //if (!model.Anonymous && item.Anonymous)
+            //{
+            //    if (item.PollItems.Any(pi => pi.EmployeePollItems.Count > 0))
+            //    {
+            //        anonymous = true;
+            //    }
+            //}
 
             if (ModelState.IsValid)
             {
                 Mapper.Map<PollFormModel, Poll>(model, item);
 
-                item.Anonymous = anonymous;
-
+                item.Anonymous = model.Anonymous;
                 // Object
                 if (model.Object_id > 0)
                 {
@@ -828,23 +829,25 @@ namespace Portal.Controllers
 #endregion
                     break;
                 case 2:
-                    if (poll.Anonymous)
-                    {
-                        return null;
-                    }
                     //dataTable.Columns.Add("ID", typeof(long));
                     dataTable.Columns.Add("PollTitle", typeof(string));
-                    dataTable.Columns.Add("Username", typeof(string));
-                    dataTable.Columns.Add("FullName", typeof(string));
-                    dataTable.Columns.Add("DepartmentName", typeof(string));
+                    if (!poll.Anonymous)
+                    {
+                        dataTable.Columns.Add("Username", typeof(string));
+                        dataTable.Columns.Add("FullName", typeof(string));
+                        dataTable.Columns.Add("DepartmentId", typeof(string));
+                        dataTable.Columns.Add("DepartmentName", typeof(string));
+                        dataTable.Columns.Add("ManagerId", typeof(string));
+                        dataTable.Columns.Add("ManagerName", typeof(string));
+                    }
+                    else
+                    {
+                        dataTable.Columns.Add("SessionId", typeof(string));
+                    }
                     dataTable.Columns.Add("QuestionNumber", typeof(int));
                     dataTable.Columns.Add("QuestionContent", typeof(string));
                     dataTable.Columns.Add("AnswerNumber", typeof(int));
                     dataTable.Columns.Add("AnswerContent", typeof(string));
-                    dataTable.Columns.Add("DepartmentId", typeof(string));
-                    dataTable.Columns.Add("ManagerId", typeof(string));
-                    dataTable.Columns.Add("ManagerName", typeof(string));
-                    dataTable.Columns.Add("SessionId", typeof(string));
 
                     for (int i = 0; i < poll.PollItems.Count; i++)
                     {
@@ -901,18 +904,29 @@ namespace Portal.Controllers
                                     break;
                             }
 
-                            dataTable.Rows.Add(item.Poll.Title,
-                                employeeItem.Employee.Username,
-                                employeeItem.Employee.FullName,
-                                employeeItem.Employee.DepartmentName,
-                                (i + 1).ToString(),
-                                item.Title,
-                                answerNumber,
-                                answerContent,
-                                employeeItem.PollTaking != null ? employeeItem.PollTaking.Department_id.ToString() : String.Empty,
-                                employeeItem.PollTaking != null ? (employeeItem.PollTaking.Manager != null ? employeeItem.PollTaking.Manager.Id.ToString() : String.Empty)  : String.Empty,
-                                employeeItem.PollTaking != null ? (employeeItem.PollTaking.Manager != null ? employeeItem.PollTaking.Manager.FullName : String.Empty) : String.Empty,
-                                employeeItem.SessionId.ToString());
+                            if (!poll.Anonymous)
+                            {
+                                dataTable.Rows.Add(item.Poll.Title,
+                                    employeeItem.Employee.Username,
+                                    employeeItem.Employee.FullName,
+                                    employeeItem.PollTaking != null ? employeeItem.PollTaking.Department_id.ToString() : String.Empty,
+                                    employeeItem.Employee.DepartmentName,
+                                    employeeItem.PollTaking != null ? (employeeItem.PollTaking.Manager != null ? employeeItem.PollTaking.Manager.Id.ToString() : String.Empty) : String.Empty,
+                                    employeeItem.PollTaking != null ? (employeeItem.PollTaking.Manager != null ? employeeItem.PollTaking.Manager.FullName : String.Empty) : String.Empty,
+                                    (i + 1).ToString(),
+                                    item.Title,
+                                    answerNumber,
+                                    answerContent);
+                            }
+                            else
+                            {
+                                dataTable.Rows.Add(item.Poll.Title,
+                                    employeeItem.SessionId.ToString(),
+                                    (i + 1).ToString(),
+                                    item.Title,
+                                    answerNumber,
+                                    answerContent);
+                            }
                         }
                     }
 
@@ -923,8 +937,27 @@ namespace Portal.Controllers
             Response.ContentEncoding = System.Text.Encoding.GetEncoding("UTF-8");
             Response.Charset = "UTF-8";
 
-            var grid = new GridView();
-            grid.DataSource = dataTable;
+            DataView dataView = new DataView(dataTable);
+            switch (type)
+            {
+                case 1:
+                    break;
+                case 2:
+                    if (!poll.Anonymous)
+                    {
+                        dataView.Sort = "FullName";
+                    }
+                    else
+                    {
+                        dataView.Sort = "SessionId";
+                    }
+                    break;
+            }
+
+            var grid = new GridView()
+            {
+                DataSource = dataView
+            };
             grid.DataBind();
 
             Response.ClearContent();
